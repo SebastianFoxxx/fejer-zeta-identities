@@ -14,25 +14,25 @@
 ---
 ## Abstract
 
-A Fej\'er–Dirichlet lift is developed that turns divisor information at the integers into entire interpolants with explicit Dirichlet–series factorizations. For absolutely summable weights the lift interpolates $(a*1)(n)$ at each integer $n$ and has Dirichlet series $\zeta(s)A(s)$ on $\Re s>1$. Two applications are emphasized. First, for $q>1$ an entire function $\mathfrak F(\cdot,q)$ is constructed that vanishes at primes and is positive at composite integers; a tangent-matched variant $\mathfrak F^{\sharp}$ is shown to admit an explicit, effective threshold $P_0(q)$ such that for every odd prime $p\ge P_0(q)$ the interval $(p-1,p)$ is free of real zeros and $x=p$ is a boundary zero of multiplicity two. Second, a renormalized lift for $a=\mu*\Lambda$ produces an entire interpolant of $\Lambda(n)$ and provides a constructive viewpoint on the appearance of $\zeta'(s)/\zeta(s)$ through the FD-lift spectrum. A Polylog–Zeta factorization for the geometric-weight case links $\zeta(s)$ with $\operatorname{Li}_s(1/q)$. All prime/composite statements concern integer arguments. Scripts reproducing figures and numerical checks are provided in a public repository with an archival snapshot.
+A Fejér–Dirichlet lift is developed that turns divisor information at the integers into entire interpolants with explicit Dirichlet–series factorizations. For absolutely summable weights the lift interpolates $(a*1)(n)$ at each integer $n$ and has Dirichlet series $\zeta(s)A(s)$ on $\Re s>1$. Two applications are emphasized. First, for $q>1$ an entire function $\mathfrak F(\cdot,q)$ is constructed that vanishes at primes and is positive at composite integers; a tangent-matched variant $\mathfrak F^{\sharp}$ is shown to admit an explicit, effective threshold $P_0(q)$ such that for every odd prime $p\ge P_0(q)$ the interval $(p-1,p)$ is free of real zeros and $x=p$ is a boundary zero of multiplicity two. Second, a renormalized lift for $a=\mu*\Lambda$ produces an entire interpolant of $\Lambda(n)$ and provides a constructive viewpoint on the appearance of $\zeta'(s)/\zeta(s)$ through the FD-lift spectrum. A Polylog–Zeta factorization for the geometric-weight case links $\zeta(s)$ with ${Li}_s(1/q)$. All prime/composite statements concern integer arguments. Scripts reproducing figures and numerical checks are provided in a public repository with an archival snapshot.
 
 ## Introduction and Overview
 
 The Fejér kernel
-$$
+$
 F(z,i) = i + 2\sum_{k=1}^{i-1}(i-k)\cos\left(\frac{2\pi k z}{i}\right)
 = \left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^2
-$$
+$
 is a finite even trigonometric polynomial whose sine-quotient form has only removable poles. Superpositions of $F(\cdot,i)$ with rapidly decaying weights act as **divisor filters** at integer points: the value $F(n,i)/i^2$ equals $1$ if $i\mid n$ and $0$ otherwise. This yields the **Fejér–Dirichlet lift**
-$$
+$
 \mathcal{T}_a(z) = \sum_{i\ge1} a(i)\,\frac{F(z,i)}{i^2},
-$$
+$
 which interpolates $(a*1)(n)$ at integers and admits the Dirichlet–series factorization
 $\sum \mathcal{T}_a(n)n^{-s} = \zeta(s)A(s)$ for $\Re s>1$.
 A central specialization chooses geometric weights to form a **prime-indicator** $\mathfrak{F}(z,q)$ ($q>1$), whose integer values vanish at primes and are positive at composites. The raw indicator may admit a **left companion zero** inside $(p-1,p)$; this is removed by a **tangent-matched normalizer**
-$$
+$
 q^{-x}\left(1+(\log q)\,S_1(x)\right),\qquad S_1(x) = \frac{\sin(2\pi x)}{2\pi},
-$$
+$
 producing $\mathfrak{F}^{\sharp}(z,q)$ with zero-free prime windows beyond an explicit $q$-dependent threshold. The proof strategy partitions $(p-1,p)$ into left/middle/right windows, balances the Fejér mass against the normalizer via explicit constants, and exploits a uniform curvature lower bound near $x=p$.
 
 A **renormalized** variant of the lift yields an entire interpolant of the von Mangoldt function by taking $a=\mu*\Lambda$, and a two-variable version differentiates to recover the classical identity involving $\tau$, $\Lambda$, and $\zeta\,\zeta'$. Polylogarithm–$\zeta$ identities arise naturally from the lift; for $q=-1$ they are interpreted in the Abel sense through the Dirichlet eta function, while for $q<-1$ a weighted alternating $\eta_Q$ appears. Analyticity for $|q|>1$ follows by uniform convergence on compact sets (Weierstrass M-test). Throughout, prime/composite claims are statements about values at integer arguments.
