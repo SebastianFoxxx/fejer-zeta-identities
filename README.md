@@ -18,28 +18,21 @@ A Fejér–Dirichlet lift is developed that turns divisor information at the int
 
 ## Introduction and Overview
 
-The Fejér kernel
-$
-F(z,i) = i + 2\sum_{k=1}^{i-1}(i-k)\cos\left(\frac{2\pi k z}{i}\right)
-= \left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^2
-$
-is a finite even trigonometric polynomial whose sine-quotient form has only removable poles. Superpositions of $F(\cdot,i)$ with rapidly decaying weights act as **divisor filters** at integer points: the value $F(n,i)/i^2$ equals $1$ if $i\mid n$ and $0$ otherwise. This yields the **Fejér–Dirichlet lift**
-$
-\mathcal{T}_a(z) = \sum_{i\ge1} a(i)\,\frac{F(z,i)}{i^2},
-$
-which interpolates $(a*1)(n)$ at integers and admits the Dirichlet–series factorization
-$\sum \mathcal{T}_a(n)n^{-s} = \zeta(s)A(s)$ for $\Re s>1$.
-A central specialization chooses geometric weights to form a **prime-indicator** $\mathfrak{F}(z,q)$ ($q>1$), whose integer values vanish at primes and are positive at composites. The raw indicator may admit a **left companion zero** inside $(p-1,p)$; this is removed by a **tangent-matched normalizer**
-$
-q^{-x}\left(1+(\log q)\,S_1(x)\right),\qquad S_1(x) = \frac{\sin(2\pi x)}{2\pi},
-$
+The Fejér kernel  
+$F(z,i) = i + 2\sum_{k=1}^{i-1}(i-k)\cos\left(\frac{2\pi k z}{i}\right) = \left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^2$  
+is a finite even trigonometric polynomial whose sine-quotient form has only removable poles. Superpositions of $F(\cdot,i)$ with rapidly decaying weights act as **divisor filters** at integer points: the value $F(n,i)/i^2$ equals $1$ if $i\mid n$ and $0$ otherwise. This yields the **Fejér–Dirichlet lift**  
+$T_a(z) = \sum_{i\ge1} a(i)\,\frac{F(z,i)}{i^2}$  
+which interpolates $(a*1)(n)$ at integers and admits the Dirichlet–series factorization  
+$\sum T_a(n)n^{-s} = \zeta(s)A(s)$ for $\Re s>1$.  
+A central specialization chooses geometric weights to form a **prime-indicator** $\mathfrak{F}(z,q)$ ($q>1$), whose integer values vanish at primes and are positive at composites. The raw indicator may admit a **left companion zero** inside $(p-1,p)$; this is removed by a **tangent-matched normalizer**  
+$q^{-x}\left(1+(\log q)\,S_1(x)\right),\qquad S_1(x) = \frac{\sin(2\pi x)}{2\pi},$  
 producing $\mathfrak{F}^{\sharp}(z,q)$ with zero-free prime windows beyond an explicit $q$-dependent threshold. The proof strategy partitions $(p-1,p)$ into left/middle/right windows, balances the Fejér mass against the normalizer via explicit constants, and exploits a uniform curvature lower bound near $x=p$.
 
 A **renormalized** variant of the lift yields an entire interpolant of the von Mangoldt function by taking $a=\mu*\Lambda$, and a two-variable version differentiates to recover the classical identity involving $\tau$, $\Lambda$, and $\zeta\,\zeta'$. Polylogarithm–$\zeta$ identities arise naturally from the lift; for $q=-1$ they are interpreted in the Abel sense through the Dirichlet eta function, while for $q<-1$ a weighted alternating $\eta_Q$ appears. Analyticity for $|q|>1$ follows by uniform convergence on compact sets (Weierstrass M-test). Throughout, prime/composite claims are statements about values at integer arguments.
 
 ## Key Contributions
 
-1.  **Fejér–Dirichlet lift (interpolation and factorization):** An explicit entire function $\mathcal{T}_a$ (type $\le 2\pi$) is constructed for weights $a$ with mild summability, satisfying $\mathcal{T}_a(n) = (a*1)(n)$ and $\sum \mathcal{T}_a(n)n^{-s} = \zeta(s)A(s)$ for $\Re s>1$.
+1.  **Fejér–Dirichlet lift (interpolation and factorization):** An explicit entire function $T_a$ (type $\le 2\pi$) is constructed for weights $a$ with mild summability, satisfying $T_a(n) = (a*1)(n)$ and $\sum T_a(n)n^{-s} = \zeta(s)A(s)$ for $\Re s>1$.
 2.  **Prime-indicator family and tangent matching:** A geometric-weight construction $\mathfrak{F}(z,q)$ yields prime zeros and composite positivity at integers. A tangent-matched variant $\mathfrak{F}^{\sharp}(z,q)$ with periodic normalizer matches value and slope at integers and proves **zero-free prime windows** $(p-1,p)$ for all sufficiently large odd primes $p$, with an explicit threshold $P_0(q)$.
 3.  **Quantitative companion-zero analysis (original indicator):** For $\mathfrak{F}$ (without tangent matching), the existence of a left companion zero in $(p-1,p)$ is shown and its displacement obeys a sharp law $\Delta_p(q)\asymp q^{-p}$, with an explicit asymptotic formula involving a curvature term $K(q,p)$.
 4.  **Renormalized lift for $a=\mu*\Lambda$:** An entire interpolant of $\Lambda(n)$ is obtained; a two-variable formulation differentiates to recover the standard identity relating $\tau$, $\Lambda$, and $\zeta\,\zeta'$.
@@ -117,7 +110,7 @@ python src/plot_generator.py
 ```
 
 This will create the `figures/` directory (if it doesn't exist) and save all plots, including:
-* `plot_mu_interpolant.pdf` (The "analytic annihilator" $\mathcal{T}_\mu$)
+* `plot_mu_interpolant.pdf` (The "analytic annihilator" $T_\mu$)
 * `plot_lambda_interpolant.pdf` (The interpolant for $\Lambda(n)$)
 * `plot_operator_effect.pdf` (The effect of the differentiation operator)
 * `plot_q_analog_interpolation.pdf` (q-analog curves vs. $\tau(n)$)
