@@ -5,7 +5,7 @@
 **Location:** Berlin, Germany  
 **Affiliation:** Humboldt-Universität zu Berlin  
 **GitHub:** [SebastianFoxxx/fejer-zeta-identities](https://github.com/SebastianFoxxx/fejer-zeta-identities)  
-**Paper on arXiv:** [https://arxiv.org/abs/2509.12297]()  
+**Paper on arXiv:** [https://arxiv.org/abs/2509.12297](https://arxiv.org/abs/2509.12297)  
 **ORCID:** [0009-0009-1237-4804](https://orcid.org/0009-0009-1237-4804)  
 **DOI:** [10.5281/zenodo.17122709](https://doi.org/10.5281/zenodo.17122709)  
 **Date:** 2025-09-15  
