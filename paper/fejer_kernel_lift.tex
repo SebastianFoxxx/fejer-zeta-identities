@@ -381,7 +381,7 @@ Let $\mathcal{T}_a(z)$ be the FD-Lift for a sequence of weights $a(n)$ whose ass
 Details: Appendix~\ref{app:fdlift-proofs}.
 \end{proof}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_mu_interpolant.pdf}
 \caption{The FD-Lift for the M\"obius function, $\mathcal{T}_\mu(x)$. The continuous function (blue curve), generated from the sum of Fej\'er kernels weighted by $\mu(i)$, is shown to correctly interpolate the discrete values of the convolution $(\mu*1)(n)$ (red diamonds). This provides a visual confirmation of Theorem~\ref{thm:fd-lift-core} and illustrates the construction of an "analytic annihilator" for integers $n>1$.}
@@ -560,7 +560,7 @@ Under the Riemann Hypothesis one has
 
 The FD-Lift thus provides a constructive perspective on the appearance of the Zeta zeros in explicit formulas for primes: they arise as the poles of the spectrum of the entire function that naturally interpolates the prime-power detecting function $\Lambda(n)$. The result of this mechanism is visualized in Figure~\ref{fig:lambda_interpolant}.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_lambda_interpolant.pdf}
 \caption{Visual confirmation of the direct adapter method. The smooth, entire function $\mathcal{T}_{(\mu*\Lambda)}(x)$ (red curve) is shown passing exactly through the discrete values of the von Mangoldt function $\Lambda(n)$ (grey stems). This illustrates how the FD-Lift provides a continuous interpolant for the prime-power detecting function.}
@@ -732,7 +732,7 @@ This reveals a structural connection:
 \]
 The differentiation operator provides a constructive analytic bridge from the theory of divisor functions ($\sigma$) to the theory of prime numbers ($\Lambda$), mediated by the divisor-counting function $\tau$. This demonstrates that the relationship between these fundamental arithmetic functions is a direct consequence of the analytic structure of the underlying family of entire functions $\mathcal{T}(z,s)$. The non-obvious arithmetic identity revealed by this principle is visually confirmed in Figure~\ref{fig:operator_effect}.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_operator_effect.pdf}
 \caption{A visual representation of the arithmetic identity revealed by the differentiation operator. The plot on the left shows the function $g(n) = -\sum_{d|n} \log d$, derived from differentiating $\sigma_{-s}(n)$. The plot on the right shows the function $h(n) = -(\tau * \Lambda)(n)$, derived from the spectrum $\zeta(u)\zeta'(u)$. Their perfect identity for all $n$ is a visual confirmation of the Principle of Spectral Differentiation.}
@@ -841,7 +841,7 @@ Since $n$ is composite, the set of proper divisors is nonempty; for real $q>1$ e
 \noindent\textbf{Remark.} For complex $q$, cancellations can occur, meaning the reverse implication (zero $\Rightarrow$ prime) does not hold in general for composite integers.
 
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_companion_displacement.pdf}
 \caption{Companion zero displacement $\Delta_p(q)=p-x_p(q)$ on a logarithmic scale for several fixed $q>1$. The lines of slope $\log(1/q)$ confirm the exponential law $\Delta_p(q)\asymp q^{-p}$.}
@@ -854,28 +854,28 @@ Since $n$ is composite, the set of proper divisors is nonempty; for real $q>1$ e
 \subsection{Visual Morphology and Distribution of Complex Zeros}\label{sec:qpos-morph-3d}
 The global shape for positive parameters $q>1$ is illustrated by two complementary 3D views of $\mathfrak{F}(\cdot,q)$. For primes on the real axis, valleys occur due to the integer anchor $\mathfrak F(p,q)=0$, whereas composite integers correspond to positive plateaus whose heights reflect the distribution of proper divisors (cf. Lemma~\ref{lem:normalization}). These visualizations pertain to the original indicator (without the periodic normalizer).
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_3d_real_axis.jpg}
 \caption{Magnitude of $\mathfrak{F}(z,2)$ visualized along the real axis. Zero clusters appear as valleys adjacent to the axis.}
 \label{fig:3d_real_axis}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_3d_side.jpg}
 \caption{Side view of $\lvert \mathfrak{F}(z,2)\rvert$ for $\re(z) \in [0, 30]$. Pronounced minima correspond to primes on the real axis ($z=2,3,5,\dots$). Plateau heights for composite numbers (e.g., $n=6,12,24,30$) reflect the number and distribution of proper divisors.}
 \label{fig:3d_side_view}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_complex_zeros_q2.pdf}
 \caption{Zeros of $\mathfrak{F}(z,2)$ in the complex plane for $\re(z) \in [0, 100]$. Green triangles on the real axis mark the prime numbers. Intersections of the level sets $\operatorname{Re}(\mathfrak{F})=0$ (blue) and $\operatorname{Im}(\mathfrak{F})=0$ (red) indicate complex zeros forming recurring clusters.}
 \label{fig:complex_zeros_low_q}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_complex_zeros_q1000.pdf}
 \caption{Zeros of $\mathfrak{F}(z,1000)$ in the complex plane. Compared to Figure~\ref{fig:complex_zeros_low_q}, the zero structure simplifies into an approximately periodic lattice with near-horizontal alignments.}
@@ -931,7 +931,7 @@ A truncated curvature \(K_M(2,101)\) yields the initial displacement \(\Delta^{(
 \subsubsection{Absence of companion zeros for the tangent-matched indicator $\Fsharp$}\label{sec:no-companions-Fsharp}
 The three-window argument and an explicit threshold are stated here; proofs are deferred to Appendix~\ref{app:real-zero-fsharp}. This constitutes the main result regarding the real-zero geometry.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \setlength{\fboxsep}{6pt}\fbox{\begin{minipage}{0.9\linewidth}
 \centering
@@ -1088,7 +1088,7 @@ The periodic normalizer $C_{\sin}$ belongs to the same analytic class (entire, c
 
 \noindent The effect of this modification is visualized in Figure~\ref{fig:companion_elimination}. The comparison shows the original function with its companion zeros and the optimized function, where these zeros are absent for $p\ge 5$.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_companion_elimination.pdf}
 \caption{Comparison of the original indicator $\mathfrak{F}(x,q)$ (top) with the tangent-matched indicator $\Fsharp(x,q)$ (bottom) for $q=1.5$. The top plot shows companion zeros (red diamonds) between prime zeros (gold stars). The bottom plot demonstrates the periodic normalizer: for every odd prime $p\ge5$ and every $q>1$ no interior zero on the real axis occurs in $(p-1,p)$ and the point $x=p$ is a boundary zero of multiplicity exactly two, in agreement with Theorem~\ref{thm:no-companions}.}
@@ -1167,7 +1167,7 @@ Instead of a single numerical value, these functions yield a polynomial in $1/q$
 
 The role of the parameter $q$ is visualized in Figure~\ref{fig:q_analog_interpolation}, which displays $\mathfrak{F}_\tau(z,q)$ for several values of $q$. In the limiting case $q=1$, the function exactly reproduces the values of the classical divisor-counting function $\tau(n)-2$ at integer arguments. As $q$ increases, the curves deviate more significantly from these classical values and become flatter, since the weighting terms $q^{-d}$ in the divisor polynomial decrease. The parameter $q$ thus acts as a **deformation parameter**, bridging classical arithmetic and a family of analytic functions.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{plot_q_analog_interpolation.pdf}
 \caption{Comparison of the analytic q-analog $\mathfrak{F}_\tau(z,q)$ for several values of $q$. The orange diamonds represent the classical divisor-counting function $\tau(n)-2$, which corresponds to the exact case $q=1.0$. The solid curves show the function for $q = 1.01, 1.1, 1.2, 1.5,$ and $2.0$. The plot clearly illustrates that as $q$ increases, the curves become flatter and deviate more from the discrete classical values.}
@@ -1337,7 +1337,7 @@ At integers, \(F(n,i)/i^2=\mathbf 1_{i\mid n}\). For a prime \(p\) this yields
 For composites, cancellations of alternating contributions may occur.
 \end{proof}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \centering
@@ -1354,7 +1354,7 @@ For composites, cancellations of alternating contributions may occur.
 \caption{Complementary views of $\mathfrak{F}(z,-1)$ (Abel interpretation). Key takeaways: (i) vertical comb-like alignments occur near $\sin(\pi x)\approx 0$; (ii) diagonal fans reflect the balance between $\sinh(\pi y)$ and the corrector $e^{\pi y}$. Darker shading indicates smaller modulus; panel (a) shows zeros, panel (b) shows phase and magnitude.}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{plot_3d_shaded_neg_q.jpg}
 \caption{Magnitude of $\mathfrak{F}(z,-1)$ visualized along the real axis. Zero clusters appear as valleys adjacent to the axis.}
@@ -2976,6 +2976,7 @@ Y. Katznelson, \emph{An Introduction to Harmonic Analysis}, 3rd ed., Cambridge U
 \par\noindent
 \small
 Sebastian Fuchs \\[1ex]
+\textit{arXiv:} \texttt{\href{https://arxiv.org/abs/2509.12297}{arXiv:2509.12297}} \\
 \textit{DOI:} \texttt{\href{https://doi.org/10.5281/zenodo.17122709}{10.5281/zenodo.17122709}} \\ 
 \textit{ORCID:} \texttt{\href{https://orcid.org/0009-0009-1237-4804}{0009-0009-1237-4804}} \\
 
