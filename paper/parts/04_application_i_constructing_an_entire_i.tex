@@ -1,0 +1,356 @@
+\section{Application I: Constructing an Entire Integer Prime--Zero Function}
+\label{sec:application-prime-indicator}
+
+The utility of the general FD-Lift framework is demonstrated by the construction of a specific family of entire functions, $\mathfrak{F}(z,q)$, with prime-vanishing properties \emph{at integer arguments}. The construction proceeds from a general generating function to a specifically normalized and corrected function, whose properties are then analyzed.
+The general operator framework is developed in Section~\ref{sec:fd-lift-main}.
+
+\subsection{Analytic Construction and Definition of $\mathfrak{F}(z,q)$}
+
+The function $\mathfrak{F}(z,q)$ is constructed as a specialized instance of the general lift $\mathcal{T}_a(z)$. The weights $a(i)$ are chosen as a geometric sequence, dependent on a complex parameter $q$ with $|q|>1$, and an analytic correction term is subtracted to enforce the desired prime-zero property. This corresponds to the following specific choice of weights for the sum part $\mathfrak{S}(z,q)$:
+\[
+a(i) = 
+\begin{cases} 
+(q-1)q \cdot q^{-i} & \text{for } i \ge 2, \\
+0 & \text{for } i=1.
+\end{cases}
+\]
+The full construction is detailed below.
+
+\subsection{Construction of the Prime Indicator $\mathfrak{F}(z,q)$}
+\label{sec:prime-indicator-construction}
+
+The specific prime indicator is constructed as an instance of the FD--lift, where the challenge of defining an analytic superposition of infinitely many divisor filters is resolved by introducing geometric weights $q^{-i}$ to ensure convergence for $|q|>1$. An analytic correction term is then subtracted to enforce the prime-zero property at integers. The factor $(q-1)q$ serves as a convenient normalization.
+
+\begin{center}
+\begin{tabular}{ll}
+$\phi_\infty(z)$ & baseline kernel $\bigl(\frac{\sin(\pi z)}{\pi z}\bigr)^2$ with $\phi_\infty(0):=1$ \\[2pt]
+$K(q,p)$ & $\tfrac12\big(S_q''(p)-(\log q)^2 q^{-p}\big)$, curvature term of $\mathfrak F$ at a prime $p$ \\[2pt]
+$K^\sharp(q,p)$ & $\tfrac12\big(S_q''(p)+(\log q)^2 q^{-p}\big)$, curvature term of $\Fsharp$ at a prime $p$ \\[2pt]
+$S_1(x)$ & $\displaystyle \frac{\sin(2\pi x)}{2\pi}$ (periodic normalizer) \\[2pt]
+$S_q(x)$ & $\displaystyle \sum_{i\ge2} q^{-i}\,\phi_i(x)$ with $\phi_i(x)=\frac{F(x,i)}{i^2}$
+\end{tabular}
+\end{center}
+\medskip
+
+The construction uses the general FD--lift
+\[
+\mathcal T_a(z)=\sum_{i\ge1} a(i)\,\frac{F(z,i)}{i^2},
+\]
+with the \emph{kernel} $F(z,i)/i^2$ fixed and the \emph{weights} chosen as
+\[
+a(i)=\begin{cases}
+(q-1)q\,q^{-i}, & i\ge 2,\\
+0, & i=1.
+\end{cases}
+\]
+
+\begin{definition}[The Normalized Analytic Prime Indicator]
+For $z \in \C$ and $q \in \C$ with $|q|>1$, the function $\mathfrak{F}(z,q)$ is defined as
+\[\mathfrak{F}(z,q) = \underbrace{\left( (q-1)q \sum_{i=2}^{\infty} \frac{F(z,i)}{i^2} \left(\frac{1}{q}\right)^i \right)}_{\mathfrak{S}(z,q)} - \underbrace{(q-1)q \left(\frac{1}{q}\right)^z}_{C(z,q)}.\]
+\end{definition}
+
+\begin{theorem}[Analyticity and radial growth of $\mathfrak{F}(\cdot,q)$]\label{thm:analyticity-growth}
+For any fixed $q\in\C$ with $|q|>1$ (and $q^{-z}=e^{-z\log q}$), the map $z \mapsto \mathfrak{F}(z,q)$ is entire of order at most $1$ and exponential type at most $\max\{2\pi,|\log q|\}$; in particular the type is at most $2\pi$ whenever $|\log q|\le2\pi$, e.g.\ for real $1<q\le e^{2\pi}$.
+\end{theorem}
+\begin{proof}
+Uniform convergence on compact sets follows from the Weierstrass M-test (see Appendix~\ref{app:analyticity}). The cosine expansion of $F$ and $|\cos(x+\mathrm{i}y)|\le\cosh(y)$ imply
+\[
+|F(x+\mathrm{i}y,i)|\le i^2\cosh(2\pi|y|)\le \tfrac12 i^2\big(e^{2\pi|y|}+e^{-2\pi|y|}\big).
+\]
+Consequently, for some $C=C(q)$ and all $z=x+\mathrm{i}y\in\C$,
+\[
+|\mathfrak S(z,q)|\;\le\; C\,e^{2\pi|y|}\;\le\; C\,e^{2\pi|z|},
+\qquad
+\bigl|(q-1)q\,q^{-z}\bigr|\;=\;|(q-1)q|\,e^{-\Re(z\log q)}\;\le\;|(q-1)q|\,e^{|\log q|\,|z|},
+\]
+because $|y|\le |z|$. The corrector $z\mapsto q^{-z}$ has exponential type $|\log q|$ and is unbounded on $\mathbb R$. Hence $\mathfrak F(\cdot,q)$, the difference of these two functions, is entire of order $\le 1$ and exponential type $\le \max\{2\pi,|\log q|\}$ in the radial sense.
+\end{proof}
+
+\subsection{Properties of the Prime Indicator}
+
+\begin{theorem}[Integer Prime-Zero Property]\label{thm:integer-prime-zero}
+For any integer $n \ge 2$ and any real number $q>1$,
+\[\mathfrak{F}(n,q) = 0 \quad\Longleftrightarrow\quad n \text{ is a prime number}.\]
+\end{theorem}
+\begin{proof}
+By construction,
+\[
+\mathfrak{F}(z,q)=(q-1)q\Big(\sum_{i\ge2} q^{-i}\,\frac{F(z,i)}{i^2}\;-\;q^{-z}\Big),\qquad
+\frac{F(n,i)}{i^2}=\mathbf 1_{i\mid n}\ \ (n\in\mathbb N).
+\]
+For a prime $p$, only $i=p$ contributes among $i\ge2$, hence $\sum_{i\ge2} q^{-i}\tfrac{F(p,i)}{i^2}=q^{-p}$ and $\mathfrak F(p,q)=0$.
+
+For a composite $n\ge4$ (the only composites in range), the divisor $i=n$ contributes $q^{-n}$, which is exactly removed by the correction $q^{-n}$. Thus
+\[
+\mathfrak F(n,q)=(q-1)q\!\!\sum_{\substack{d\mid n\\2\le d<n}}\! q^{-d}.
+\]
+Since $n$ is composite, the set of proper divisors is nonempty; for real $q>1$ each term satisfies $q^{-d}>0$, hence the sum is strictly positive. This proves the equivalence.
+\end{proof}
+
+\noindent\textbf{Remark.} For complex $q$, cancellations can occur, meaning the reverse implication (zero $\Rightarrow$ prime) does not hold in general for composite integers.
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_companion_displacement.pdf}
+\caption{Companion zero displacement $\Delta_p(q)=p-x_p(q)$ on a logarithmic scale for several fixed $q>1$. The lines of slope $\log(1/q)$ confirm the exponential law $\Delta_p(q)\asymp q^{-p}$.}
+\label{fig:companion_displacement}
+\end{figure}
+
+\FloatBarrier
+
+
+\subsection{Visual Morphology and Distribution of Complex Zeros}\label{sec:qpos-morph-3d}
+The global shape for positive parameters $q>1$ is illustrated by two complementary 3D views of $\mathfrak{F}(\cdot,q)$. For primes on the real axis, valleys occur due to the integer anchor $\mathfrak F(p,q)=0$, whereas composite integers correspond to positive plateaus whose heights reflect the distribution of proper divisors (cf. Lemma~\ref{lem:normalization}). These visualizations pertain to the original indicator (without the periodic normalizer).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_3d_real_axis.jpg}
+\caption{Magnitude of $\mathfrak{F}(z,2)$ visualized along the real axis. Zero clusters appear as valleys adjacent to the axis.}
+\label{fig:3d_real_axis}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_3d_side.jpg}
+\caption{Side view of $\lvert \mathfrak{F}(z,2)\rvert$ for $\re(z) \in [0, 30]$. Pronounced minima correspond to primes on the real axis ($z=2,3,5,\dots$). Plateau heights for composite numbers (e.g., $n=6,12,24,30$) reflect the number and distribution of proper divisors.}
+\label{fig:3d_side_view}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_complex_zeros_q2.pdf}
+\caption{Zeros of $\mathfrak{F}(z,2)$ in the complex plane for $\re(z) \in [0, 100]$. Green triangles on the real axis mark the prime numbers. Intersections of the level sets $\operatorname{Re}(\mathfrak{F})=0$ (blue) and $\operatorname{Im}(\mathfrak{F})=0$ (red) indicate complex zeros forming recurring clusters.}
+\label{fig:complex_zeros_low_q}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_complex_zeros_q1000.pdf}
+\caption{Zeros of $\mathfrak{F}(z,1000)$ in the complex plane. Compared to Figure~\ref{fig:complex_zeros_low_q}, the zero structure simplifies into an approximately periodic lattice with near-horizontal alignments.}
+\label{fig:complex_zeros_high_q}
+\end{figure}
+
+\FloatBarrier
+
+
+
+\subsection{Companion Zeros and their Elimination via Tangent-Matching}
+The preceding analysis and visualizations focus on the properties of the indicator functions $\mathfrak{F}$ and $\Fsharp$. This section now presents the main theoretical result concerning their real-zero geometry in the windows between integers, consolidating the problem observed for $\mathfrak{F}$ and the solution provided by $\Fsharp$.
+
+\subsubsection{Companion zeros for the original indicator $\mathfrak F$}\label{sec:companions-F}
+The existence and size of left companion zeros for $\mathfrak F(\cdot,q)$ are stated here; proofs are deferred to Appendix~\ref{app:real-zero-original}.
+
+\begin{theorem}[Existence of a companion zero]\label{thm:existence-left-companion}
+Let $q>1$ and let $p\ge5$ be an odd prime. Then $\mathfrak F(\cdot,q)$ has at least one real zero $x_p(q)\in(p-1,p)$.
+\end{theorem}
+
+\begin{proposition}[Asymptotic displacement law]\label{prop:disp-asymp}
+Let $\phi_i(x):=F(x,i)/i^2$ and define
+\[
+K(q,p)\;:=\;\frac{1}{2}\left(\sum_{i\ge2} q^{-i}\,\phi_i''(p)\;-\;q^{-p}(\log q)^2\right).
+\]
+Then for fixed $q>1$ and $p\to\infty$ one has
+\[
+\Delta_p(q)\;=\;\frac{\log q}{K(q,p)}\,q^{-p}\;\Bigl(1+O\!\big(q^{-p}\big)\Bigr),
+\]
+uniformly in $p$, with implied constants depending only on $q$. In particular, $\Delta_p(q)\asymp q^{-p}$, and $x_p(q)=p-\Delta_p(q)$ lies strictly to the left of $p$.
+\end{proposition}
+
+\begin{conjecture}[Uniqueness in $(p-1,p)$]\label{conj:uniqueness-companion}
+For each fixed $q>1$ and every odd prime $p\ge5$, the zero in $(p-1,p)$ provided by Theorem~\ref{thm:existence-left-companion} is unique.
+\end{conjecture}
+
+\begin{remark}[Newton refinement for $x_p(q)$]\label{rem:newton}
+A truncated curvature $K_M(q,p)$ yields the initial displacement
+\[
+\Delta_p^{(0)}(q):=\frac{\log q}{K_M(q,p)}\,q^{-p},\qquad
+K_M(q,p):=\frac{1}{2}\!\left(\sum_{2\le i\le M}\! q^{-i}\phi_i''(p)-(\log q)^2 q^{-p}\right).
+\]
+With $x^{(0)}:=p-\Delta_p^{(0)}(q)$ and the target $G(x):=\F(x,q)$, two Newton steps
+\[
+x^{(t+1)}\;=\;x^{(t)}-\frac{G(x^{(t)})}{G'(x^{(t)})}\qquad(t=0,1)
+\]
+converge rapidly to the companion zero $x_p(q)$ near $p$ whenever $M$ is moderate and $p$ is not excessively small.
+\end{remark}
+
+\paragraph{Example (q=2, locating $x_p(2)$ near $p=101$).}
+A truncated curvature \(K_M(2,101)\) yields the initial displacement \(\Delta^{(0)}_{101}(2)=\frac{\log 2}{K_M(2,101)}\,2^{-101}\). Starting from \(x^{(0)}=101-\Delta^{(0)}_{101}(2)\), two Newton steps with \(G(x)=\F(x,2)\) converge rapidly to the companion zero \(x_{101}(2)\in(100,101)\).
+
+\subsubsection{Absence of companion zeros for the tangent-matched indicator $\Fsharp$}\label{sec:no-companions-Fsharp}
+For the tangent-matched indicator $\Fsharp$ (Definition~\ref{def:periodic-normalizer} below) the companion zeros disappear beyond $x=3$, for every $q>1$. The proof is given in Appendix~\ref{app:real-zero-fsharp}; its mechanism is summarised in Figure~\ref{fig:positivity-mechanism} and Remark~\ref{rem:not-cosmetic}.
+
+\begin{figure}[!htbp]
+\centering
+\setlength{\fboxsep}{6pt}\fbox{\begin{minipage}{0.9\linewidth}
+\centering
+\setlength{\tabcolsep}{4pt}%
+\begin{tabular}{>{\centering\arraybackslash}p{0.29\linewidth} >{\centering\arraybackslash}p{0.29\linewidth} >{\centering\arraybackslash}p{0.29\linewidth}}
+Filters $i\ge3$ & Corrector & Missing lattice part \\
+\footnotesize each $\phi_i$ dominates its $\operatorname{sinc}^2$ profile $\operatorname{sinc}^2(x-i)$ & \footnotesize $1+(\log q)S_1$ is the formal linearisation of the $\operatorname{sinc}^2$ sampling series; convexity of the exponential gives a surplus & \footnotesize the lattice terms $i\le2$ are not covered by filters $i\ge3$; at $\log q=0$ they cost less than $\pi^2/6$, while the parity filter $i=2$ supplies $\pi^2/4$
+\end{tabular}
+\end{minipage}}
+\caption{Mechanism of the positivity proof for $\Fsharp$ (Appendix~\ref{app:real-zero-fsharp}). At $\log q=0$ the reserve is $\pi^2/4-\pi^2/6=\pi^2/12$; for $\log q>0$ part of it is consumed by a harmonic term (of order $\log q\cdot\log(1/\log q)$ for small $\log q$), and Lemma~\ref{lem:beta3-reserve} shows that more than $2/5$ survives. This gives the explicit constant in Theorem~\ref{thm:no-companions}.}
+\label{fig:positivity-mechanism}
+\end{figure}
+
+\FloatBarrier
+
+\begin{theorem}[Positivity of $\Fsharp$ between the integers]\label{thm:no-companions}
+For every $q>1$ and every real $x>3$ with $x\notin\Z$,
+\[
+\Fsharp(x,q)\ \ge\ \frac{2}{5\pi^2}\,(q-1)q\,q^{-x}\,\sin^2(\pi x)\ >\ 0 .
+\]
+In particular, for every odd prime $p\ge5$ the window $(p-1,p)$ contains no real zero of $\Fsharp(\cdot,q)$, and neither does any window $(m,m+1)$ with $m\ge3$.
+\end{theorem}
+
+\begin{theorem}[Real zeros of $\Fsharp$]\label{thm:real-zero-structure}
+Let $q>1$. Then:
+\begin{enumerate}
+  \item For every prime $p\ge2$ one has $\Fsharp(p,q)=0$, and for every composite $m\ge4$, $\Fsharp(m,q)>0$.
+  \item The real zeros of $\Fsharp(\cdot,q)$ in $[3,\infty)$ are exactly the primes $p\ge3$. Each of them has multiplicity exactly two, and
+  \[
+  \partial_x^2\Fsharp(p,q)=2(q-1)q\,K^\sharp(q,p)\ \ge\ \tfrac45\,(q-1)q\,q^{-p},
+  \]
+  where $K^\sharp(q,p):=\tfrac12\bigl(S_q''(p)+(\log q)^2q^{-p}\bigr)$.
+  \item One has $\Fsharp(1,q)=-(q-1)<0$, and $x=2$ is a zero of multiplicity at least two. If $K^\sharp(q,2)>0$, then $\Fsharp(\cdot,q)$ has a real zero in $(1,2)$; if $K^\sharp(q,2)<0$, it has a real zero in $(2,3)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[The exceptional interval $(1,3)$]\label{rem:exceptional-windows}
+The threshold $x=3$ cannot be lowered uniformly in $q$. Near $x=1$ positivity fails for every $q>1$, since $\Fsharp(1,q)=-(q-1)<0$; on $(2,3)$ it fails whenever $K^\sharp(q,2)<0$, which numerically happens exactly for $q\in(q_a,q_b)$ with $q_a=1.2455208\ldots$ and $q_b=8.4830521\ldots$. Part~(3) of Theorem~\ref{thm:real-zero-structure} is an existence statement. Numerically, in every tested case (eleven values of $q$ between $1.001$ and $200$, and a scan of $400$ values of $q$ up to $e^{12}$) exactly one real zero lies in $(1,3)\setminus\{2\}$, in $(1,2)$ if $K^\sharp(q,2)>0$ and in $(2,3)$ if $K^\sharp(q,2)<0$. For $q\in\{q_a,q_b\}$ one has $K^\sharp(q,2)=0$ and numerically $\partial_x^3\Fsharp(2,q)\neq0$, so $x=2$ is then a zero of order three and no further zero is forced. In the proof, $(2,3)$ is excluded because the parity filter $i=2$ becomes one of the resonant indices of the sampling argument, and $(1,2)$ because the index $i=1$ is absent from $S_q$.
+\end{remark}
+
+\begin{remark}[Earlier versions]
+Earlier versions of this paper proved the absence of zeros in $(p-1,p)$ only for primes beyond an explicit threshold $P_0(q)$, by a three-window argument with $q$-dependent constants. Theorem~\ref{thm:no-companions} removes the threshold and covers every window beyond $x=3$.
+\end{remark}
+
+\paragraph{Takeaways.}
+(i) For every $q>1$ the real zeros of $\Fsharp$ in $[3,\infty)$ are exactly the primes, each of multiplicity two. (ii) Composite integers remain strictly positive, and so does $\Fsharp$ on every open window $(m,m+1)$ with $m\ge3$. (iii) The lower bound is explicit and uniform in the window; no threshold in $p$ is needed. The constant $2/(5\pi^2)$ is not optimized: numerically the best constant is about $4.75$ times larger, the extremal case being $x\to3^+$ with $q\approx1.3036$.
+
+\paragraph{Analyticity (pointer).} Analyticity of $z\mapsto \mathfrak{F}(z,q)$ and of $\Fsharp(\cdot,q)$ for fixed $|q|>1$ follows by uniform convergence on compacta (Weierstrass M-test). Full details are provided in Appendix~\ref{app:analyticity}.
+
+\subsection{An intrinsic periodic normalizer and elimination of companion zeros}\label{sec:periodic-normalizer}
+The companion zeros observed for the original indicator are caused by a \emph{tangent mismatch} at integers: the Fej\'er sum
+\[
+S_q(z):=\sum_{i\ge2} q^{-i}\,\frac{F(z,i)}{i^2}
+\]
+has vanishing slope at every integer ($S_q'(n)=0$, Lemma~\ref{lem:int-values}), while the exponential corrector $q^{-z}$ has nonzero slope at every integer. A structural remedy is obtained by enforcing the same local geometry (value \emph{and} vanishing first derivative) for the corrector at all integers via a $1$-periodic entire modulation.
+
+\begin{definition}[Periodic normalizer and optimized indicator]\label{def:periodic-normalizer}
+Let $q>1$ and define the $1$-periodic entire function
+\[
+S_1(z):=\frac{\sin(2\pi z)}{2\pi}.
+\]
+Set
+\[
+C_{\sin}(z,q):=(q-1)q\,q^{-z}\,\bigl(1+(\log q)\,S_1(z)\bigr),
+\qquad
+\Fsharp(z,q):=(q-1)q\,S_q(z)\;-\;C_{\sin}(z,q).
+\]
+\end{definition}
+
+\begin{lemma}[Analyticity and vertical growth of $\Fsharp$]\label{lem:fsharp-growth-corrected}
+Fix $q>1$. For $z=x+\ii y$ one has
+\[
+\bigl|\Fsharp(x+\ii y,q)\bigr|
+\;\le\; (q-1)q\Bigl(\frac{\cosh(2\pi |y|)}{q(q-1)}\;+\;q^{-x}\Bigl(1+(\log q)\,\frac{\cosh(2\pi|y|)}{2\pi}\Bigr)\Bigr),
+\]
+where $\frac{1}{q(q-1)}=\sum_{i\ge2}q^{-i}$. In particular, $\Fsharp(\cdot,q)$ is entire of order $\le 1$ and exponential type $\le \sqrt{4\pi^2+(\log q)^2}$.
+\end{lemma}
+
+\begin{proof}
+Write $S_q(z)=\sum_{i\ge2}q^{-i}\,\phi_i(z)$ with $\phi_i(z)=F(z,i)/i^2$. Using
+\[
+F(z,i)=i+2\sum_{k=1}^{i-1}(i-k)\cos\!\Bigl(\tfrac{2\pi k}{i}z\Bigr),
+\qquad
+|\cos(x+\ii y)|\le \cosh(y),
+\]
+gives $|F(x+\ii y,i)|\le i^2\cosh(2\pi|y|)$, i.e.\ $|\phi_i(x+\ii y)|\le\cosh(2\pi|y|)$, and hence $|S_q(x+\ii y)|\le \bigl(\sum_{i\ge2}q^{-i}\bigr)\cosh(2\pi|y|)=\frac{\cosh(2\pi|y|)}{q(q-1)}$. (The factor $1/i^2$ is used up by the normalization $\phi_i=F(\cdot,i)/i^2$; for instance $S_q(0)=\sum_{i\ge2}q^{-i}$.)
+For the corrector note
+\[
+S_1(z)=\frac{\sin(2\pi z)}{2\pi},
+\qquad
+|\sin(2\pi(x+\ii y))|\le \cosh(2\pi|y|),
+\]
+so $|S_1(x+\ii y)|\le \cosh(2\pi|y|)/(2\pi)$. Therefore
+\[
+\bigl|q^{-x-\ii y}\bigl(1+(\log q)S_1(x+\ii y)\bigr)\bigr|
+\;\le\;q^{-x}\Bigl(1+(\log q)\,\tfrac{\cosh(2\pi|y|)}{2\pi}\Bigr).
+\]
+Combining both estimates yields the claim. The Fej\'er part grows at most like $e^{2\pi|y|}\le e^{2\pi|z|}$, while the corrector contributes terms bounded by a constant times $q^{-x}\cosh(2\pi|y|)\le e^{(\log q)|x|+2\pi|y|}\le e^{\sqrt{4\pi^2+(\log q)^2}\,|z|}$ (Cauchy--Schwarz). Hence $\Fsharp(\cdot,q)$ is entire of order $\le 1$ and exponential type $\le\sqrt{4\pi^2+(\log q)^2}$. Since $q^{-x}$ is unbounded as $x\to-\infty$, the vertical bound $e^{2\pi|y|}$ alone does not control the type.
+\end{proof}
+
+\begin{lemma}[Integer values and tangent matching]\label{lem:int-tangent}
+For every integer $n\ge2$ and real $q>1$,
+\[
+\Fsharp(n,q)=\mathfrak F(n,q),\qquad
+\frac{\partial}{\partial z}\,\Fsharp(z,q)\Big|_{z=n}=0.
+\]
+\end{lemma}
+\begin{proof}
+Since $\sin(2\pi n)=0$, one has $C_{\sin}(n,q)=(q-1)q\,q^{-n}$, hence $\Fsharp(n,q)=\mathfrak F(n,q)$. Differentiating $q^{-z}\bigl(1+(\log q)S_1(z)\bigr)$ gives
+\[
+\frac{d}{dz}\Big(q^{-z}\bigl(1+(\log q)S_1(z)\bigr)\Big)
+=q^{-z}\Big(-(\log q)\bigl(1+(\log q)S_1(z)\bigr)+(\log q)S_1'(z)\Big).
+\]
+At $z=n$, $S_1(n)=0$ and $S_1'(n)=\cos(2\pi n)=1$, so the bracket vanishes and the derivative equals $0$. As the Fej\'er sum satisfies $S'(n)=0$, the claim follows.
+\end{proof}
+
+\begin{lemma}[Uniform positivity with explicit bounds]\label{lem:K-bounds}
+Fix $q>1$. For every odd prime $p\ge5$,
+\[
+\frac{1}{2}\Big(\tfrac{\pi^2}{2}\,q^{-2}+\tfrac{8\pi^2}{27}\,q^{-3}+\tfrac{\pi^2}{4}\,q^{-4}-\big(\tfrac{2\pi^2}{3}+(\log q)^2\big)\,q^{-5}\Big)
+\ \le\ K(q,p)
+\]
+and
+\[
+K(q,p)\ \le\ \frac{1}{2}\Big(\tfrac{\pi^2}{2}\,q^{-2}+\tfrac{8\pi^2}{27}\,q^{-3}+\tfrac{\pi^2}{4}\,q^{-4}+\tfrac{\pi^2}{2}\,q^{-5}+\tfrac{\pi^2}{2}\,q^{-6}\Big)\ +\ \frac{\pi^2}{4}\,\frac{q^{-7}}{1-1/q},
+\]
+where
+\[
+K(q,p)=\frac{1}{2}\left(\sum_{i\ge2} q^{-i}\,\phi_i''(p)\;-\;q^{-p}(\log q)^2\right).
+\]
+In particular, $K(q,p)\ge c_1(q)>0$ for all odd primes $p\ge5$, with $c_1(q)$ given by the lower bound, and $K(q,p)\le c_2(q)$ with $c_2(q)$ given by the upper bound (both independent of $p$). Here $K(q,p)$ is the curvature term of the original indicator, $\partial_x^2\mathfrak F(p,q)=2(q-1)q\,K(q,p)$; for $\Fsharp$ the corresponding term is $K^\sharp(q,p)=K(q,p)+(\log q)^2q^{-p}$ (Proposition~\ref{prop:local-nonneg}).
+\end{lemma}
+
+\begin{proposition}[Quadratic contact at primes]\label{prop:local-nonneg}
+Let $q>1$ and let $p\ge3$ be a prime. Then $\Fsharp(p,q)=(\Fsharp)'(p,q)=0$ and
+\[
+(\Fsharp)''(p,q)=2(q-1)q\,K^\sharp(q,p),\qquad K^\sharp(q,p)=K(q,p)+(\log q)^2q^{-p}.
+\]
+For $p\ge5$, Lemma~\ref{lem:K-bounds} gives the $p$-uniform bound $K^\sharp(q,p)\ge K(q,p)\ge c_1(q)>0$; for every prime $p\ge3$, Theorem~\ref{thm:real-zero-structure}(2) gives $K^\sharp(q,p)\ge\frac25q^{-p}$ (its proof uses only the formula above). In particular, the zero contact at $x=p$ is exactly quadratic.
+\end{proposition}
+
+\begin{proof}
+By Lemmas~\ref{lem:int-values} and \ref{lem:int-tangent} one has $S_q'(p)=0$ and $(\Fsharp)'(p,q)=0$. Set $C(x):=q^{-x}\bigl(1+(\log q)S_1(x)\bigr)$. Since $S_1(p)=S_1''(p)=0$ and $S_1'(p)=1$, one gets $C(p)=q^{-p}$, $C'(p)=0$ and $C''(p)=q^{-p}\bigl((\log q)^2-2(\log q)^2\bigr)=-(\log q)^2q^{-p}$. Hence $(\Fsharp)''(p,q)=(q-1)q\bigl(S_q''(p)-C''(p)\bigr)=2(q-1)q\,K^\sharp(q,p)$, and $K^\sharp(q,p)=K(q,p)+(\log q)^2q^{-p}$ follows from the definition of $K(q,p)$ in Lemma~\ref{lem:K-bounds}.
+\end{proof}
+
+\begin{remark}[The corrector as a sampling moment]\label{rem:not-cosmetic}
+With $\operatorname{sinc}(t):=\sin(\pi t)/(\pi t)$ one has
+\[
+\sum_{k\in\Z}\operatorname{sinc}^2(x-k)=1,\qquad \sum_{k\in\Z}(x-k)\operatorname{sinc}^2(x-k)=S_1(x),
+\]
+the second sum taken in the symmetric principal-value sense; both identities are the partial-fraction expansions of $\csc^2$ and $\cot$. Hence $1+(\log q)S_1(x)$ is the termwise linearisation in $\log q$ of the formal sampling series
+\[
+\sum_{k\in\Z}q^{x-k}\operatorname{sinc}^2(x-k),
+\]
+with the linear term summed symmetrically. The series itself diverges for every $q>1$, since its terms grow as $k\to-\infty$; the proof only uses its convergent part $k\ge3$. The periodic normalizer is therefore not a cosmetic choice: it is the formal linearisation of the $\operatorname{sinc}^2$ sampling series of the exponential corrector. Every filter dominates its own sampling profile, $\phi_i(x)\ge\operatorname{sinc}^2(x-i)$ for $i\ge2$ (Lemma~\ref{lem:filter-minorant}), and the exponential lies above its tangent; the only defect is the part of the lattice not covered by the filters $i\ge3$, which the parity filter $i=2$ compensates for $x>3$ (Appendix~\ref{app:real-zero-fsharp}). Apart from $i=2$, no divisor information enters this argument: the arithmetic content of $\Fsharp$ is located at the integers.
+\end{remark}
+
+\noindent The effect of this modification is visualized in Figure~\ref{fig:companion_elimination}. The comparison shows the original function with its companion zeros and the optimized function, where these zeros are absent beyond $x=3$, as guaranteed by Theorem~\ref{thm:no-companions}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_companion_elimination.pdf}
+\caption{Comparison of the original indicator $\mathfrak{F}(x,q)$ (top) with the tangent-matched indicator $\Fsharp(x,q)$ (bottom) for $q=1.5$. The top plot shows companion zeros (red dots) next to prime zeros (gold stars). The bottom plot demonstrates the periodic normalizer: beyond $x=3$ no zero occurs between consecutive integers, and every prime $p\ge3$ is a zero of multiplicity exactly two (Theorems~\ref{thm:no-companions} and \ref{thm:real-zero-structure}). The remaining zero in $(2,3)$ (red) is the exceptional case of Theorem~\ref{thm:real-zero-structure}(3): for $q=1.5$ one has $K^\sharp(q,2)<0$ (Remark~\ref{rem:exceptional-windows}).}
+\label{fig:companion_elimination}
+\end{figure}
+
+\FloatBarrier
+
+% ---------------------------------------------------------------------------
+
+\noindent\textbf{Scope.} The constructions in this application comprise both the original indicator $\mathfrak F(\cdot,q)$ and its tangent-matched variant $\Fsharp(\cdot,q)$. The latter enforces value and vanishing slope at all integers and underpins the real-zero results on the real axis for $q>1$. These constructions are separate from the FD-Lift of Section~\ref{sec:fd-lift-main} and are aimed at an \emph{integer prime-zero property}.
+
+% ---------------------------------------------------------------------------

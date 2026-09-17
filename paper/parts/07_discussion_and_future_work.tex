@@ -1,0 +1,139 @@
+\section{Discussion and Future Work}
+
+The Fej\'er--Dirichlet lift provides a general and constructive framework for creating entire functions that interpolate arithmetic convolutions of the form $(a*1)$. This approach moves beyond specific constructions to offer a systematic method with several noteworthy conceptual aspects, which are discussed below alongside avenues for further research.
+
+\paragraph{A Constructive Viewpoint: Mechanism versus Data}
+\emph{Heuristic only; no formal equivalence is claimed.}
+The framework presented in this paper can be seen as offering a perspective complementary to classical methods in analytic number theory. Classical explicit formulas, for example, rely fundamentally on spectral data—namely, the non-trivial zeros of the Riemann zeta function. In that view, the analytical complexity is concentrated in these input data, whose deep structure remains largely conjectural.
+
+The FD-Lift, in contrast, can be viewed as relocating this complexity from the data to an explicit, constructive process. The properties of the resulting entire functions are derived from the well-understood structure of the Fej\'er kernel and the chosen weights. Two complementary ways to encode prime information are contrasted below.
+
+\textbf{Local/filtering view (this paper).} Simple, structured input data (divisors at integers) are processed by an explicit but nontrivial analytic superposition (Fej\'er-based lift with normalization). The outcome is an entire function whose \emph{integer-argument} behavior (prime zeros, composite positivity, tangent matching) is quantitatively controlled.
+
+\textbf{Spectral/global view (classical).} A simple analytic object (the Riemann zeta function via Dirichlet series and Euler product) is coupled to highly structured spectral input (its nontrivial zeros), yielding the explicit formula that governs fluctuations in prime counting.
+
+\textbf{Takeaway.} The FD–Lift transports Dirichlet convolution into spectral multiplication ($\zeta\cdot A$) and thus isolates a local, verifiable mechanism at integers. This picture is heuristic and does \emph{not} assert any new equivalence between local filtering and the spectral theory of $\zeta$ beyond the proved statements in this paper.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}p{3.2cm}p{5.1cm}p{5.1cm}@{}}
+\toprule
+ & \textbf{Local/filtering (FD–Lift)} & \textbf{Spectral/global (classical)} \\
+\midrule
+\textbf{Input primitives} & Divisors at integers; Fej\'er kernel as divisor filter & Nontrivial zeros of $\zeta$; Euler product encodes primes \\
+\textbf{Mechanism} & Explicit analytic superposition + periodic normalization; transports $(a*1)\mapsto \zeta A$ & Explicit formula via Perron/contour shift; links zeros to prime-counting fluctuations \\
+\textbf{Control/Output} & Entire interpolants with integer anchors; prime zeros and composite positivity at integer arguments; window geometry near primes & Information on $\psi(x)$ and prime powers; oscillations driven by zero distribution \\
+\textbf{Where complexity sits} & In the \emph{mechanism} (analytic superposition) & In the \emph{input data} (spectral zeros) \\
+\bottomrule
+\end{tabular}
+\caption{Two complementary encodings of prime information. Heuristic contrast only; no equivalence is implied.}
+\end{table}
+
+\noindent\emph{Scope note.} All prime/composite statements for the FD–Lift concern values at integer arguments. No claim is made about the complex zero set beyond the theorems proved here, and no new equivalence with the spectral theory of $\zeta$ is asserted.
+\\
+
+
+\paragraph{The Polylog--Zeta Connection as a Central Identity}
+Beyond a change of perspective, the framework reveals a structural identity that appears to govern a broad class of constructions. For any weight sequence $a:\mathbb N\to\mathbb C$ with Dirichlet series
+\[
+A(s)\;=\;\sum_{i\ge1}\frac{a(i)}{i^s},
+\]
+the Fej\'er--Dirichlet lift obeys
+\begin{equation}\label{eq:fdl-master}
+\sum_{n\ge1}\frac{\mathcal T_a(n)}{n^s}\;=\;\zeta(s)\,A(s)
+\qquad(\text{on the joint half-plane of absolute convergence}),
+\end{equation}
+cf.\ Theorem~\ref{thm:fd-lift-core}. In this identity the zeta factor is structural, reflecting the divisor filter at the integers, while the companion factor $A(s)$ is dictated by the chosen $i$-side weights together with the adopted summability/regularisation. The Polylog--Zeta factorisation in Theorem~\ref{thm:polylog-zeta} thus appears as the geometric instance of \eqref{eq:fdl-master}: geometric damping on the $i$-side produces a polylogarithm on the spectral side, and the divisor filter contributes $\zeta(s)$.
+
+\medskip
+\noindent\emph{Summability--spectrum dictionary (illustrative inputs).}
+The following inputs for $a(i)$ exemplify how summability choices translate into companion factors $A(s)$; in each case \eqref{eq:fdl-master} yields the total factor $\zeta(s)A(s)$. The items are intended as avenues for further development rather than as assertions of new theorems here.
+
+\begin{itemize}
+  \item[\textbf{(G)}] \textbf{Geometric damping (Abel interpretation).} For $a(i)=z^i$ with $|z|<1$,
+  \[
+  A(s)=\sum_{i\ge1}\frac{z^i}{i^s}=\operatorname{Li}_s(z),
+  \quad\Rightarrow\quad
+  \sum_{n\ge1}\frac{\mathcal T_{z^\bullet}(n)}{n^s}=\zeta(s)\,\operatorname{Li}_s(z).
+  \]
+  For $|z|=1$ the identity is read in the Abel sense by $z\mapsto rz$, $r\uparrow1$.
+  \item[\textbf{(P)}] \textbf{Power damping.} With $a(i)=i^{-\alpha}$, $\alpha>1$,
+  \[
+  A(s)=\sum_{i\ge1}\frac{1}{i^{s+\alpha}}=\zeta(s+\alpha),
+  \quad\Rightarrow\quad
+  \sum_{n\ge1}\frac{\mathcal T_{i^{-\alpha}}(n)}{n^s}=\zeta(s)\,\zeta(s+\alpha).
+  \]
+  \item[\textbf{(M)}] \textbf{M\"obius-damped powers.} With $a(i)=\mu(i)\,i^{-\alpha}$, $\alpha>1$,
+  \[
+  A(s)=\sum_{i\ge1}\frac{\mu(i)}{i^{s+\alpha}}=\frac{1}{\zeta(s+\alpha)},
+  \quad\Rightarrow\quad
+  \sum_{n\ge1}\frac{\mathcal T_{\mu(\cdot)\,i^{-\alpha}}(n)}{n^s}=\frac{\zeta(s)}{\zeta(s+\alpha)}.
+  \]
+  \item[\textbf{(C)}] \textbf{Ces\`aro/Riesz ladders (finite polylog combinations).}
+  For $k\in\mathbb N$ and $|z|<1$, the choice $a(i)=\binom{i+k-1}{k-1}z^i$ yields
+  \[
+  A(s)=\sum_{i\ge1}\binom{i+k-1}{k-1}\frac{z^i}{i^s}
+  \;=\;\sum_{j=0}^{k-1}\beta_{k,j}\,\operatorname{Li}_{\,s-j}(z),
+  \]
+  where $\binom{i+k-1}{k-1}=\sum_{j=0}^{k-1}\beta_{k,j}\,i^{j}$ is the expansion of this polynomial of degree $k-1$ in $i$ (rational coefficients, e.g.\ $\beta_{2,0}=\beta_{2,1}=1$ and $(\beta_{3,0},\beta_{3,1},\beta_{3,2})=(1,\tfrac32,\tfrac12)$); hence the companion factor is a finite linear combination of descending-order polylogarithms, and \eqref{eq:fdl-master} produces $\zeta(s)$ times this combination.
+  \item[\textbf{(Tw)}] \textbf{Periodic twists (characters) with Abel parameter.}
+  For a Dirichlet character $\chi\bmod m$ and $|z|<1$,
+  \[
+  A(s)=\sum_{i\ge1}\frac{\chi(i)\,z^i}{i^s}
+  \;=\;\frac{1}{m^s}\sum_{r=1}^{m}\chi(r)\,z^{r}\,\Phi\!\Bigl(z^{m},s,\frac{r}{m}\Bigr),
+  \]
+  where $\Phi$ denotes the Lerch transcendent. When $z$ is a primitive $m$th root of unity, $A(s)$ can be written (via discrete Fourier expansion on residue classes) as a finite linear combination of Dirichlet $L$-functions $L(s,\psi)$ with $\psi\bmod m$; letting $z\to1^{-}$ recovers $A(s)\to L(s,\chi)$ in the Abel sense.
+\end{itemize}
+
+\noindent The picture suggested by these examples is semantic as well as analytic. The divisor filter furnishes a universal "global carrier" in the form of $\zeta(s)$, while the chosen summability method determines how the local divisor data manifest on the spectral side through the companion factor $A(s)$. The choice of the weight sequence $a(i)$ thus acts as a programmable input that governs the analytic character of the resulting function. Different damping or regularisation schemes select different spectral signatures (polylogarithms, Lerch transcendent, shifted or inverted zeta factors), providing a systematic way to generate new analytic objects with prescribed arithmetic properties. A comprehensive catalogue of admissible summation procedures and their corresponding companion factors appears to be a natural and promising direction for further work.
+
+\paragraph{Motivation and Derivation of the Framework}
+This constructive viewpoint is rooted in the foundational observation that motivated the general lift presented herein. The quotient of squared sines, encapsulated in $F(z,i)$, can be viewed as an analytic proxy for divisibility. At integer arguments, where this proxy becomes indeterminate, the Fej\'er identity provides a crucial bridge to the arithmetic domain. A key insight from antecedent work was that this transformation does not merely yield arbitrary non-zero values for composite integers. Instead, a superposition of these terms produces highly structured arithmetic information—specifically, functions such as the sum of the squares of the divisors ($\sigma_2(n)$). The fact that a canonical arithmetic function emerges directly from an analytic process based on 'divisibility remainders' was the principal motivation for abstracting this mechanism into the general FD-Lift framework.
+
+\paragraph{The FD-Lift as a Modular Design Space}
+The framework presented can be understood as a modular toolkit, wherein different functions are constructed by combining specific components to achieve distinct analytical and arithmetical goals. A central distinction arises between properties holding within the open domain of convergence (e.g., for real $q>1$) and those realized at its boundary (in the limit $q \to 1^+$). For instance, the property of being an entire function in $z$ is guaranteed for any $q>1$, while the recovery of classical arithmetic functions like $\tau(n)$ is a feature of the limit at the boundary point $q=1$. The functions discussed throughout this paper, including logical extensions like an improved q-analog, occupy different positions in this design space, as summarized in Table~\ref{tab:design-space}.
+
+\begin{table}[h!]
+\centering
+\caption{Properties of different function families within the FD-Lift framework.}
+\label{tab:design-space}
+\small
+\begin{tabularx}{\linewidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+\toprule
+\textbf{Function Family} & \textbf{Entire in $z$ (for fixed $q>1$)?} & \textbf{No Companion Zeros?} & \textbf{Correct $\tau$-limit at $q\to1^+$?} \\
+\midrule
+\addlinespace[2pt]
+\textbf{1. Prime Indicator} & \checkmark & \checkmark & \text{\sffamily X} \\
+($\Fsharp$, optimized) & (By design) & (for $x>3$, Thm.~\ref{thm:no-companions}) & (Becomes 0 due to prefactor) \\
+\addlinespace[4pt]
+\textbf{2. q-Analog} & \checkmark & \text{\sffamily X} & \checkmark \\
+($\mathfrak{F}_\tau$, classical) & (Converges for $q>1$) & (Simple corrector) & (By design, no prefactor) \\
+\addlinespace[4pt]
+\textbf{3. q-Analog} & \checkmark & \checkmark & \checkmark \\
+($\mathfrak{F}_\tau^\sharp$, improved) & (Converges for $q>1$) & (same real zeros as $\Fsharp$) & (No prefactor; $S_1$ vanishes at integers) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Summary of Contributions}
+The main contributions of this work can be summarized in three areas. First, the General Fej\'er-Dirichlet Lift provides a unified and constructive framework for creating entire functions that interpolate arithmetical convolutions, starting from the classical identity $(a*1)\ \leftrightarrow\ \zeta A$. Second, two complementary approaches to prime number theory are demonstrated within this framework: a direct "adapter" method that interpolates the von Mangoldt function $\Lambda(n)$, and a dynamic method that reveals a structural connection between divisor functions and $\Lambda(n)$ via a differentiation operator. Third, a periodic normalizer for ``tangent matching'' is shown to remove all real zeros of the prime indicator $\Fsharp$ between the integers beyond $x=3$, for every $q>1$; the normalizer $S_1$ turns out to be the principal-value first moment of the $\operatorname{sinc}^2$ sampling kernel.
+
+\paragraph{Future Research Directions}
+The results presented open several avenues for future investigation:
+\begin{enumerate}
+    \item \textbf{Analysis of the Differentiation Operator.} The properties of the new entire functions generated by higher-order operators, $\mathcal{T}^{(k)}(z) := \mathcal{D}^k[\mathcal{T}(z,s)]$, are completely unexplored. An analysis of their zero distributions could provide new insights into the arithmetic functions they represent, such as the convolutions involving higher derivatives of the Zeta function.
+
+    \item \textbf{The Inverse Spectral Problem.} A natural question concerns the $z$–$s$ duality suggested by the two-variable lift. For a fixed $z_0$, the set of complex numbers $s$ for which $\mathcal{T}(z_0, s) = 0$ constitutes a new type of spectrum associated with the number $z_0$. Investigating whether this "s-spectrum" encodes the arithmetic properties of $z_0$ is a promising research direction.
+
+    \item \textbf{The Product Form of $\mathfrak{F}(z,q)$.} While the Dirichlet series of the FD-Lift possesses an Euler product if the weights are multiplicative, the entire function $\mathcal{T}_a(z)$ itself possesses a Weierstrass product over its zeros. An explicit determination of the Weierstrass product for $\mathfrak{F}(z,q)$ could provide a representation of an entire function in which the prime numbers appear as fundamental factors at the level of zeros, as a conceptual parallel to the Euler product in the spectral space. At present, a canonical product is not expected without substantially sharper control of zero locations and growth on vertical lines.
+\end{enumerate}
+
+In conclusion, the framework offers a set of constructive tools for exploring the interface between discrete number theory and continuous analysis, suggesting that the explicit design of analytic mechanisms can be a fruitful complement to the study of given spectral data.
+
+
+
+
+
+% ---------------------------------------------------------------------------
+

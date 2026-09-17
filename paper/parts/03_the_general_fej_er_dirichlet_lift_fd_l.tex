@@ -1,0 +1,480 @@
+\section{The General Fej\'er--Dirichlet Lift (FD-Lift)}\label{sec:fd-lift-main}
+
+\par\smallskip
+\noindent\textit{In this section the FD-lift is formulated, the divisor-sum anchor at integers is established, and the Dirichlet-series factorization $\sum_{n\ge1}\mathcal T_a(n)n^{-s}=\zeta(s)A(s)$ is recorded, together with the polylog–zeta specialization for $\mathfrak S$ and $\mathfrak F$.}
+\par\medskip
+
+\subsection*{Standing assumptions and scope}
+\noindent Unless stated otherwise, the following assumptions and conventions are used in this section:
+\begin{itemize}
+  \item If $\sum_{i\ge1}|a(i)|<\infty$, then $\mathcal T_a(z)=\sum_{i\ge1} a(i)\,F(z,i)/i^2$ converges locally uniformly on $\C$ and defines an entire function of order $\le 1$ and exponential type $\le 2\pi$.
+  \item If only $\sum_{i\ge1} |a(i)|\,i^{-\sigma}<\infty$ holds for some $\sigma>1$, then Abel-regularized or renormalized versions of the lift are used when entire-ness is required away from the integers (see the renormalized constructions later in the paper).
+  \item The Dirichlet-series identity $\sum_{n\ge1}\mathcal T_a(n)n^{-s}=\zeta(s)A(s)$ is asserted on the half-plane of absolute convergence of $A(s)=\sum_{n\ge1}a(n)n^{-s}$ (and extended by analytic continuation when available).
+\end{itemize}
+
+\begin{quote}\small
+\textbf{Bridge at a glance.} For weights $a:\mathbb N\to\mathbb C$,
+\[
+\text{local:}\quad \mathcal T_a(n)=(a*1)(n)
+\quad \text{corresponds to} \quad
+\text{spectral:}\quad \sum_{n\ge1}\frac{\mathcal T_a(n)}{n^s}=\zeta(s)\,A(s),
+\]
+where $A(s)=\sum_{n\ge1}a(n)n^{-s}$. The kernel $F(z,i)/i^2$ acts as a divisor filter at integers, while Dirichlet convolution transfers to multiplication in the Dirichlet–series domain.
+\end{quote}
+
+This section introduces the general framework of the Fej\'er--Dirichlet Lift (FD-Lift). The method constructs an entire function $\mathcal{T}_a(z)$ from a given arithmetic sequence of weights $a(n)$. This function serves as an analytic interpolant for the Dirichlet convolution $(a*1)(n)$ and possesses a Dirichlet series that factors in terms of the Riemann Zeta function.
+This section abstracts the mechanism of Section~\ref{sec:application-prime-indicator} into a linear operator $\mathcal{T}_a$.
+
+\subsection{Definition and Core Properties}
+
+The construction of the lift is a linear superposition of the fundamental Fej\'er kernel terms, weighted by the arithmetic information encoded in a sequence $a:\N \to \C$. The logic follows from the observation that the term $F(z,i)/i^2$ serves as an analytic continuation of the divisor-indicator function $\mathbf{1}_{i|n}$.
+
+\begin{definition}[The General Fej\'er--Dirichlet Lift]
+For a complex sequence of weights $a:\N \to \C$, the FD-Lift $\mathcal{T}_a(z)$ is defined as
+\[
+\mathcal{T}_a(z) := \sum_{i=1}^{\infty} \frac{a(i)}{i^2} F(z,i),\qquad F(z,1):=1.
+\]
+\end{definition}
+
+If the series of weights converges absolutely, $\sum_{i=1}^{\infty} |a(i)| < \infty$, the series defining $\mathcal{T}_a(z)$ converges uniformly on compact subsets of $\C$. Since each term in the sum is an entire function, the limit function $\mathcal{T}_a(z)$ is, by the Weierstrass theorem on uniformly convergent series of analytic functions, an entire function of order at most $1$ and exponential type at most $2\pi$.
+
+The constructed function $\mathcal{T}_a(z)$ possesses two foundational properties that establish its role as a bridge between the local space of integers and the spectral space of Dirichlet series. These are summarized in the following theorem.
+
+\begin{lemma}[Growth bound and exponential type]\label{lem:growth-type}
+For $z=x+\mathrm{i}y\in\C$ and integer $i\ge2$ the Fej\'er–Dirichlet kernel satisfies
+\[
+\bigl|F(z,i)\bigr|\;\le\; i^2\,\cosh(2\pi|y|).
+\]
+Consequently, if $\sum_{i\ge1}|a(i)|<\infty$, then the FD-Lift
+\[
+\mathcal{T}_a(z)\;=\;\sum_{i\ge1} a(i)\,\frac{F(z,i)}{i^2}
+\]
+obeys the global bound
+\[
+\bigl|\mathcal{T}_a(x+\mathrm{i}y)\bigr|\;\le\;\Bigl(\sum_{i\ge1}|a(i)|\Bigr)\,\cosh(2\pi|y|),
+\]
+and in particular $\mathcal{T}_a$ is an entire function of order at most $1$ and exponential type at most $2\pi$, since $\cosh(2\pi|y|)\le \tfrac12(e^{2\pi|y|}+e^{-2\pi|y|})$ provides a global $e^{2\pi|y|}$–bound along vertical lines.
+\end{lemma}
+
+\begin{remark}[Order $\le 1$ and exponential type $\le 2\pi$]
+An entire function $H$ has exponential type at most $T$ if for every $\epsilon>0$ there exists $C_\epsilon$ with $|H(z)|\le C_\epsilon\,e^{(T+\epsilon)|z|}$ for all $z\in\C$ (see, e.g., Levin~\cite{levin1996}). A bound $|H(x+\ii y)|\le C\,e^{T|y|}$ holding uniformly for all $x,y\in\mathbb R$ is sufficient for this, since $|y|\le|z|$. Lemma~\ref{lem:growth-type} yields 
+\[
+|\mathcal T_a(x+\ii y)|\le \Bigl(\sum |a(i)|\Bigr)\cosh(2\pi|y|)\le C\,e^{2\pi|y|}
+\qquad(x,y\in\mathbb R).
+\]
+Since $|y|\le |z|$ for $z=x+\ii y$, this immediately gives the global bound
+\[
+|\mathcal T_a(z)|\le C\,e^{2\pi|z|}\qquad(z\in\mathbb C),
+\]
+so $\mathcal T_a$ is of order at most $1$ and exponential type at most $2\pi$ in the usual radial sense. The geometric corrector $z\mapsto q^{-z}=e^{-z\log q}$ (used elsewhere in the paper) is not covered by this argument: it satisfies $|q^{-z}|=e^{-\Re(z\log q)}\le e^{|\log q|\,|z|}$, has exponential type $|\log q|$, and is unbounded on $\mathbb R$. Functions containing it are treated separately in Theorem~\ref{thm:analyticity-growth} and Lemma~\ref{lem:fsharp-growth-corrected}.
+\end{remark}
+
+\begin{proof}
+Using the cosine series $F(z,i)= i+2\sum_{k=1}^{i-1}(i-k)\cos\!\bigl(2\pi k z/i\bigr)$ and $|\cos(x+\mathrm{i}y)|\le\cosh(y)$ gives
+\[
+|F(z,i)|\;\le\; i\cdot\cosh(0)\;+\;2\sum_{k=1}^{i-1}(i-k)\cosh\!\Bigl(\tfrac{2\pi k}{i}|y|\Bigr)
+\;\le\; i\;+\;2\sum_{k=1}^{i-1}(i-k)\cosh(2\pi|y|).
+\]
+Since $\sum_{k=1}^{i-1}(i-k)=\tfrac{i(i-1)}{2}$, it follows that $|F(z,i)|\le i^2\cosh(2\pi|y|)$. Summation with weights $|a(i)|/i^2$ yields the claimed bound for $\mathcal{T}_a$. The growth estimate implies order $\le 1$ and exponential type $\le 2\pi$.
+\end{proof}
+
+\begin{theorem}[Fundamental Properties of the FD-Lift]\label{thm:fd-lift-core}
+Let $\mathcal{T}_a(z)$ be the FD-Lift for a sequence of weights $a(n)$ whose associated Dirichlet series is $A(s) = \sum_{n=1}^\infty a(n)n^{-s}$. The following properties hold:
+\begin{enumerate}
+    \item \textbf{(Local Property: Integer Values)} For any integer $n\ge1$, the value of the function is equal to the Dirichlet convolution of $a$ and the unit function $1(n)=1$ (at integer arguments the defining series reduces to the finite sum over the divisors of $n$, so no summability assumption is needed for this part):
+    \[
+    \mathcal{T}_a(n) = \sum_{d|n} a(d) = (a*1)(n).
+    \]
+    \item \textbf{(Spectral Property: Dirichlet Series)} In the half-plane of absolute convergence, the Dirichlet series of the sequence $\mathcal{T}_a(n)$ is the product of the Riemann Zeta function and the Dirichlet series of the weights:
+    \[
+    \sum_{n=1}^{\infty}\frac{\mathcal{T}_a(n)}{n^s} = \zeta(s)A(s).
+    \]
+    This identity holds for all $s$ with $\Re s>\max\{1,\sigma_0\}$, where $A(s)=\sum_{n\ge1} a(n)n^{-s}$ converges absolutely on $\Re s>\sigma_0$; extension to other $s$ follows by analytic continuation, when available.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Sketch]
+(1) For integers $n$, the projector property yields $F(n,i)/i^2=\mathbf{1}_{i\mid n}$, hence $\mathcal T_a(n)=(a*1)(n)$.
+(2) For the Dirichlet series, swap sums (absolute convergence) and regroup: $\sum_n \mathcal T_a(n)n^{-s}
+= \sum_d a(d)d^{-s}\sum_m m^{-s} = A(s)\zeta(s)$.
+Details: Appendix~\ref{app:fdlift-proofs}.
+\end{proof}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_mu_interpolant.pdf}
+\caption{The FD-Lift for the M\"obius function, $\mathcal{T}_\mu(x)$. The continuous function (blue curve), generated from the sum of Fej\'er kernels weighted by $\mu(i)$, is shown to correctly interpolate the discrete values of the convolution $(\mu*1)(n)$ (red dots). This provides a visual confirmation of Theorem~\ref{thm:fd-lift-core} and illustrates the construction of an "analytic annihilator" for integers $n>1$.}
+\label{fig:mu_interpolant}
+\end{figure}
+
+\FloatBarrier 
+
+\begin{corollary}[Order $1$ and exponential type $\le 2\pi$]
+Assume $\sum_{i=1}^{\infty} |a(i)| < \infty$. Then the FD-Lift $\mathcal{T}_a$ is an entire function of order at most $1$ and exponential type at most $2\pi$. In particular, there exists a constant $C=C(a)>0$ such that
+\[
+|\mathcal{T}_a(x+\ii y)| \;\le\; C\, e^{2\pi |y|} \qquad (x,y\in\R),
+\]
+and hence, since $|y|\le |x+\ii y|=|z|$, also the radial bound
+\[
+|\mathcal{T}_a(z)| \;\le\; C\, e^{2\pi |z|} \qquad (z\in\C)
+\]
+holds. Consequently, the order is $\le 1$ and the exponential type is $\le 2\pi$.
+\end{corollary}
+
+
+\subsection{Functional and Algebraic Properties}
+
+The FD-Lift framework respects the fundamental algebraic structures of arithmetic functions and their associated Dirichlet series. The lift operator $\mathcal{T}: a \mapsto \mathcal{T}_a$ exhibits the following key properties.
+
+\begin{itemize}
+    \item \textbf{Linearity.} The lift is a linear operator. For any two sequences $a_1, a_2$ and complex constants $c_1, c_2$, it holds that
+    \[ \mathcal{T}_{c_1 a_1 + c_2 a_2}(z) = c_1 \mathcal{T}_{a_1}(z) + c_2 \mathcal{T}_{a_2}(z). \]
+
+    \item \textbf{M\"obius Inversion.} Since $\mathcal{T}_a(n) = (a*1)(n)$, the original weight sequence $a(n)$ can be recovered from the integer values of the lift by Dirichlet convolution with the M\"obius function $\mu(n)$:
+    \[ a(n) = (\mu * \mathcal{T}_a)(n). \]
+    In the spectral space, this corresponds to the division of the resulting Dirichlet series by $\zeta(s)$.
+
+    \item \textbf{Logarithmic Derivative Identity.} A relationship holds between the logarithmic derivatives of the involved Dirichlet series. Let $M(s)=\zeta(s)A(s)$ denote the spectrum of the lift. Then
+    \[
+    -\frac{M'(s)}{M(s)} \;=\; -\frac{\zeta'(s)}{\zeta(s)} \;-\; \frac{A'(s)}{A(s)}.
+    \]
+    This is a purely analytic identity. An arithmetical “von Mangoldt” interpretation of $-A'(s)/A(s)$ requires that $A(s)$ admit an Euler product (e.g., when the weights are multiplicative and satisfy standard convergence hypotheses); without such a product, $-A'(s)/A(s)$ is only a formal logarithmic derivative and does not carry canonical positivity or prime-power counting properties.
+
+    \item \textbf{Divisor lattice algebra.} The basis functions $F(z,i)/i^2$ encode divisibility at integer arguments. For integers $n,i,j$ one has the pointwise identity
+    \[
+    \frac{F(n,i)}{i^2}\,\frac{F(n,j)}{j^2}=\mathbf{1}_{i\mid n}\,\mathbf{1}_{j\mid n}=\mathbf{1}_{\mathrm{lcm}(i,j)\mid n}=\frac{F(n,\mathrm{lcm}(i,j))}{\mathrm{lcm}(i,j)^2},
+    \]
+    which highlights compatibility with Dirichlet convolution. No such identity is claimed for non-integer arguments.
+\end{itemize}
+
+\subsection{Connection to Prime Number Theory: Two Complementary Approaches}
+
+A key application of the FD-Lift is its ability to establish a direct connection to prime number theory and the zeros of the Riemann Zeta function. Two fundamentally different but complementary approaches to leverage this connection are presented.
+\begin{enumerate}
+    \item \textbf{The Direct Adapter Method (Analysis).} This is a targeted approach where the weights $a(n)$ are precisely tailored to isolate a specific arithmetic property---primality, as represented by the von Mangoldt function $\Lambda(n)$---and thereby directly generate its spectrum, $-\zeta'(s)/\zeta(s)$.
+    \item \textbf{The Dynamic Method (Synthesis).} This is a synthetic approach where, instead of isolating one property, a general, parameter-dependent family of functions (related to $\sigma_{-s}(n)$) is constructed. A new, complex property related to prime numbers is then derived through an analytic operation (differentiation) within this family.
+\end{enumerate}
+Both tracks illuminate the same underlying structures from different perspectives and demonstrate the generality and flexibility of the FD-Lift framework. The following sections detail each approach.
+
+\begin{quote}\small
+\textbf{Takeaways (FD-lift).}
+Integer anchors satisfy $\mathcal T_a(n)=\sum_{d\mid n}a(d)$.
+The Dirichlet-series factorization $\sum_{n\ge1}\mathcal T_a(n)n^{-s}=\zeta(s)A(s)$ is obtained.
+For $a(i)=(q-1)q\,q^{-i}$ the specializations for $\mathfrak S$ and $\mathfrak F$ follow via $\operatorname{Li}_s(1/q)$.
+\end{quote}
+
+
+\subsection{Track 1: The Direct Adapter Method for Isolating \texorpdfstring{$\Lambda(n)$}{Lambda(n)}}
+
+\par\smallskip
+\noindent\textit{In this subsection a direct adapter is set up to isolate the von Mangoldt function at integers via the FD-lift. A renormalized kernel is employed to ensure absolute and locally uniform convergence; the integer anchor $\mathcal T^{(\mathrm{ren})}_{\mu*\Lambda}(n)=\Lambda(n)$ is verified and the associated Dirichlet-series mechanism is recorded.}
+\par\medskip
+
+\begin{quote}\small
+\textbf{Example (three lines).}
+For $a=\mu*\Lambda$, a naive lift $\sum_{i\ge1}(\mu*\Lambda)(i)\,F(z,i)/i^2$ fails to be absolutely convergent and is unstable under Abel summation.
+A renormalized difference kernel $(\phi_i-\phi_\infty)$ is therefore used; this guarantees absolute and locally uniform convergence while preserving $\mathcal T^{(\mathrm{ren})}_{\mu*\Lambda}(n)=\Lambda(n)$.
+The construction is detailed in Appendix~\ref{app:fdlift-proofs}, Theorem~\ref{thm:renormalized-muLambda}.
+\end{quote}
+
+\begin{proposition}[Explicit formula for $\psi$, in the form used by the adapter method]\label{prop:adapter-explicit}
+Let $x>1$ and let $\psi(x)=\sum_{n\le x}\Lambda(n)$ be Chebyshev's function in the symmetric sense. Then
+\[
+\psi(x)= x - \sum_{\rho}\frac{x^{\rho}}{\rho} - \log(2\pi) - \frac{1}{2}\log\!\bigl(1-x^{-2}\bigr),
+\]
+where the sum runs over the nontrivial zeros $\rho$ of $\zeta(s)$ with symmetric summation.
+\end{proposition}
+
+\begin{remark}[Explicit formula: form used]
+Throughout, the explicit formula is understood in the form of Proposition~\ref{prop:adapter-explicit}, including the contribution of the trivial zeros via $-\tfrac12\log(1-x^{-2})$ and the constant $-\log(2\pi)$. All later references point to this exact normalization.
+\end{remark}
+
+\begin{proof}
+Fix $c>1$ and $T\ge2$. Consider
+\[
+I_T:=\frac{1}{2\pi i}\int_{c-iT}^{c+iT} -\frac{\zeta'(s)}{\zeta(s)}\,\frac{x^{s}}{s}\,ds.
+\]
+By Perron's formula in its symmetric form (see, e.g., \cite[Thms.\ 4.11 and 4.16]{titchmarsh1986}; see also \cite[Ch.\ 3]{edwards2001} and \cite{iwanieckowalski2021}), $I_T$ tends to $\psi(x)$ as $T\to\infty$, with the standard half-weight convention at integers. For $x>1$ and $x\notin\mathbb N$ the same limit holds without half-weights. Shift the contour to the left across $s=1$, the nontrivial zeros $\rho$, $s=0$, and the trivial zeros $s=-2k$ ($k\in\mathbb{N}$). The residues are:
+\begin{itemize}
+\item at $s=1$: $x$;
+\item at $s=\rho$: $-\dfrac{x^{\rho}}{\rho}$;
+\item at $s=0$: $-\dfrac{\zeta'(0)}{\zeta(0)}=-\log(2\pi)$;
+\item at $s=-2k$: $-\dfrac{x^{-2k}}{-2k}=\dfrac{1}{2}\dfrac{x^{-2k}}{k}$, summing to $-\dfrac{1}{2}\log(1-x^{-2})$.
+\end{itemize}
+Along a sequence $T\to\infty$ chosen so that $T$ stays away from the ordinates of the nontrivial zeros (the usual choice, keeping the distance $\gg1/\log T$), the horizontal segments and the left vertical segment vanish by the standard bounds for $\zeta$ and $\zeta'/\zeta$ on such lines; see \cite{edwards2001,titchmarsh1986,iwanieckowalski2021}. The argument is classical and does not use the adapter; the adapter enters only through the identification of $-\zeta'/\zeta$ as the spectrum of $\mathcal T^{(\mathrm{ren})}_{\mu*\Lambda}$. Summing residues yields the stated identity.
+\end{proof}
+
+This approach provides the most direct path to embedding the pole structure of the Zeta function's logarithmic derivative into the spectrum of an entire function.
+
+\subsubsection{Strategy: From Zeros to Poles}
+A central goal in analytic number theory is to understand the distribution of the non-trivial zeros $\rho$ of the Zeta function. In complex analysis, poles are often more tractable than zeros. The strategy is therefore to construct a function whose poles coincide exactly with the zeros of $\zeta(s)$. The canonical function with this property is the logarithmic derivative, $-\zeta'(s)/\zeta(s)$. On the $z$-side, the renormalized entire interpolant from Theorem~\ref{thm:renormalized-muLambda} is used, thereby avoiding unrenormalized Abel-limit issues away from integers.
+The FD-Lift is "tuned" by choosing weights $a(n)$ such that the resulting spectrum matches this target:
+\[
+\sum_{n=1}^{\infty}\frac{\mathcal T_a(n)}{n^s} = \zeta(s) A(s) \stackrel{!}{=} -\frac{\zeta'(s)}{\zeta(s)}.
+\]
+
+\subsubsection{The Adapter Mechanism}
+To achieve the target spectrum, the Dirichlet series of the weights must be $A(s) = -\frac{\zeta'(s)}{\zeta(s)^2}$. From the theory of Dirichlet series, the arithmetic function corresponding to this spectrum is the Dirichlet convolution of the M\"obius function $\mu$ and the von Mangoldt function $\Lambda$. The mechanism proceeds in three steps:
+\begin{enumerate}
+    \item \textbf{Define the weights.} The weights are set to $a(n) := b(n) = (\mu * \Lambda)(n)$. The associated Dirichlet series is then, as required:
+    \[
+    B(s) = \sum_{n=1}^{\infty}\frac{b(n)}{n^s} = \left(\sum\frac{\mu(n)}{n^s}\right)\left(\sum\frac{\Lambda(n)}{n^s}\right) = \frac{1}{\zeta(s)}\cdot\left(-\frac{\zeta'(s)}{\zeta(s)}\right) = -\frac{\zeta'(s)}{\zeta(s)^2}.
+    \]
+    \item \textbf{Evaluate the lift (spectral side).} The spectrum of the lift $\mathcal{T}_b(z)$ is, by Theorem~\ref{thm:fd-lift-core},
+    \[
+    \sum_{n=1}^{\infty}\frac{\mathcal T_b(n)}{n^s} = \zeta(s)B(s) = \zeta(s) \left(-\frac{\zeta'(s)}{\zeta(s)^2}\right) = -\frac{\zeta'(s)}{\zeta(s)}.
+    \]
+    \item \textbf{Evaluate the lift (local side).} The value at integer arguments is $\mathcal{T}_b(n)=(b*1)(n) = (\mu * \Lambda * 1)(n)$. Using the standard identities $(\Lambda*1)(n)=\log n$ and $(\mu*\log)(n)=\Lambda(n)$ (see, e.g., Apostol \cite[Ch.~2]{apostol1976}), it follows that:
+    \[
+    \mathcal{T}_{(\mu*\Lambda)}(n) = \Lambda(n).
+    \]
+\end{enumerate}
+
+\begin{theorem}[Renormalized FD-lift for $a=\mu*\Lambda$]\label{thm:renormalized-muLambda}
+Let $\phi_i(z):=F(z,i)/i^2$ and $\phi_\infty(z):=(\sin(\pi z)/(\pi z))^2$ with $\phi_\infty(0):=1$. Then the renormalized series
+\[
+\mathcal{T}^{(\mathrm{ren})}_{\mu*\Lambda}(z)\ :=\ \sum_{i=1}^{\infty}(\mu*\Lambda)(i)\,\bigl(\phi_i(z)-\phi_\infty(z)\bigr)
+\]
+converges absolutely and locally uniformly on $\C$ and hence defines an entire function. Moreover, for every integer $n\ge1$,
+\[
+\mathcal{T}^{(\mathrm{ren})}_{\mu*\Lambda}(n)=\Lambda(n).
+\]
+\end{theorem}
+\begin{proof}[Sketch]
+On $|z|\le R$: $\sin(\pi z/i)=\frac{\pi z}{i}(1+E_i(z))$, hence $F(z,i)/i^2=\phi_\infty(z)(1+O_R(i^{-2}))$.
+With $(\mu*\Lambda)(i)\ll\log i$ this gives absolute local uniform convergence.
+At integers, the renormalization removes the $i=\infty$ limit and yields $\Lambda(n)$.
+Full proof: Appendix~\ref{app:fdlift-proofs}.
+\end{proof}
+
+
+\begin{remark}[Abel regularisation away from integers]
+For $0<r<1$ the unrenormalized Abel sum $\sum_{i\ge1}(\mu*\Lambda)(i)\,\phi_i(z)\,r^i$ splits as $\sum (\mu*\Lambda)(i)\,(\phi_i-\phi_\infty)(z)\,r^i+\phi_\infty(z)\sum (\mu*\Lambda)(i)\,r^i$. The first term converges locally uniformly as $r\uparrow1$, but the scalar series $\sum (\mu*\Lambda)(i)\,r^i$ need not have a finite Abel limit due to the pole structure of $(1/\zeta)'(s)$ at nontrivial zeros of $\zeta$. Hence existence of the unrenormalized Abel limit for $z\notin\mathbb Z$ is not asserted.
+\end{remark}
+
+\subsubsection{Resulting Pole Structure and Interpretation}
+For $0<r<1$ define
+\[
+\mathcal{T}^{(\mathrm{Ab})}_{(\mu*\Lambda)}(z;r):=\sum_{i=1}^{\infty} (\mu*\Lambda)(i)\,\frac{F(z,i)}{i^2}\, r^i,
+\]
+which is entire in $z$ for each fixed $r$. At integer arguments $n$ the Abel sum stabilizes to $\Lambda(n)$ as $r\uparrow1$ because only finitely many terms contribute. For $z\notin\mathbb Z$ existence of the unrenormalized Abel limit is not asserted; instead the renormalized entire interpolant from Theorem~\ref{thm:renormalized-muLambda} is used. The associated Dirichlet series $-\zeta'(s)/\zeta(s)$ has simple poles at:
+\begin{itemize}
+    \item $s=1$, with residue $+1$, corresponding to the main term $x$ in the Prime Number Theorem,
+    \item all nontrivial zeros $\rho$ of $\zeta(s)$, with residue $-m_\rho$ (where $m_\rho$ is the multiplicity of the zero),
+    \item the trivial zeros $s=-2k$, with residue $-1$.
+\end{itemize}
+
+\subsubsection{Explicit formula via Perron}
+The explicit formula for $\psi(x)=\sum_{n\le x}\Lambda(n)$ stated in Proposition~\ref{prop:adapter-explicit} applies here verbatim and is recalled for convenience:
+\[
+\psi(x)\;=\; x \;-\; \sum_{\rho}\frac{x^{\rho}}{\rho} \;-\; \log(2\pi) \;-\; \tfrac{1}{2}\log\!\Bigl(1-\frac{1}{x^{2}}\Bigr).
+\]
+
+\begin{corollary}[RH]
+Under the Riemann Hypothesis one has
+\[
+\psi(x) = x + O\!\big(x^{1/2}\log^{2}x\big).
+\]
+This is classical and goes back to von Koch~\cite{vonkoch1901}; it is quoted here only for orientation and is not used elsewhere in this paper. Textbook proofs are in \cite{edwards2001,titchmarsh1986}.
+\end{corollary}
+
+The FD-Lift thus provides a constructive perspective on the appearance of the Zeta zeros in explicit formulas for primes: they arise as the poles of the spectrum of the entire function that naturally interpolates the prime-power detecting function $\Lambda(n)$. The result of this mechanism is visualized in Figure~\ref{fig:lambda_interpolant}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_lambda_interpolant.pdf}
+\caption{Visual confirmation of the direct adapter method. The smooth, entire function $\mathcal{T}_{(\mu*\Lambda)}(x)$ (red curve) is shown passing exactly through the discrete values of the von Mangoldt function $\Lambda(n)$ (grey stems). This illustrates how the FD-Lift provides a continuous interpolant for the prime-power detecting function.}
+\label{fig:lambda_interpolant}
+\end{figure}
+
+\FloatBarrier
+
+\begin{quote}\small
+\textbf{Takeaways (Track 1: direct adapter for $\Lambda$).}
+A renormalized adapter based on $(\phi_i-\phi_\infty)$ is used to enforce absolute/local uniform convergence.
+At integers the interpolation equals $\Lambda(n)$.
+Its spectrum is the classical Dirichlet series $-\zeta'(s)/\zeta(s)=\sum_{n\ge1}\Lambda(n)n^{-s}$.
+\end{quote}
+
+\subsection{Track 2: The Dynamic Method via the Two-Variable Lift}\label{sec:dynamic-method}
+
+\par\smallskip
+\noindent\textit{In this subsection a two-variable FD-lift $\mathcal T^{(\mathrm{ren})}(z,s)$ is introduced; holomorphy on $\Re s>-1$ is documented, the integer identity $\mathcal T^{(\mathrm{ren})}(n,s)=\sum_{d\mid n}d^{-s}$ is established, and differentiation at $s=0$ yields $-\sum_{d\mid n}\log d=-(\tau*\Lambda)(n)$, whose Dirichlet series is $\zeta(u)\zeta'(u)$.}
+\par\medskip
+
+
+\noindent\textbf{Variables.} Throughout this section, $z$ denotes the interpolation variable, $s$ the weight parameter in the two--variable lift, and $u$ the Dirichlet--series variable. This convention prevents clashes between the interpolation and spectral sides.
+
+This second approach explores a dynamic structure by introducing a new complex parameter into the weights themselves. Instead of constructing a single function, an entire family of functions is generated, and a new arithmetic relationship is revealed by analyzing the behavior of this family.
+
+\subsubsection{A Parameter-Dependent Family of Functions}
+The lift is generalized by choosing weights that are themselves a function of a complex variable $s$, namely $a(i,s) = i^{-s}$. This elevates the FD-Lift to a function of two complex variables, $\mathcal{T}(z,s)$.
+
+\begin{definition}[The Two-Variable Lift]
+For $z \in \C$ and $s \in \C$, the two-variable lift is defined as
+\[\mathcal{T}(z,s) := \sum_{i=1}^{\infty} \frac{i^{-s}}{i^2} F(z,i) = \sum_{i=1}^{\infty} \frac{F(z,i)}{i^{s+2}}.\]
+\end{definition}
+
+\noindent\textbf{Convergence and regularity.}
+For each fixed $s$ with $\Re s>1$, the series defining $\mathcal{T}(z,s)$ converges absolutely and uniformly on compact subsets of $z\in\C$, hence $z\mapsto\mathcal{T}(z,s)$ is entire.
+For each fixed $z\in\C$, the series converges absolutely for $\Re s>1$ and defines a function holomorphic in $s$ on $\Re s>1$.
+Moreover, gliding differentiation with respect to $s$ is justified on every half-plane $\Re s\ge 1+\delta$ with $\delta>0$ by the Weierstrass $M$-test applied to the majorant $\sum_{i\ge1}(\log i)/i^{1+\delta}$.
+At integer points $n\in\mathbb{N}$ one has the interpolation identity
+\[
+\mathcal{T}(n,s)=\sum_{d\mid n} d^{-s}=\sigma_{-s}(n).
+\]
+
+\begin{itemize}
+    \item \textbf{In the local space}, at an integer argument $n$, each function in the family interpolates the sum-of-powers-of-divisors function $\sigma_{-s}(n)$:
+    \[
+    \mathcal{T}(n,s) = \sum_{d|n} d^{-s} = \sigma_{-s}(n).
+    \]
+    \item \textbf{In the spectral space}, the Dirichlet series of this sequence (over the variable $u$) is the product of two Zeta functions, a central object in number theory:
+    \[
+    \sum_{n=1}^{\infty}\frac{\sigma_{-s}(n)}{n^u} = \zeta(u)\zeta(u+s), \quad \text{for } \re(u)>1, \re(u+s)>1.
+    \]
+\end{itemize}
+The parameter $s$ acts as a "dial" that continuously adjusts the arithmetic properties of the system.
+
+\subsubsection{The Differentiation Operator as an Arithmetic Transformer}
+The potential of this dynamic approach is demonstrated by applying an analytic operation to the parameter $s$: differentiation at the origin $s=0$. The \emph{differentiation operator} is defined as $\mathcal{D} := \frac{\partial}{\partial s}\big|_{s=0}$. It transforms the arithmetic properties of the function on all levels of the lift.
+
+\begin{proposition}[Renormalized spectral differentiation at $s=0$]\label{prop:spectral-diff}
+Let $\phi_i(z):=F(z,i)/i^2$ and $\phi_\infty(z):=\bigl(\frac{\sin(\pi z)}{\pi z}\bigr)^2$ with $\phi_\infty(0):=1$.
+For $\Re s>-1$ define the renormalized two-variable lift
+\[
+\mathcal T^{\mathrm{ren}}(z,s)\ :=\ \sum_{i\ge1}\bigl(\phi_i(z)-\phi_\infty(z)\bigr)\,i^{-s}.
+\]
+For $\Re s>1$ it is related to the two-variable lift by $\mathcal T(z,s)=\mathcal T^{\mathrm{ren}}(z,s)+\phi_\infty(z)\,\zeta(s)$; this provides the meromorphic continuation of $s\mapsto\mathcal T(z,s)$ to $\Re s>-1$, with at most a simple pole at $s=1$ of residue $\phi_\infty(z)$.
+Then:
+\begin{enumerate}
+\item For each fixed $s$ with $\Re s>-1$, the map $z\mapsto \mathcal T^{\mathrm{ren}}(z,s)$ is entire; for each fixed $z\in\C$, the map $s\mapsto \mathcal T^{\mathrm{ren}}(z,s)$ is holomorphic on $\Re s>-1$.
+\item The derivative at $s=0$ exists and equals
+\[
+\frac{\partial}{\partial s}\mathcal T^{\mathrm{ren}}(z,s)\Big|_{s=0}
+\ =\ -\sum_{i\ge1}\bigl(\phi_i(z)-\phi_\infty(z)\bigr)\,\log i,
+\]
+where the series converges absolutely and locally uniformly in $z$.
+\item For every integer $n\ge1$ and all $s$ with $\Re s>-1$,
+\[
+\mathcal T^{\mathrm{ren}}(n,s)=\sum_{d\mid n}d^{-s}=\sigma_{-s}(n).
+\]
+Consequently,
+\[
+\frac{\partial}{\partial s}\sigma_{-s}(n)\Big|_{s=0}\ =\ -\sum_{d\mid n}\log d\ =\ -(\tau*\Lambda)(n).
+\]
+\item On the spectral side,
+\[
+\sum_{n\ge1}\frac{\sigma_{-s}(n)}{n^{u}}=\zeta(u)\,\zeta(u+s)\qquad(\Re u>1,\ \Re(u+s)>1).
+\]
+Differentiating at $s=0$ yields
+\[
+\sum_{n\ge1}\frac{-\sum_{d\mid n}\log d}{n^u}\;=\;\zeta(u)\,\zeta'(u)\qquad(\Re u>1),
+\]
+and, equivalently,
+\[
+\sum_{n\ge1}\frac{(\tau*\Lambda)(n)}{n^u}\;=\;-\,\zeta(u)\,\zeta'(u)\qquad(\Re u>1).
+\]
+Hence, in the Dirichlet–series variable $u$, the differentiation identity is exactly
+\[
+-\;(\tau*\Lambda)\ \Longleftrightarrow\ \zeta(u)\,\zeta'(u).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{lemma}[Divisor–log identity]\label{lem:divlog}
+For every $n\ge1$,
+\[
+\sum_{d\mid n}\log d \;=\; (\tau*\Lambda)(n).
+\]
+\end{lemma}
+\begin{proof}
+Two proofs are recorded.
+
+\emph{(i) Dirichlet–series proof.} The Dirichlet series of $n\mapsto \sum_{d\mid n}\log d$ equals
+\[
+\sum_{n\ge1}\frac{\sum_{d\mid n}\log d}{n^u}
+=\sum_{d\ge1}\frac{\log d}{d^{u}}\sum_{m\ge1}\frac{1}{m^{u}}
+=\zeta(u)\sum_{d\ge1}\frac{\log d}{d^{u}}
+=\zeta(u)\,\bigl(-\zeta'(u)\bigr)\qquad(\Re u>1).
+\]
+Since $\sum_{n\ge1}(\tau*\Lambda)(n)n^{-u}=\zeta(u)^2\cdot(-\zeta'(u)/\zeta(u))=-\zeta(u)\zeta'(u)$ on $\Re u>1$, both series coincide, hence the coefficients agree.
+
+\emph{(ii) Convolution–algebra proof.} A check on prime powers alone does not suffice here, because neither side is multiplicative: for $n=6$ one has $\sum_{d\mid6}\log d=\log 36=3.5835\ldots$, whereas $\bigl(\sum_{d\mid2}\log d\bigr)\bigl(\sum_{d\mid3}\log d\bigr)=\log2\cdot\log3=0.7615\ldots$. We therefore argue inside the Dirichlet ring. Write $\mathbf 1$ for the constant arithmetic function $1$. By definition $\tau=\mathbf 1*\mathbf 1$, and $\Lambda*\mathbf 1=\log$ is the classical identity $\sum_{d\mid n}\Lambda(d)=\log n$. Associativity and commutativity of Dirichlet convolution give
+\[
+\tau*\Lambda=(\mathbf 1*\mathbf 1)*\Lambda=\mathbf 1*(\Lambda*\mathbf 1)=\mathbf 1*\log,
+\qquad\text{that is,}\qquad
+(\tau*\Lambda)(n)=\sum_{d\mid n}\log d .
+\]
+Pairing each divisor $d$ of $n$ with $n/d$ moreover gives the closed form
+\[
+2\sum_{d\mid n}\log d=\sum_{d\mid n}\bigl(\log d+\log(n/d)\bigr)=\tau(n)\log n,
+\qquad\text{so}\qquad
+(\tau*\Lambda)(n)=\tfrac12\,\tau(n)\log n .
+\]
+\end{proof}
+
+\begin{proof}
+Fix $R>0$ and write $\phi_\infty(z):=(\sin(\pi z)/(\pi z))^2$ with $\phi_\infty(0):=1$. On $|z|\le R$,
+\[
+\sin(\pi z/i)=\frac{\pi z}{i}+\Big(\frac{\pi z}{i}\Big)^3 \rho_i(z),\qquad |\rho_i(z)|\le \tfrac{1}{6},
+\]
+whence $\sin(\pi z/i)=\frac{\pi z}{i}\,(1+E_i(z))$ with $|E_i(z)|\le \frac{\pi^2 R^2}{6\,i^{2}}$. Hence
+\[
+\frac{F(z,i)}{i^2}
+=\left(\frac{\sin(\pi z)}{\pi z}\right)^{\!2}\,\frac{1}{(1+E_i(z))^{2}}
+=\phi_\infty(z)\,\big(1+O_R(i^{-2})\big),
+\]
+so $\phi_i(z)-\phi_\infty(z)=O_R(i^{-2})$ uniformly on $|z|\le R$. For $\sigma:=\Re s>-1$,
+\[
+\sum_{i\ge1}\big|\phi_i(z)-\phi_\infty(z)\big|\,i^{-\sigma}\ \ll_R\ \sum_{i\ge1}i^{-2-\sigma}\ <\ \infty,
+\]
+locally uniformly in $z$ and on vertical strips $\Re s\ge \sigma_0>-1$. Thus
+\[
+\mathcal T^{\mathrm{ren}}(z,s):=\sum_{i\ge1}\big(\phi_i(z)-\phi_\infty(z)\big)\,i^{-s}
+\]
+is entire in $z$ and holomorphic in $s$ for $\Re s>-1$, with termwise differentiation in $s$ justified by $\sum_{i\ge1}(\log i)\,i^{-2-\sigma}$, which converges for $\sigma>-1$. Therefore
+\[
+\frac{\partial}{\partial s}\mathcal T^{\mathrm{ren}}(z,s)\Big|_{s=0}
+=\,-\sum_{i\ge1}\bigl(\phi_i(z)-\phi_\infty(z)\bigr)\,\log i.
+\]
+
+At integers $n\ge1$, $\phi_i(n)=\mathbf 1_{i\mid n}$ and $\phi_\infty(n)=0$, so
+\[
+\mathcal T^{\mathrm{ren}}(n,s)=\sum_{d\mid n}d^{-s}=\sigma_{-s}(n).
+\]
+Differentiation at $s=0$ gives $\frac{\partial}{\partial s}\sigma_{-s}(n)|_{s=0}=-\sum_{d\mid n}\log d$. Finally,
+\[
+\sum_{n\ge1}\frac{\sigma_{-s}(n)}{n^u}=\zeta(u)\zeta(u+s)
+\quad(\Re u>1,\ \Re(u+s)>1),
+\]
+so at $s=0$ one obtains $\sum_{n\ge1}\frac{-\sum_{d\mid n}\log d}{n^u}=\zeta(u)\zeta'(u)$.
+\end{proof}
+
+\subsubsection{Interpretation and a New Structural Identity}
+The transformed spectrum $\zeta(u)\zeta'(u)$ has a known arithmetic counterpart. The Dirichlet series for the divisor-counting function $\tau(n)$ is $\zeta(u)^2$, and for the von Mangoldt function $\Lambda(n)$ it is $-\zeta'(u)/\zeta(u)$. Their product corresponds to the Dirichlet convolution $(\tau * \Lambda)(n)$, and its Dirichlet series is $\zeta(u)^2 \cdot (-\zeta'(u)/\zeta(u)) = -\zeta(u)\zeta'(u)$.
+
+This reveals a structural connection:
+\[
+\mathcal{D}[\sigma_{-s}(n)] = -\log\left(\prod_{d|n} d\right) \quad \longleftrightarrow \quad \mathcal{D}[\zeta(u)\zeta(u+s)] = \zeta(u)\zeta'(u) = - \sum_{n=1}^\infty \frac{(\tau * \Lambda)(n)}{n^u}.
+\]
+The differentiation operator provides a constructive analytic bridge from the theory of divisor functions ($\sigma$) to the theory of prime numbers ($\Lambda$), mediated by the divisor-counting function $\tau$. This demonstrates that the relationship between these fundamental arithmetic functions is a direct consequence of the analytic structure of the underlying family of entire functions $\mathcal{T}(z,s)$. The non-obvious arithmetic identity revealed by this principle is visually confirmed in Figure~\ref{fig:operator_effect}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_operator_effect.pdf}
+\caption{A visual representation of the arithmetic identity revealed by the differentiation operator. The plot on the left shows the function $g(n) = -\sum_{d|n} \log d$, derived from differentiating $\sigma_{-s}(n)$. The plot on the right shows the function $h(n) = -(\tau * \Lambda)(n)$, derived from the spectrum $\zeta(u)\zeta'(u)$. Their perfect identity for all $n$ is a visual confirmation of the Principle of Spectral Differentiation.}
+\label{fig:operator_effect}
+\end{figure}
+
+\FloatBarrier
+
+\paragraph{\textbf{Interpretation.}} The arithmetic identity can be verified algebraically via Dirichlet series. The FD--lift additionally displays how the same relation emerges from an analytic two--variable framework: the differentiation operator in $s$ transports divisor data on the local side to $\zeta(u)\zeta'(u)$ on the spectral side. This view complements the standard convolution calculus without altering its content.
+
+\begin{quote}\small
+\textbf{Takeaways (Track 2: dynamic two-variable lift).}
+The object $\mathcal T^{(\mathrm{ren})}(z,s)$ is entire in $z$ and holomorphic in $s$ on $\Re s>-1$.
+At integers it collapses to $\sum_{d\mid n}d^{-s}$, and the derivative at $s=0$ gives $-\sum_{d\mid n}\log d=-(\tau*\Lambda)(n)$; the von Mangoldt function enters through the spectrum $\zeta(u)\zeta'(u)=\zeta(u)^2\cdot\zeta'(u)/\zeta(u)$, not as the integer value.
+Curvature bounds and a Newton template for zero localisation are developed for the indicator $\mathfrak F$ in Application~I (Remark~\ref{rem:newton}).
+\end{quote}
+
+% ---------------------------------------------------------------------------

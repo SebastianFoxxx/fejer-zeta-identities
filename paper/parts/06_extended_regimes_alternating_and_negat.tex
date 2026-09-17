@@ -1,0 +1,403 @@
+\section{Extended Regimes: Alternating and Negative Parameters}
+
+\subsection{The alternating limit \texorpdfstring{$q=-1$}{q=-1} and the \texorpdfstring{$\eta$}{eta}-bridge}
+\label{sec:qminus1-eta}
+
+In this subsection, structural facts are recorded for the alternating regime \(q=-1\); all analytic series are to be understood in the Abel sense throughout.
+Concretely, a damping parameter \(0<r<1\) is inserted and the locally uniform limit \(r\uparrow1\) is taken.
+Integer anchors at integer arguments remain exact without Abel summation.
+
+\begin{definition}[Alternating Abel normalisation]
+For \(0<r<1\) set
+\[
+\mathfrak S_r(z):=2\sum_{i\ge2}(-r)^{i}\,\frac{F(z,i)}{i^2},
+\qquad
+\mathfrak F_r(z):=\mathfrak S_r(z)-2\,e^{-\,\ii\pi z}.
+\]
+The alternating limit is defined by the locally uniform limit
+\[
+\mathfrak S(z,-1):=\lim_{r\uparrow1}\mathfrak S_r(z),\qquad
+\mathfrak F(z,-1):=\lim_{r\uparrow1}\mathfrak F_r(z).
+\]
+\end{definition}
+
+\begin{proposition}[Existence and symmetry]\label{prop:qminus1-entire-sym}
+The Abel limits \(\mathfrak S(\cdot,-1):=\lim_{r\uparrow1}\mathfrak S_r(\cdot)\) and \(\mathfrak F(\cdot,-1):=\lim_{r\uparrow1}\mathfrak F_r(\cdot)\) exist \emph{locally uniformly} in $z$ and define entire functions.
+Moreover,
+\[
+\overline{\mathfrak F(-\overline{z},-1)}=\mathfrak F(z,-1)\qquad(z\in\C),
+\]
+hence the complex zeros are symmetric with respect to the imaginary axis.
+\end{proposition}
+
+\begin{remark}[Abel summation—reader’s guide]
+For alternating weights at \(q=-1\), the series are interpreted in the Abel sense: the sum \(\sum_{i\ge2}(-r)^i(\cdots)\) is first considered for \(0<r<1\), and then the limit \(r\uparrow1\) is taken. In this way, analyticity is preserved and the continuous extension of the weights is matched. Intuitively, oscillations are gently damped and the damping is removed afterwards.
+\end{remark}
+
+\begin{proposition}[Dirichlet series identities (Abel sense)]\label{prop:qminus1-dirichlet}
+For $\Re s>1$ and $q=-1$, the following identities hold \emph{in the Abel sense}:
+\[
+\sum_{n\ge2}\frac{\mathfrak S(n,-1)}{n^s}
+\;=\;2\,\zeta(s)\,\bigl(1-\eta(s)\bigr),
+\qquad
+\sum_{n\ge2}\frac{\mathfrak F(n,-1)}{n^s}
+\;=\;2\,\bigl(\zeta(s)-1\bigr)\,\bigl(1-\eta(s)\bigr),
+\]
+where $\eta(s)=\sum_{n\ge1}(-1)^{n-1}n^{-s}=(1-2^{1-s})\zeta(s)$ is the Dirichlet eta function.
+\end{proposition}
+
+\begin{corollary}[Behaviour at \(s=1\)]\label{cor:qminus1-s1}
+The factor \(1-\eta(s)\) is entire and nonzero at \(s=1\) (indeed \(1-\eta(1)=1-\log2\neq0\)).
+Hence the pole at \(s=1\) in the Dirichlet series above is entirely due to \(\zeta(s)\) (or \(\zeta(s)-1\)).
+\end{corollary}
+
+\begin{proposition}[Alternation operator and the 2-adic split]\label{prop:alternation-operator}
+Let \(a:\N\to\C\) with Dirichlet series \(A(s)=\sum_{n\ge1}a(n)n^{-s}\). Define \((\mathcal A a)(n):=(-1)^n a(n)\) and \(E(s):=\sum_{m\ge1}a(2m)m^{-s}\).
+Then
+\[
+A_{\mathcal A}(s):=\sum_{n\ge1}\frac{(-1)^n a(n)}{n^s}
+= 2^{\,1-s}\,E(s)\ -\ A(s),
+\]
+and therefore the FD-lift satisfies
+\[
+\sum_{n\ge1}\frac{\mathcal T_{\mathcal A a}(n)}{n^s}
+=\zeta(s)\,A_{\mathcal A}(s)\ =\ 2^{\,1-s}\,\zeta(s)\,E(s)\ -\ \zeta(s)\,A(s).
+\]
+\end{proposition}
+
+
+\begin{proof}
+Split the sum into even and odd indices; for even indices write \(n=2m\). The identities are immediate.
+\end{proof}
+
+\begin{lemma}[Integer prime-zero property, sign caution]\label{lem:qminus1-prime-zero}
+For any prime \(p\ge2\),
+\(\mathfrak F(p,-1)=0\).
+For composite integers, positivity is not guaranteed; sign changes may occur.
+\end{lemma}
+
+\begin{proof}
+At integers, \(F(n,i)/i^2=\mathbf 1_{i\mid n}\). For a prime \(p\) this yields
+\(\mathfrak F(p,-1)=2\bigl((-1)^p-(-1)^p\bigr)=0\).
+For composites, cancellations of alternating contributions may occur.
+\end{proof}
+
+\begin{figure}[!htbp]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{plot_complex_zeros_q-1.pdf}
+\par\smallskip\small\textbf{(a)} Zeros (scatter)
+\label{fig:complex_zeros_qminus1}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{plot_domain_coloring_q_neg1.jpg}
+\par\small\textbf{(b)} Domain coloring
+\label{fig:domain_coloring_qminus1}
+\end{minipage}
+\caption{Complementary views of $\mathfrak{F}(z,-1)$ (Abel interpretation). Key takeaways: (i) vertical comb-like alignments occur near $\sin(\pi x)\approx 0$; (ii) diagonal fans reflect the balance between $\sinh(\pi y)$ and the corrector $e^{\pi y}$. Darker shading indicates smaller modulus; panel (a) shows zeros, panel (b) shows phase and magnitude.}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{plot_3d_shaded_neg_q.jpg}
+\caption{Magnitude of $\mathfrak{F}(z,-1)$ visualized along the real axis. Zero clusters appear as valleys adjacent to the axis.}
+\label{fig:3d_real_axis_shaded_neg_q}
+\end{figure}
+
+\FloatBarrier
+
+\begin{remark}[Morphology heuristic]\label{rem:qminus1-morphology}
+A first-harmonic model explains the prominent structures. For $i=2$,
+\(\tfrac{F(z,2)}{4}=\cos^2(\tfrac{\pi z}{2})
+=\tfrac12\bigl(1+\cos(\pi x)\cosh(\pi y)-\ii \sin(\pi x)\sinh(\pi y)\bigr)\).
+Balancing this term against the corrector $e^{-\ii\pi z}=e^{\pi y}\big(\cos(\pi x)-\ii\sin(\pi x)\big)$ predicts (a) vertical alignments near $\sin(\pi x)\approx0$ and (b) diagonal fans where $\sinh(\pi y)$ matches $e^{\pi y}$ up to slowly varying factors. Higher harmonics modulate but do not remove these families. The argument is heuristic and intended as an interpretation of the numerics in Figure~\ref{fig:complex_zeros_qminus1}.
+\end{remark}
+
+\begin{remark}[Scope]
+All statements above that involve Dirichlet series for $q=-1$ are meant in the Abel sense. The integer prime-zero property persists, whereas the composite-positivity from the regime $q>1$ does not extend to $q=-1$.
+\end{remark}
+
+
+\subsection{Structural Analysis of the \texorpdfstring{$q=-1$}{q=-1} Regime: 2-adic Geometry and Phase-Locking}
+\label{subsec:struct-qminus1}
+
+This subsection complements Section~\ref{sec:qminus1-eta} by recording a dyadic identity for Fej\'er filters, which reveals the underlying 2-adic geometry of the alternating regime. This structure is then used to establish a \emph{real-axis rigidity} for the tangent-matched indicator at $q=-1$ in the Abel sense. A complete classification of the integer zeros is also given.
+
+\subsubsection*{Setup and Abel interpretation}
+For $0<r<1$ define
+\[
+\Fsharp_r(z,-1)\;:=\;2\sum_{i\ge2}(-r)^i\,\phi_i(z)\;-\;2\,e^{-\ii\pi z}\,\bigl(1+\ii\pi\,S_1(z)\bigr),
+\qquad
+S_1(z)=\tfrac{\sin(2\pi z)}{2\pi},
+\]
+and set $\Fsharp(z,-1):=\lim_{r\uparrow1}\Fsharp_r(z,-1)$, where the limit exists locally uniformly in $z$ by the same argument as in Proposition~\ref{prop:qminus1-entire-sym}. On the real axis, the Fej\'er sum is real, so the imaginary part of $\Fsharp_r(x,-1)$ equals the negative of the imaginary part of the corrector.
+
+\subsubsection*{A dyadic cosine cascade}
+\begin{lemma}[Dyadic cosine cascade]
+\label{lem:dyadic-cascade}
+For $m\ge1$ and $z\in\C$,
+\[
+\phi_{2m}(z)\;=\;\phi_{m}(z)\,\cos^{2}\!\Bigl(\frac{\pi z}{2m}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Since $F(z,i)=\bigl(\frac{\sin\pi z}{\sin(\pi z/i)}\bigr)^2$ and $\sin(\pi z/m)=2\sin(\pi z/(2m))\cos(\pi z/(2m))$,
+\[
+\frac{F(z,2m)}{(2m)^2}
+=\frac{\sin^2(\pi z)}{4m^2\sin^2(\pi z/(2m))}
+=\frac{\sin^2(\pi z)}{m^2\sin^2(\pi z/m)}\;\cos^2\!\Bigl(\frac{\pi z}{2m}\Bigr)
+=\frac{F(z,m)}{m^2}\,\cos^2\!\Bigl(\frac{\pi z}{2m}\Bigr).
+\]
+\end{proof}
+
+\subsubsection*{Real-axis rigidity (phase locking)}
+\begin{theorem}[Real-axis rigidity at $q=-1$ (Abel sense)]
+\label{thm:qminus1-no-offinteger}
+Let $x\in\R$. If $\Fsharp(x,-1)=0$, then $x\in\Z$. In particular, there are no real zeros off the integers.
+\end{theorem}
+
+\begin{proof}
+For $x\in\R$, $S_r(x):=2\sum_{i\ge2}(-r)^i\phi_i(x)\in\R$.
+With $e^{-\ii\pi x}=\cos(\pi x)-\ii\sin(\pi x)$ and $S_1(x)=\sin(2\pi x)/(2\pi)$,
+\[
+\mathrm{Im}\Bigl(e^{-\ii\pi x}\bigl(1+\ii\pi S_1(x)\bigr)\Bigr)
+=\cos(\pi x)\cdot \frac{\sin(2\pi x)}{2}\;-\;\sin(\pi x)
+=\sin(\pi x)\bigl(\cos^2(\pi x)-1\bigr)
+=-\,\sin^{3}(\pi x).
+\]
+Hence $\mathrm{Im}\,\Fsharp_r(x,-1)=2\,\sin^{3}(\pi x)$ for all $0<r<1$; letting $r\uparrow1$ gives
+$\mathrm{Im}\,\Fsharp(x,-1)=2\,\sin^{3}(\pi x)$. If $\Fsharp(x,-1)=0$, then $\sin(\pi x)=0$, so $x\in\Z$.
+\end{proof}
+
+\begin{remark}[Original indicator]
+The same argument without the tangent-matching factor shows
+$\mathrm{Im}\,\mathfrak F_r(x,-1)=2\,\sin(\pi x)$, so any real zero of $\mathfrak F(\cdot,-1)$ is also constrained to the integers.
+\end{remark}
+
+\subsubsection*{Integer zeros: complete classification}
+At any integer $n$, the corrector of the sharp variant simplifies as $S_1(n)=0$. Thus, $\Fsharp(n,q)=\mathfrak F(n,q)$ for any complex $q$, and their integer zeros coincide. The next lemma gives the exact integer zero set for the special case $q=-1$.
+
+\begin{lemma}[Integer zeros at $q=-1$]
+\label{lem:qminus1-integer-zeros}
+For every integer $n\ge2$,
+\[
+\mathfrak F(n,-1)\;=\;2\Bigl(\sum_{\substack{d\mid n\\ d\ge2}}(-1)^d\;-\;(-1)^n\Bigr).
+\]
+Consequently,
+\[
+\Fsharp(n,-1)=0
+\quad\Longleftrightarrow\quad
+\text{$n$ is prime, \;or\; $v_2(n)=1$ (i.e.\ $n=2\cdot m$ with $m$ odd).}
+\]
+\end{lemma}
+
+\begin{proof}
+At integers, $\phi_i(n)=\mathbf 1_{i\mid n}$, so the displayed formula follows directly from the definition of
+$\mathfrak F(\cdot,-1)$ in Section~\ref{sec:qminus1-eta}; the Abel interpretation is not needed at integers.
+If $n$ is odd, then all divisors $d\ge2$ are odd and contribute $-1$, so
+$\sum_{d\mid n,\,d\ge2}(-1)^d=-(\tau(n)-1)$, which equals $-1$ iff $\tau(n)=2$, i.e.\ $n$ is prime.
+If $n$ is even with $v_2(n)=1$, write $n=2m$ with $m$ odd. The even divisors are exactly $2$ times the divisors of $m$,
+and the odd divisors $\ge3$ are the nontrivial divisors of $m$; hence
+$\sum_{d\mid n,\,d\ge2}(-1)^d=\#\{\text{even divisors}\}-\#\{\text{odd divisors}\ge3\}=\tau(m)-(\tau(m)-1)=1$,
+which matches $(-1)^n=+1$ and yields zero. If $v:=v_2(n)\ge2$, write $n=2^{v}m$ with $m$ odd; the even divisors number $v\,\tau(m)$ and the odd divisors $\ge3$ number $\tau(m)-1$, hence
+$\sum_{d\mid n,\,d\ge2}(-1)^d-(-1)^n=v\,\tau(m)-(\tau(m)-1)-1=(v-1)\,\tau(m)>0$.
+\end{proof}
+
+\begin{remark}[Scope]
+On the real axis and in the Abel sense, Theorem~\ref{thm:qminus1-no-offinteger} forces any real zero to be an integer.
+Lemma~\ref{lem:qminus1-integer-zeros} classifies exactly which integers are zeros: all primes and, in addition, all even integers with $v_2(n)=1$.
+No positivity statement for composites is claimed in the alternating regime.
+\end{remark}
+
+\begin{remark}[Outlook: From dyadic to cyclotomic twists]
+The dyadic identity in Lemma~\ref{lem:dyadic-cascade} is the first step in a larger hierarchy. A similar analysis can be performed by replacing the alternating weights $(-1)^i$ with other periodic sequences, such as Dirichlet characters $\chi(i)$. This is expected to yield analogous "twist" identities and entire functions whose spectral properties are governed by Dirichlet L-functions, $L(s,\chi)$. A systematic treatment of these "cyclotomic twists" is left for future work.
+\end{remark}
+
+
+\subsection{Lerch--\texorpdfstring{$L$}{L} Bridge and Residue-Weighted Divisor Balance for General Complex \texorpdfstring{$q$}{q}}
+\label{subsec:lerch-L-bridge}
+
+This subsection generalizes the findings for $q=-1$ by investigating the structural principles that govern the framework for any complex parameter $q=R\,e^{\mathrm{i}\theta}$. Two central questions are addressed: (1) How does the spectral signature, governed by the polylogarithm $\operatorname{Li}_s(q^{-1})$, relate to classical number-theoretic objects for arbitrary $q$? A \emph{Lerch--$L$ bridge} is established to answer this. (2) How can the appearance of additional integer zeros for certain $q$ be explained and predicted? A \emph{residue-weighted divisor balance} provides a concrete arithmetic criterion. Finally, the phase-locking mechanism observed at $q=-1$ is generalized to a compact real-axis condition for the tangent-matched variant.
+
+\paragraph{Notation.}
+Write $q=R e^{\mathrm{i}\theta}$ with $R>0$ and $\theta\in\R$.
+For a positive integer $m$ and $a\in\{0,\dots,m-1\}$ put $\theta=2\pi a/m$ (rational angle).
+The Lerch transcendent is $\Phi(z,s,a)=\sum_{k\ge0} \frac{z^{k}}{(k+a)^{s}}$ for $\Re s>1$ and
+$|z|<1$. The Hurwitz zeta is $\zeta(s,\alpha)=\sum_{k\ge0} (k+\alpha)^{-s}$ ($\Re s>1$, $\alpha\notin -\N_0$).
+
+\begin{proposition}[Lerch--$L$ bridge on the unit circle]
+\label{prop:lerch-L-unit}
+Let $\theta=2\pi a/m$ with integers $m\ge1$ and $a\in\{0,\dots,m-1\}$. Then, for $\Re s>1$,
+\begin{align*}
+\sum_{n\ge1}\frac{e^{-\mathrm{i}\theta n}}{n^{s}}
+&\;=\; m^{-s}\sum_{r=1}^{m} e^{-\tfrac{2\pi \mathrm{i} a r}{m}}\,\zeta\!\left(s,\tfrac{r}{m}\right)\\
+&\;=\; \frac{1}{\varphi(m)}\sum_{\chi\!\!\!\pmod m} \tau(\overline{\chi},a)\,L(s,\chi)
+\;+\;m^{-s}\!\!\sum_{\substack{1\le r\le m\\ \gcd(r,m)>1}}\! e^{-\tfrac{2\pi \mathrm{i} a r}{m}}\,\zeta\!\left(s,\tfrac{r}{m}\right),
+\end{align*}
+where $\tau(\overline{\chi},a)=\sum_{r=1}^{m}\overline{\chi}(r)\,e^{-\tfrac{2\pi \mathrm{i} a r}{m}}$ is a Gauss sum and $\varphi(m)$ denotes Euler's totient function. The Hurwitz terms with $\gcd(r,m)>1$ can in turn be expanded into $L$-functions modulo $m/\gcd(r,m)$.
+\emph{In particular}, for $|q|=1$ with rational angle, the polylog factor in the FD-lift satisfies
+$\operatorname{Li}_s(q^{-1})=\sum_{n\ge1} e^{-\mathrm{i}\theta n}n^{-s}$ and admits a finite $L$--decomposition.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Finite Fourier expansion on residues modulo $m$ yields\\
+$\sum_{n\ge1}\! e^{-\mathrm{i}\theta n} n^{-s}=m^{-s}\sum_{r=1}^m e^{-\frac{2\pi \mathrm{i} a r}{m}} \zeta(s,r/m)$.
+For $\gcd(r,m)=1$ the orthogonality relation $\mathbf 1_{n\equiv r\,(m)}=\varphi(m)^{-1}\sum_{\chi}\overline{\chi}(r)\chi(n)$ gives
+\[
+\sum_{\gcd(r,m)=1}e^{-2\pi \mathrm{i} a r/m}\sum_{n\equiv r\,(m)}n^{-s}\;=\;\frac{1}{\varphi(m)}\sum_{\chi}\tau(\overline{\chi},a)\,L(s,\chi).
+\]
+The residues with $\gcd(r,m)>1$ are annihilated by all characters mod $m$ and remain as Hurwitz terms, using $\sum_{n\equiv r\,(m)}n^{-s}=m^{-s}\zeta(s,r/m)$.
+\end{proof}
+
+\begin{proposition}[Lerch deformation for $R>1$, rational angle]
+\label{prop:lerch-deformation}
+Let $q=R e^{\mathrm{i}\theta}$ with $R>1$ and $\theta=2\pi a/m$ as above. Then, for $\Re s>1$,
+\[
+\operatorname{Li}_s\!\big(q^{-1}\big)
+=\sum_{n\ge1}\frac{(R^{-1}e^{-\mathrm{i}\theta})^{n}}{n^{s}}
+=m^{-s}\sum_{r=1}^{m} e^{-\tfrac{2\pi \mathrm{i} a r}{m}}\,R^{-r}\,\Phi\!\left(R^{-m},\,s,\,\tfrac{r}{m}\right).
+\]
+Consequently, the spectral factor in the FD-lift deforms continuously from a finite $L$--combination
+($R\downarrow 1$) to a finite sum of Lerch transcendent terms ($R>1$).
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Split $n=mk+r$ with $1\le r\le m$:
+$\sum_{n\ge1}\frac{(R^{-1} e^{-\mathrm{i}\theta})^{n}}{n^s}
+=\sum_{r=1}^{m} e^{-\mathrm{i}\theta r} R^{-r}\sum_{k\ge0}\frac{(R^{-m})^{k}}{(mk+r)^s}
+=\sum_{r=1}^{m} e^{-\mathrm{i}\theta r} R^{-r} m^{-s}\Phi\!\left(R^{-m},s,\tfrac{r}{m}\right)$.
+The stated form follows since $e^{-\mathrm{i}\theta r}=e^{-\tfrac{2\pi \mathrm{i} a r}{m}}$.
+\end{proof}
+
+\begin{lemma}[Residue-weighted divisor balance at integers]
+\label{lem:residue-balance}
+Let $q=R e^{\tfrac{2\pi \mathrm{i} a}{m}}$ with $R>0$ and integers $m\ge1$, $a\in\{0,\dots,m-1\}$. For $R\le1$ the entire function $\mathfrak F(\cdot,q)$ is not defined (Appendix~\ref{app:analyticity} requires $|q|>1$); the statement is then to be read as an identity between the finite divisor sums below, which is how it is used at $q=-1$ and $q=\pm\mathrm{i}$ in Corollary~\ref{cor:special-cases}.
+For $n\ge2$ define the weighted residue sums
+\[
+S_{r}(n;R)\;:=\!\!\sum_{\substack{d\mid n\\ 2\le d<n\\ d\equiv r\ (\mathrm{mod}\ m)}}\! R^{-d}\qquad (r=0,1,\dots,m-1).
+\]
+Then the integer values of the (non-sharp) indicator admit the decomposition
+\[
+\mathfrak F(n,q)\;=\;(q-1)q\sum_{r=0}^{m-1} e^{-\tfrac{2\pi \mathrm{i} a r}{m}}\,S_{r}(n;R).
+\]
+In particular,
+\[
+\mathfrak F(n,q)=0
+\quad\Longleftrightarrow\quad
+\sum_{r=0}^{m-1} e^{-\tfrac{2\pi \mathrm{i} a r}{m}}\,S_{r}(n;R)=0,
+\]
+i.e., the residue-weighted divisor vector $S(n;R)=(S_0,\dots,S_{m-1})$ is orthogonal to the phase vector
+$(e^{-\tfrac{2\pi \mathrm{i} a r}{m}})_{r}$.
+\end{lemma}
+
+\begin{proof}
+At integers, $\phi_i(n)=\mathbf 1_{i\mid n}$ and by definition
+$\mathfrak F(n,q)=(q-1)q\sum_{2\le d<n,\,d\mid n} q^{-d}
+=(q-1)q\sum_{r=0}^{m-1} e^{-\tfrac{2\pi \mathrm{i} a r}{m}}
+\sum_{\substack{d\mid n,\,2\le d<n\\ d\equiv r (m)}} R^{-d}$.
+\end{proof}
+
+\begin{remark}[The geometry of integer zeros]
+Lemma~\ref{lem:residue-balance} provides a geometric interpretation for the integer zeros. For each integer $n$, one can associate a vector of its divisor sums, weighted by $R^{-d}$ and partitioned by residue classes modulo $m$. A zero occurs if and only if this "divisor vector" is perfectly orthogonal to the "phase vector" determined by $q$'s angle. This explains why zeros at composites are rare for real $q>1$ (where all components are positive, preventing orthogonality) but become possible for complex $q$ where cancellations can occur.
+\end{remark}
+
+\begin{corollary}[Special cases and suppression by $R>1$]
+\label{cor:special-cases}
+(i) For real $q>1$ ($m=1$) all terms are positive and $\mathfrak F(n,q)=0$ if and only if $n$ is prime (Theorem~\ref{thm:integer-prime-zero}).\\
+(ii) For $q=-1$ ($m=2$, $R=1$) Lemma~\ref{lem:residue-balance} recovers the exact integer-zero classification in Lemma~\ref{lem:qminus1-integer-zeros}.\\
+(iii) For $q=\pm\mathrm{i}$ ($m=4$, $R=1$) additional integer zeros may occur via residue cancellations (e.g.\ $n=8$ at $q=\mathrm{i}$).\\
+(iv) For fixed rational angle and $R>1$, the weights $R^{-d}$ favour small divisors and generically suppress accidental cancellations; in particular, extra composite integer zeros become sparse (heuristically rare) as $R$ increases.
+\end{corollary}
+
+\begin{proposition}[Phase-locking condition for real zeros of the sharp variant]
+\label{prop:phase-locking}
+Let $q$ be real and nonzero, written $q=R e^{\mathrm{i}\theta}$ with $R=|q|>0$ and $\theta\in\{0,\pi\}$ (principal branch), and let $x\in\R$; for $|q|\le1$ the lift is read in the Abel sense of Section~\ref{sec:qminus1-eta}. For $\theta=0$, that is for $q>0$, the phase condition below is vacuous (it reads $0=0$); its content lies in the case $\theta=\pi$, i.e.\ $q<0$.
+For the tangent-matched indicator $\Fsharp(\cdot,q)$ any real zero $x$ must satisfy the \emph{phase condition}
+\[
+\tan(\theta x)\;=\;\frac{\theta\,S_1(x)}{1+(\ln R)\,S_1(x)},
+\qquad S_1(x)=\frac{\sin(2\pi x)}{2\pi},
+\]
+in addition to the real-part matching. In particular, for $q=-1$ ($R=1$, $\theta=\pi$) this reduces to
+$\tan(\pi x)=\sin(\pi x)\cos(\pi x)$ and hence $\sin^3(\pi x)=0$, implying that no off-integer real zeros exist
+(Theorem~\ref{thm:qminus1-no-offinteger}).
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Since $q$ is real, the weights $q^{-i}$ are real, hence $S_q(x)=\sum_{i\ge2}q^{-i}\phi_i(x)$ is real for real $x$. Writing $q^{-x}=R^{-x}e^{-\mathrm{i}\theta x}$ and
+$\log q=\ln R+\mathrm{i}\theta$, the imaginary part of the corrector
+$e^{-\mathrm{i}\theta x}\bigl(1+(\ln R+\mathrm{i}\theta)S_1(x)\bigr)$ equals
+$\cos(\theta x)\,\theta S_1(x)-\sin(\theta x)\bigl(1+\ln R\,S_1(x)\bigr)$.
+The vanishing of the imaginary part yields the stated phase relation; the $q=-1$ reduction is immediate. Reality of $S_q$ is essential and fails for non-real $q$: for $q=2e^{\mathrm{i}\pi/3}$ and $x=3.3$ one has $\operatorname{Im}S_q(x)=-0.0357\ldots$, and for every $|q|>1$ each prime $p$ is a real zero of $\Fsharp(\cdot,q)$ although $\tan(\theta p)\neq0$ in general.
+\end{proof}
+
+\begin{remark}[Scope and use]
+Propositions~\ref{prop:lerch-L-unit}--\ref{prop:lerch-deformation} identify when the spectral factor
+collapses to a finite $L$--combination (unit circle, rational angle) and how it deforms for $R>1$.
+Lemma~\ref{lem:residue-balance} provides a concrete criterion for integer zeros via residue classes,
+recovering the alternating regime and predicting additional cases at roots of unity.
+Proposition~\ref{prop:phase-locking} gives a compact real-axis constraint for the sharp variant,
+with strict locking at $q=-1$.
+No claim is made here regarding the density or distribution of extra composite integer zeros for general $q$;
+empirically they are rare for $R>1$, and a quantitative study would require additional divisor-sum bounds.
+\end{remark}
+
+\subsection{Negative real parameters \texorpdfstring{$q<-1$}{q<-1}: a weighted-\texorpdfstring{$\eta$}{eta} bridge and basic morphology}
+\label{sec:qlessminus1}
+Robust properties for negative real parameters $q<-1$ are recorded. Write $q=-Q$ with $Q>1$.
+
+\paragraph{Analyticity and integer values.}
+For fixed $Q>1$ the series
+\[
+\mathfrak F(z,-Q)=Q(Q+1)\sum_{i\ge2}\frac{F(z,i)}{i^2}\,(-Q)^{-i}\;-\;Q(Q+1)\,(-Q)^{-z}
+\]
+converges absolutely and defines an entire function of $z$. At integers,
+\[
+\mathfrak F(n,-Q)=Q(Q+1)\sum_{\substack{d\mid n\\2\le d<n}}(-Q)^{-d},
+\]
+hence $\mathfrak F(p,-Q)=0$ for every prime $p$, whereas no positivity statement for composites is asserted.
+
+\begin{definition}[Weighted alternating eta]
+For $Q>1$ define the entire function
+\[
+\eta_{Q}(s):=\sum_{n\ge1}\frac{(-1)^{n-1}}{Q^{\,n}\,n^{s}}\qquad(s\in\C;\ \text{absolutely convergent for every $s$, since $Q>1$}).
+\]
+Note that $\operatorname{Li}_s(-1/Q)=-\eta_Q(s)$.
+\end{definition}
+
+\begin{proposition}[Dirichlet series for negative parameters $q=-Q<-1$]\label{prop:qlessminus1-dirichlet}
+Fix $Q>1$ and set $q=-Q$. For $\Re s>1$,
+\[
+\sum_{n\ge2}\frac{\mathfrak S(n,-Q)}{n^{s}}
+\;=\;Q(Q+1)\,\zeta(s)\,\Big(\tfrac1Q-\eta_Q(s)\Big),\qquad
+\sum_{n\ge2}\frac{\mathfrak F(n,-Q)}{n^{s}}
+\;=\;Q(Q+1)\,(\zeta(s)-1)\,\Big(\tfrac1Q-\eta_Q(s)\Big),
+\]
+where $\mathfrak S$ denotes the Fej\'er sum part and $\eta_Q(s)=\sum_{n\ge1}(-1)^{n-1}(Q^{-n}/n^{s})$. In particular, the only singularity at $s=1$ comes from $\zeta(s)$ (or $\zeta(s)-1$); no Abel summation is required since $|1/q|<1$.
+\end{proposition}
+
+\paragraph{Example ($q=-2$).}
+With \(Q=2\) one has \(\eta_{2}(s)=\sum_{n\ge1}(-1)^{n-1}2^{-n}n^{-s}\). The Dirichlet series read
+\[
+\sum_{n\ge2}\frac{\mathfrak S(n,-2)}{n^{s}}=2\cdot3\,\zeta(s)\Big(\tfrac12-\eta_{2}(s)\Big),\qquad
+\sum_{n\ge2}\frac{\mathfrak F(n,-2)}{n^{s}}=2\cdot3\,(\zeta(s)-1)\Big(\tfrac12-\eta_{2}(s)\Big).
+\]
+At integers \(n\), primes still map to \(0\), while signs may alternate for composites; the morphology inherits the $x$–anisotropy \(2^{-x}\) from the corrector.
+
+\begin{lemma}[Prime-zero property at integers]\label{lem:qlessminus1-prime}
+For every prime $p\ge2$, $\mathfrak F(p,-Q)=0$. For composite $n$, cancellations may occur and no sign constraint is claimed.
+\end{lemma}
+
+\begin{remark}[Morphology in the $z$-plane]
+Compared to $q=-1$, the corrector has modulus $|(-Q)^{-z}|=Q^{-x}e^{\pi y}$, which introduces an $x$-anisotropy. Empirically and in first-harmonic heuristics, two families remain prominent: (i) vertical comb-like alignments near integer $\Re z$ (coming from $\sin(\pi x)\approx0$), and (ii) balance curves shaped by $\sinh(\pi y)\approx c(Q)\,Q^{-x}e^{\pi y}$, which tend to appear more vertical as $Q$ increases. No exact symmetry about the imaginary axis is asserted for $Q>1$.
+\end{remark}
+
+\begin{remark}[Periodic normaliser]
+The periodic normaliser from Section~\ref{sec:periodic-normalizer} applies verbatim for $q=-Q$: the value and tangent at integers match the Fej\'er superposition, so the linear term at integer windows is eliminated. Statements about the absence of off-axis companion phenomena are not made here.
+\end{remark}
+
+A three-dimensional view for $q>1$ is provided in Section~\ref{sec:qpos-morph-3d} and is used as a baseline for comparison with the negative-parameter regime.
+
+

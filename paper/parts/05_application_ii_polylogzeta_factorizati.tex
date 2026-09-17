@@ -1,0 +1,159 @@
+\section{Application II: Polylog–Zeta Factorization and Variants}\label{sec:application-key-results}
+
+This section presents further results that demonstrate the flexibility and depth of the FD-Lift framework. These include an exact factorization of the spectrum of the prime indicator function $\mathfrak{F}(z,q)$ and the construction of analytic $q$-analogs for other classical arithmetic functions.
+
+\subsection{The Polylog-Zeta Factorization}
+
+A direct application of the spectral property of the FD-Lift (Theorem~\ref{thm:fd-lift-core}) to the sum part $\mathfrak{S}(n,q)$ of the prime indicator function yields a factorization involving the Riemann Zeta function and the polylogarithm.
+
+\begin{theorem}[Polylog-Zeta Factorization]\label{thm:polylog-zeta}
+For $|q|>1$ and $\Re s>1$, the Dirichlet series for $\mathfrak{S}(n,q)$ and $\mathfrak{F}(n,q)$ are given by
+\begin{align*}
+\sum_{n\ge2}\frac{\mathfrak{S}(n,q)}{n^{s}}
+&=(q-1)q\,\zeta(s)\,\bigl(\operatorname{Li}_{s}(1/q)-q^{-1}\bigr), \\
+\sum_{n\ge2}\frac{\mathfrak{F}(n,q)}{n^{s}}
+&=(q-1)q\,\bigl(\zeta(s)-1\bigr)\,\bigl(\operatorname{Li}_{s}(1/q)-q^{-1}\bigr).
+\end{align*}
+\end{theorem}
+\begin{proof}[Sketch]
+Use $\mathfrak S(n,q)=(q\!-\!1)q\sum_{d\mid n,\, d\ge2}q^{-d}$, swap sums to get $\zeta(s)\sum_{d\ge2}q^{-d}d^{-s}=\zeta(s)\big(\mathrm{Li}_s(1/q)-q^{-1}\big)$.
+For $\mathfrak F$ subtract in addition the Dirichlet series of the corrector, $\sum_{n\ge2}(q-1)q\,q^{-n}n^{-s}=(q-1)q\big(\mathrm{Li}_s(1/q)-q^{-1}\big)$, which replaces $\zeta(s)$ by $\zeta(s)-1$.
+Full derivation: Appendix~\ref{app:fdlift-proofs}.
+\end{proof}
+
+\begin{corollary}[Reconstruction of $\zeta(s)$]\label{cor:reconstruct-zeta}
+For $|q|>1$ and $\Re s>1$ with $\operatorname{Li}_s(1/q)\neq q^{-1}$, the quotient
+\[
+\zeta(s)=\frac{\displaystyle \sum_{n\ge2}\mathfrak{S}(n,q)\,n^{-s}}{(q-1)q\big(\operatorname{Li}_s(1/q)-q^{-1}\big)}
+\]
+is well-defined. The condition $\operatorname{Li}_s(1/q)\neq q^{-1}$ holds in particular for real $q>1$ and real $s>1$, and for all $|q|\ge2$ and $\Re s>1$.
+\end{corollary}
+\begin{remark}
+For real $q>1$ and real $s>1$ one has $\operatorname{Li}_s(1/q)-q^{-1}=\sum_{n\ge2}q^{-n}n^{-s}>0$. For $|q|\ge2$ and $\sigma=\Re s>1$, with $w=1/q$,
+\[
+\Bigl|\sum_{n\ge2}w^{n}n^{-s}\Bigr|\ \ge\ |w|^2\,2^{-\sigma}-\frac{|w|^3\,3^{-\sigma}}{1-|w|}\ \ge\ |w|^2\bigl(2^{-\sigma}-3^{-\sigma}\bigr)\ >\ 0 .
+\]
+For $1<|q|<2$ the condition is not automatic, even for real $q$: for instance $\operatorname{Li}_s(1/q)=q^{-1}$ at $q=1.01$ and $s\approx1.380809+23.326651\,\mathrm{i}$, where the quotient is not defined.
+\end{remark}
+
+\subsection{Analytic q-Analogs of Arithmetic Functions}
+The presented approach can be generalized to construct analytic q-analogs of other classical arithmetic functions~\cite{gasper2004}.
+
+\subsubsection{Definition and analyticity of $\mathfrak{F}_\tau(z,q)$ and $\mathfrak{F}_\sigma(z,q)$}
+By choosing different weighting functions and removing the normalization factor, entire functions can be defined.
+\begin{definition}[q-Analog of the Divisor-Counting Function]
+\[\mathfrak{F}_\tau(z,q) = \left( \sum_{i=2}^{\infty} \frac{F(z,i)}{i^2} \left(\frac{1}{q}\right)^i \right) - \left(\frac{1}{q}\right)^z\]
+\end{definition}
+\begin{definition}[q-Analog of the Sum-of-Divisors Function]
+\[\mathfrak{F}_\sigma(z,q) = \left( \sum_{i=2}^{\infty} \frac{F(z,i)}{i} \left(\frac{1}{q}\right)^i \right) - z \left(\frac{1}{q}\right)^z\]
+\end{definition}
+The analyticity of $\mathfrak{F}_\tau(z,q)$ follows directly from the proof for $\mathfrak{F}(z,q)$, as the summation terms are identical. Replacing the corrector $q^{-z}$ by the tangent-matched corrector of Section~\ref{sec:periodic-normalizer} gives the improved q-analog
+\[
+\mathfrak{F}_\tau^\sharp(z,q):=\sum_{i=2}^{\infty}\frac{F(z,i)}{i^2}\,q^{-i}-q^{-z}\bigl(1+(\log q)\,S_1(z)\bigr)=\frac{\Fsharp(z,q)}{(q-1)q},
+\]
+which has the same integer values as $\mathfrak F_\tau$ and the same real zeros as $\Fsharp$.
+
+\subsubsection{Theorem (Connection to classical functions)}
+\begin{theorem}\label{thm:q-analog-limit}
+For any integer $n \ge 2$, the q-analogs generate divisor polynomials.
+In the limit $q \to 1^+$, they recover the classical arithmetic functions:
+\begin{align*}
+    \mathfrak{F}_\tau(n,q) &= \sum_{i|n, 2 \le i < n} \left(\frac{1}{q}\right)^i & \xrightarrow{q\to1^+} \quad \tau(n)-2 \\
+    \mathfrak{F}_\sigma(n,q) &= \sum_{i|n, 2 \le i < n} i \left(\frac{1}{q}\right)^i & \xrightarrow{q\to1^+} \quad \sigma(n)-n-1
+\end{align*}
+\end{theorem}
+
+\noindent
+For $z\notin\N$ the limit $q\to1^+$ does not define the classical functions, since the infinite series do not converge in that limit outside integer arguments.
+
+\subsection{Interpretation as divisor polynomials}
+Instead of a single numerical value, these functions yield a polynomial in $1/q$ whose structure encodes arithmetic information about the argument. For an integer $n$, they generate a polynomial in $1/q$ whose exponents encode the divisors of $n$ and whose coefficients encode arithmetic weights. This yields a representation where the divisors are explicitly encoded as exponents.
+
+The role of the parameter $q$ is visualized in Figure~\ref{fig:q_analog_interpolation}, which displays $\mathfrak{F}_\tau(z,q)$ for several values of $q$. In the limiting case $q=1$, the function exactly reproduces the values of the classical divisor-counting function $\tau(n)-2$ at integer arguments. As $q$ increases, the curves deviate more significantly from these classical values and become flatter, since the weighting terms $q^{-d}$ in the divisor polynomial decrease. The parameter $q$ thus acts as a \emph{deformation parameter}, bridging classical arithmetic and a family of analytic functions.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{plot_q_analog_interpolation.pdf}
+\caption{Comparison of the analytic q-analog $\mathfrak{F}_\tau(z,q)$ for several values of $q$. The orange diamonds represent the classical divisor-counting function $\tau(n)-2$, which corresponds to the exact case $q=1.0$. The solid curves show the function for $q = 1.01, 1.1, 1.2, 1.5,$ and $2.0$. The plot clearly illustrates that as $q$ increases, the curves become flatter and deviate more from the discrete classical values.}
+\label{fig:q_analog_interpolation}
+\end{figure}
+
+\FloatBarrier
+
+% ---------------------------------------------------------------------------
+% ---------------------------------------------------------------------------
+\subsection{Euler-factor design and sample numerics}
+The FD-Lift separates local and spectral data. Two compact examples illustrate the Euler-factor viewpoint and supply small-scale numerics.
+
+\subsubsection*{Example 1: $a(n)=n^{-2}$}
+Here $A(s)=\sum_{n\ge1}\frac{a(n)}{n^{s}}=\sum_{n\ge1}n^{-(s+2)}=\zeta(s+2)$, hence
+\[
+\sum_{n\ge1}\frac{\mathcal{T}_a(n)}{n^{s}}=\zeta(s)\zeta(s+2),\qquad
+\mathcal{T}_a(n)=(a*1)(n)=\sum_{d\mid n} d^{-2}=\sigma_{-2}(n).
+\]
+By multiplicativity this yields, for $n=\prod p^{k}$,
+\[
+\mathcal{T}_a(n)
+=\prod_{p^k\parallel n}\frac{1-p^{-2(k+1)}}{1-p^{-2}}.
+\]
+A compact prime-power table (sufficient to reconstruct all values by multiplicativity) is given by:
+\begin{table}[h]
+\centering
+\caption{Local factors $\mathcal{T}_a(p^k)$ for $a(n)=n^{-2}$ at small prime powers.}
+\begin{tabular}{r c}
+\toprule
+$p^k$ & $\mathcal{T}_a(p^k)$\\
+\midrule
+$2$   & \(\frac{5}{4}\) \\
+$2^2$ & \(\frac{21}{16}\) \\
+$3$   & \(\frac{10}{9}\) \\
+$3^2$ & \(\frac{91}{81}\) \\
+$5$   & \(\frac{26}{25}\) \\
+$5^2$ & \(\frac{651}{625}\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsubsection*{Example 2: $a(n)=\chi_4(n)\,n^{-2}$}
+Let $\chi_4$ be the primitive character modulo $4$. Then $A(s)=\sum_{n\ge1}\chi_4(n)n^{-(s+2)}=L(s+2,\chi_4)$ and
+\[
+\sum_{n\ge1}\frac{\mathcal{T}_a(n)}{n^{s}}=\zeta(s)\,L(s+2,\chi_4),\qquad
+\mathcal{T}_a(n)=\sum_{d\mid n}\frac{\chi_4(d)}{d^{2}}.
+\]
+By multiplicativity, and since $\chi_4(2)=0$, one has the local factorization
+\[
+\mathcal{T}_a(n)=\prod_{\substack{p^k\parallel n\\ p\ \mathrm{odd}}}\frac{1-(\chi_4(p)/p^{2})^{k+1}}{1-\chi_4(p)/p^{2}},
+\qquad\text{and the factor at }p=2\text{ equals }1.
+\]
+\emph{In particular, the contribution of the $2$-adic part vanishes: $\mathcal{T}_a(2^k m)=\mathcal{T}_a(m)$ for odd $m$.}
+A compact comparative table for odd $n\le 11$ is:
+\begin{table}[h]
+\centering
+\caption{Comparison of $\mathcal{T}_a(n)$ for $a(n)=n^{-2}$ and $a(n)=\chi_4(n)n^{-2}$ (odd $n\le 11$).}
+\begin{tabular}{r c c}
+\toprule
+$n$ & $\mathcal{T}_{a=n^{-2}}(n)$ & $\mathcal{T}_{a=\chi_4(n)n^{-2}}(n)$\\
+\midrule
+1 & 1 & 1 \\
+3 & \(\frac{10}{9}\) & \(\frac{8}{9}\) \\
+5 & \(\frac{26}{25}\) & \(\frac{26}{25}\) \\
+7 & \(\frac{50}{49}\) & \(\frac{48}{49}\) \\
+9 & \(\frac{91}{81}\) & \(\frac{73}{81}\) \\
+11 & \(\frac{122}{121}\) & \(\frac{120}{121}\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\noindent In particular,
+\[
+A(1)=\sum_{n\ge1}\frac{a(n)}{n}=
+\begin{cases}
+\zeta(3), & a(n)=n^{-2},\\[3pt]
+L(3,\chi_4)=\beta(3)=\dfrac{\pi^{3}}{32}, & a(n)=\chi_4(n)n^{-2}.
+\end{cases}
+\]
+
+% ---------------------------------------------------------------------------
+

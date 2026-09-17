@@ -726,10 +726,10 @@ class Plotter:
         # --- Bottom Panel: Optimized Function ---
         ax2.plot(x_smooth, y_optimized, c='seagreen', lw=2, label=r'Optimized Indicator $\mathfrak{F}^{\sharp}(x,q)$')
         ax2.axhline(0, color='black', lw=0.7, ls='--')
-        ax2.set_title(r'Optimized Function: Companion Zeros for $p \geq 3$ are Eliminated', fontsize=16, pad=10)
+        ax2.set_title(r'Optimized Function: Companion Zeros for $p \geq 5$ are Eliminated', fontsize=16, pad=10)
         ax2.scatter(primes, np.zeros_like(primes), c='gold', s=100, marker='*', zorder=10, edgecolors='black', linewidth=0.5, label='Prime Zeros (Preserved)')
         if sin_companions:
-            ax2.scatter(sin_companions, np.zeros_like(sin_companions), c='firebrick', s=30, zorder=9, label='Companion Zero for p=3 (Remains)')
+            ax2.scatter(sin_companions, np.zeros_like(sin_companions), c='firebrick', s=30, zorder=9, label='Remaining zero in (2,3) (exceptional window)')
         ax2.set_xlabel("x", fontsize=12)
         ax2.set_ylabel("Value", fontsize=12)
         ax2.grid(True, linestyle=':')

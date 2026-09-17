@@ -16,3 +16,28 @@ __pycache__/
 
 # OS-specific files
 .DS_Store
+
+# LaTeX-Bauartefakte, die bisher fehlten
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Ausgabe des Bauskripts (build.py)
+.build/
+
+# Erzeugte Analyse-Ausgaben aus src/ (rund 13 MB, gehoeren nicht ins Paper-Repo)
+src/em_global_plots/
+src/em_global_tables/
+src/em2_plots/
+src/em2_tables/
+src/em_beta2_results/
+src/fdlift_plots/
+src/fdlift_tables/
+src/zeta_freq_plots/
+src/*.zip

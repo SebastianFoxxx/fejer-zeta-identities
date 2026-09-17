@@ -1,0 +1,18 @@
+\section*{Code and Data Availability}
+All code to generate the figures is available at \\
+\url{https://github.com/SebastianFoxxx/fejer-zeta-identities}.\\
+An archival snapshot with a persistent identifier is provided at Zenodo:\\
+\doi{10.5281/zenodo.17122709}.
+
+\begin{remark}[Numerical verification]
+For reproducibility, a verification script \\
+(\texttt{real\_zero\_verifier.py}) in the companion repository
+checks the integer anchors and the sign pattern on the prime windows $(p-1,p)$, $p\ge5$.
+It uses conservative lower bounds (partial sums plus a geometric tail) for the Fej\'er superposition, so that the reported
+values are lower bounds for $\Fsharp(\cdot,q)$ at the grid points (in double precision); they do not certify the minimum over a window.
+This tool is not part of any proof; it merely facilitates independent checks and produces JSON/CSV reports
+documenting parameter choices and outcomes.
+See the Code and Data Availability section for the repository and archival snapshot.
+\end{remark}
+
+% ---------------------------------------------------------------------------

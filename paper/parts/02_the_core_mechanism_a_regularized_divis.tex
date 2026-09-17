@@ -1,0 +1,69 @@
+\section{The Core Mechanism: A Regularized Divisibility Test}
+
+\subsection{A trigonometric representation of trial division}
+The foundational idea, detailed in~\cite{fuchs2025}, is to express the divisibility of a number $z$ by an integer $i$ using the quotient $Q(z,i) = \frac{\sin^2(\pi z)}{\sin^2(\pi z/i)}$. This form becomes indeterminate ($0/0$) precisely when $i$ is a divisor of an integer $z$.
+
+\subsection{Regularization via the Fej\'er kernel}
+The indeterminacy is resolved by invoking the identity for the Fej\'er kernel, a classical construction from Fourier analysis. This identity transforms the indeterminate quotient into a finite, and therefore everywhere-defined, cosine sum. This leads to the definition of the essential component of the construction presented herein, a function $F(z,i)$ which is analytic for all $z \in \C$.
+
+\begin{definition}[The Fej\'er Kernel Term]
+For any $z \in \C$ and integer $i \ge 2$, the function $F(z,i)$ is defined as
+\[F(z,i) = i+2\sum_{k=1}^{i-1}(i-k)\cos\left(\frac{2\pi k z}{i}\right).\]
+\end{definition}
+This function forms the fundamental component of the construction presented herein. For an integer $n$, it has the property that $F(n,i) = i^2$ if $i$ is a divisor of $n$, and $F(n,i) = 0$ otherwise. This property follows directly from the evaluation of finite trigonometric sums.
+Case 1 ($i$ divides $n$): Let $n=im$ for some integer $m$. The argument of the cosine becomes $\frac{2\pi k (im)}{i} = 2\pi km$, which is an integer multiple of $2\pi$. Thus, $\cos(\dots)=1$ for all $k$. The sum becomes $F(n,i) = i + 2\sum_{k=1}^{i-1}(i-k) = i + 2\left(i(i-1) - \frac{i(i-1)}{2}\right) = i + i(i-1) = i^2$.
+Case 2 ($i$ does not divide $n$): The sum is a classical identity related to the Dirichlet kernel. For any integer $n$ not divisible by $i$, $\sum_{k=1}^{i-1} \cos\!\bigl(\frac{2\pi kn}{i}\bigr) = -1$ and $\sum_{k=1}^{i-1} k \cos\!\bigl(\frac{2\pi kn}{i}\bigr) = -\frac{i}{2}$ hold. Substituting these into the definition yields $F(n,i) = i + 2\left(i\sum \cos(\dots) - \sum k\cos(\dots)\right) = i + 2(i(-1) - (-\frac{i}{2})) = i - 2i + i = 0$. A derivation follows from geometric series identities and taking real parts at $x=e^{2\pi \ii n/i}\neq 1$; see e.g.~\cite[Ch.~3]{davenport2000}, \cite[Ch.~I]{zygmund2002}, \cite[Ch.~I]{montgomeryvaughan2007}. For completeness, proofs are recorded in the Appendix.
+This discrete arithmetic behavior of an analytic function represents the central mechanism of this work. The Fej\'er identity establishes a connection, transforming the analytic concept of a 'relative divisibility remainder', encapsulated by the quotient $Q(z,i)$, into a purely arithmetic output for integer arguments: either zero or the square of the divisor $i$. This direct equivalence motivates its use as the core component for the subsequent constructions.
+
+\begin{proposition}[Closed form of the Fej\'er term]
+\label{prop:fejer-closed}
+For $i\ge2$ and $z\in\C$,
+\[
+F(z,i)=\sum_{k=-(i-1)}^{i-1}(i-|k|)\,e^{2\pi \ii k z/i}
+=\left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^2,
+\]
+where the apparent poles on the right-hand side are removable; the value at $z\in i\Z$ equals $i^2$.
+\end{proposition}
+\begin{proof}
+Both sides are entire (the right-hand side after removing its apparent poles), so it suffices to check the identity for real $z\notin i\Z$. With $\theta=2\pi z/i$, expanding the product and collecting equal index differences gives
+\[
+\Bigl|\sum_{k=0}^{i-1}e^{\ii k\theta}\Bigr|^{2}=\sum_{k=-(i-1)}^{i-1}(i-|k|)\,e^{\ii k\theta},
+\]
+while the geometric sum gives $\bigl|\sum_{k=0}^{i-1}e^{\ii k\theta}\bigr|=\bigl|\sin(i\theta/2)/\sin(\theta/2)\bigr|=\bigl|\sin(\pi z)/\sin(\pi z/i)\bigr|$. Since $\sin(\pi z)/\sin(\pi z/i)\to\pm i$ as $z\to i\ell$, the singularities are removable and the value at $z\in i\Z$ is $i^2$. These are the classical Fej\'er-kernel facts; see \cite[Ch.~I]{katznelson2004} and \cite[Ch.~I]{zygmund2002}. Entirety of the resulting superpositions is established in Appendix~\ref{app:analyticity}.
+\end{proof}
+
+\begin{remark}[Relation to the classical Fej\'er kernel]
+With $N=i-1$ and $\theta=2\pi z/i$, the normalized Fej\'er kernel is
+\[
+K_N(\theta)=\frac{1}{N+1}\left(\frac{\sin\big((N+1)\theta/2\big)}{\sin(\theta/2)}\right)^{\!2}
+=\sum_{k=-N}^{N}\Bigl(1-\frac{|k|}{N+1}\Bigr)e^{\ii k\theta}.
+\]
+Accordingly,
+\[
+F(z,i)=\left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^{\!2}
+=(N+1)\,K_N(2\pi z/i).
+\]
+This identification explains the evenness of $F(\cdot,i)$ about the points of $\tfrac{i}{2}\mathbb Z$ (in particular about the multiples of $i$; for $i\ge3$ not about every integer) and the quadratic contact at $z\in\mathbb Z$.
+\end{remark}
+
+
+\noindent\textbf{Remark (Divisor-filter).} The identity $F(n,i)/i^2=\mathbf{1}_{i\mid n}$ shows that $F$ plays the role of a \emph{divisor filter} at integer inputs.
+This role underlies the Fej\'er--Dirichlet Lift developed in Section~\ref{sec:fd-lift-main}, where divisor filtering is combined with Dirichlet convolution and M\"obius inversion.
+
+\medskip
+\noindent\textbf{Convention.} It is convenient to set $F(z,1):=1$ so that the divisor-filter identity extends to $i=1$.
+
+\begin{remark}[Why the square: minimal type under nonnegativity]\label{rem:minimal-type}
+Write $\phi_i=F(\cdot,i)/i^2=B_i^2$ with the entire function
+\[
+B_i(z):=\frac{\sin(\pi z)}{i\sin(\pi z/i)}=\frac1i\sum_{k=0}^{i-1}e^{\pi\ii(i-1-2k)z/i}.
+\]
+The unsquared factor $B_i$ has exponential type $\pi(1-1/i)$, while $\phi_i$ has type $2\pi(1-1/i)$. At the integers, $B_i$ vanishes exactly off $i\mathbb Z$ and satisfies $B_i(\ell i)=(-1)^{\ell(i-1)}$; for odd $i$ it is therefore itself a divisor filter of half the type. However, $B_i$ changes sign on $\mathbb R$ and has only simple zeros there.
+
+The larger type of $\phi_i$ is forced by nonnegativity. Let $G\not\equiv0$ be an entire function of exponential type $\tau$ in the Cartwright class (that is, $\int_{\mathbb R}\log^+|G(x)|\,(1+x^2)^{-1}\,dx<\infty$) with $G\ge0$ on $\mathbb R$ and $G(n)=0$ for all integers $n\notin i\mathbb Z$. Each such $n$ is then a zero of even, hence at least second, order, so the number $n_G(r)$ of zeros of $G$ in $|z|<r$ satisfies $n_G(r)\ge 4(1-1/i)\,r+O(1)$. For the Cartwright class one has $n_G(r)\le(2\tau/\pi+o(1))\,r$ (see Levin~\cite{levin1996}). Hence $\tau\ge2\pi(1-1/i)$, and $\phi_i$ attains this bound. In particular, among nonnegative interpolants of $n\mapsto\mathbf 1_{i\mid n}$ in the Cartwright class, $\phi_i$ has minimal exponential type.
+
+Nonnegativity and the square structure are used in the real-zero analysis of $\Fsharp$: the positivity proof bounds every filter from below by its $\operatorname{sinc}^2$ profile and discards only nonnegative contributions (Lemma~\ref{lem:filter-minorant}), and the tangent matching at integers rests on $\phi_i'(m)=0$ (Lemma~\ref{lem:int-values}). For the original indicator $\mathfrak F$ the window lemmas \ref{lem:left-only} and \ref{lem:left-middle} use nonnegativity in the same way.
+\end{remark}
+
+% ---------------------------------------------------------------------------
+

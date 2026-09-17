@@ -1,0 +1,101 @@
+\section{Introduction}
+
+Connecting the discrete world of prime numbers with the continuous framework of analysis is considered a central challenge in analytic number theory. Such a connection should not only allow for the identification of integers with specific arithmetic properties but also provide structural insight through its analytic behavior. This paper introduces the 'Fej\'er–Dirichlet Lift', that offers a new perspective on this challenge. It transforms discrete divisor information into a smooth, entire function, analogous to how a Fourier series turns a sequence of coefficients into a periodic function. Other routes to prime detection include exact prime-representing formulae~\cite{mills1947,willans1964,hardy2008}, arithmetic terms for the prime-counting function~\cite{prunescu2024}, partition-theoretic detection of primes~\cite{craig2024}, and smooth analytic approximations of the prime characteristic function~\cite{semenov2025}.
+
+Based on this lift, two specific entire indicators are developed that interpolate the prime/composite pattern at integer arguments and admit explicit spectral factorizations. The original indicator, $\mathfrak F(z,q)$, is a normalized superposition of Fej\'er filters with a geometric weight. A refined, tangent–matched variant, $\Fsharp(z,q)$, augments this construction with a small periodic term. This adjustment is central to the analysis and allows for precise control over the function's real-zero geometry: by enforcing a vanishing slope at every integer, it eliminates the additional ``companion zeros'' that appear in simpler models: for every $q>1$ its real zeros in $[3,\infty)$ are exactly the primes.
+
+\paragraph{Minimal notation and parameter regime}
+The Fej\'er kernel is
+\[
+F(z,i)\;=\;\left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^{\!2}
+\;=\;i\;+\;2\sum_{k=1}^{i-1}(i-k)\cos\!\bigl(2\pi k z/i\bigr),
+\qquad
+\phi_i(z):=\frac{F(z,i)}{i^{2}}.
+\]
+At integers, $\phi_i(n)=\mathbf 1_{\,i\mid n}$, so the Fej\'er kernels act as divisor filters.
+For an arithmetic weight $a:\mathbb N\to\mathbb C$ with Dirichlet series $A(s)=\sum_{n\ge1} a(n)n^{-s}$, the Fej\'er–Dirichlet lift is
+\[
+\mathcal T_a(z)\;=\;\sum_{i\ge1} a(i)\,\phi_i(z),
+\quad\text{which interpolates}\quad
+\mathcal T_a(n)=(a*1)(n).
+\]
+Here $\zeta(s)$ denotes the Riemann zeta function and Dirichlet convolution is written $*$.
+The parameter regime is $|q|>1$ unless stated otherwise; for $q>1$ the branch $q^{-z}=e^{-z\log q}$ (principal real $\log q$) is used; for $q=-1$ all Dirichlet–series identities are taken in the Abel sense; for $q=-Q<-1$ with $Q>1$ the weighted alternating Dirichlet series $\eta_Q$ appears.
+Complete conventions and branch details are collected in the appendix.
+
+\paragraph*{Quick reference.}
+A one–page quick reference and a compact symbol table are provided in the appendix for quick reference; see Appendix~\ref{app:quickref} and Table~\ref{app:symbols}.
+
+\paragraph{Integer anchors and two indicators.}
+The core of the construction is a weighted superposition of Fej\'er divisor filters, $\phi_i(z)=F(z,i)/i^{2}$. Geometric weights $q^{-i}$ are used to ensure convergence for a parameter $q>1$, leading to the following definition for the sum term:
+\[
+S_q(x):=\sum_{i\ge2} q^{-i}\,\phi_i(x),\qquad q>1.
+\]
+The original indicator is then defined by subtracting a simple corrector:
+\[
+\mathfrak F(x,q)=(q-1)q\Big(S_q(x)-q^{-x}\Big),
+\]
+so that $\mathfrak F(p,q)=0$ for primes and $\mathfrak F(m,q)>0$ for composites $m\ge4$.
+The tangent–matched variant, which is the main focus for real-axis analysis, incorporates a periodic normalizer:
+\[
+\Fsharp(x,q)=(q-1)q\Big(S_q(x)-q^{-x}\big(1+(\log q)\,S_1(x)\big)\Big),
+\quad S_1(x):=\tfrac{\sin(2\pi x)}{2\pi},
+\]
+which preserves the same integer values and additionally satisfies $\partial_x\Fsharp(n,q)=0$ for all integers $n$.
+
+\paragraph{Main statements.}
+The core results of this paper establish the Fejér–Dirichlet Lift as a versatile framework and apply it to construct novel prime indicators with precisely specifiable analytic properties. The main contributions are summarized below:
+
+\begin{itemize}
+    \item \textbf{The FD-Lift (local $\leftrightarrow$ spectral):} For weights $a:\mathbb N\to\mathbb C$ with an absolutely convergent Dirichlet series $A(s)$, an entire function $\mathcal T_a$ is constructed. It provides a bridge by interpolating the divisor sum $\mathcal T_a(n)=(a*1)(n)$ at integers while possessing a factorized Dirichlet series $\sum_{n\ge1}\mathcal T_a(n)n^{-s}=\zeta(s)\,A(s)$. See Theorem~\ref{thm:fd-lift-core} (Sec.~\ref{sec:fd-lift-main}).
+
+    \item \textbf{Real Zeros of $\Fsharp$ Exactly at the Primes:} For the tangent-matched indicator $\Fsharp(x,q)$ and every $q>1$, one has $\Fsharp(x,q)\ge\frac{2}{5\pi^2}(q-1)q\,q^{-x}\sin^2(\pi x)>0$ for all non-integers $x>3$. Consequently, the real zeros of $\Fsharp(\cdot,q)$ in $[3,\infty)$ are exactly the primes, each of multiplicity exactly two. Below $x=3$ this fails: whenever the curvature term $K^\sharp(q,2)$ is nonzero, an additional real zero lies in $(1,2)$ or in $(2,3)$, according to its sign. See Theorems~\ref{thm:no-companions} and \ref{thm:real-zero-structure} (Sec.~\ref{sec:no-companions-Fsharp}).
+
+    \item \textbf{Quantifying Companion Zeros for the Original Indicator $\F$:} In contrast, the original indicator $\F(\cdot,q)$ exhibits a unique (under explicit hypotheses) "companion" zero $x_p(q)$ in the interval $(p-1,p)$. A specific asymptotic behavior for its displacement is derived, decaying exponentially like $q^{-p}$:
+    \[
+    p-x_p(q)=\frac{\log q}{K(q,p)}\,q^{-p}\bigl(1+O(q^{-p})\bigr),
+    \quad
+    K(q,p)=\tfrac12\Big(S_q''(p)-(\log q)^2\,q^{-p}\Big).
+    \]
+    See Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, and Appendix~\ref{app:real-zero-original}.
+
+    \item \textbf{A Polylog–$\zeta$ Factorization Identity:} The framework yields a new spectral identity. The Dirichlet series of the constructed prime indicators is shown to factorize into a product involving the Riemann zeta function $\zeta(s)$ and the polylogarithm $\operatorname{Li}_s(1/q)$.
+    See Theorem~\ref{thm:polylog-zeta} (Sec.~\ref{sec:application-key-results}).
+
+    \item \textbf{Extension to Alternating and Negative Parameters:} The framework is extended beyond $q>1$. For $q=-1$, the Dirichlet series connect to the eta function $\eta(s)$, and for $q<-1$, to a weighted alternating variant, while preserving the core analytic properties. See Propositions~\ref{prop:qminus1-dirichlet} and \ref{prop:qlessminus1-dirichlet} (Sec.~\ref{sec:qlessminus1}).
+\end{itemize}
+
+\paragraph{Method overview.}
+Positivity of $\Fsharp$ between the integers follows from three elementary ingredients: every Fej\'er filter dominates its own $\operatorname{sinc}^2$ sampling profile, the periodic corrector is the termwise linearisation of the corresponding formal, divergent sampling series (partial fractions of $\csc^2$ and $\cot$), and the exponential lies above its tangent. The missing part of the lattice (the indices $i\le2$) is compensated by the parity filter $i=2$; details appear in Section~\ref{sec:no-companions-Fsharp} and Appendix~\ref{app:real-zero-fsharp}.
+
+\paragraph{Spectral identities and analyticity.}
+Both indicators arise from a Fej\'er–Dirichlet Lift (FD–Lift), yielding integer convolution on the value side and a Dirichlet product on the spectral side:
+\[
+\sum_{n\ge2}\frac{\mathfrak F(n,q)}{n^{s}}
+=(q-1)q\,(\zeta(s)-1)\Big(\operatorname{Li}_s(1/q)-q^{-1}\Big),\qquad \Re s>1,
+\]
+with analogous identities for $\Fsharp$ (Theorem~\ref{thm:polylog-zeta}).
+Analyticity in $z$ for $|q|>1$ follows by uniform convergence on compacta via the Weierstrass $M$–test (Appendix~\ref{app:analyticity}).
+
+\paragraph{Parameter regimes and extensions.}
+The primary regime is real $q>1$, which ensures composite positivity together with the prime anchors and the zero–free statement for $\Fsharp$.
+Alternating/negative parameters ($q=-1$ or $q<-1$) preserve entire–ness and prime vanishing at integers while composite positivity may fail; the Dirichlet factorization then involves weighted alternating eta functions (Appendix~\ref{app:q-negative}).
+
+\paragraph{Contributions.}
+(1) Entire Fej\'er–based interpolants with controlled local geometry at integers;
+(2) a tangent–matched corrector for which the real zeros in $[3,\infty)$ are exactly the primes, for every $q>1$;
+(3) a short positivity proof with an explicit lower bound, based on a $\operatorname{sinc}^2$ sampling identity and convexity;
+(4) FD–Lift identities tying divisor filters to Polylog–Zeta factors;
+(5) reproducible numerics and verification with conservative bounds.
+
+\paragraph{Organization and reader’s guide.}
+Section~\ref{sec:no-companions-Fsharp} states the real-zero theorem for $\Fsharp$.
+FD–Lift proofs and spectral identities are collected in Appendix~\ref{app:fdlift-proofs}; analyticity tools in Appendix~\ref{app:analyticity}.
+The real–zero analysis for $\mathfrak F$ (companion zeros and displacement) appears in Appendix~\ref{app:real-zero-original}; the positivity proof for $\Fsharp$ in Appendix~\ref{app:real-zero-fsharp}.
+A one–page quick reference and symbol glossary are provided in Appendix~\ref{app:quickref}.
+Code and data availability, including verification scripts, are documented in the dedicated section.
+
+\paragraph{Acknowledgments.}
+Gratitude is expressed to \emph{Mihai Prunescu} for stimulating suggestions and an inspiring conversation that helped clarify several aspects of this work.
+
+% ---------------------------------------------------------------------------

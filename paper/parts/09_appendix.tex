@@ -1,0 +1,996 @@
+\appendix
+
+\section*{Appendix Overview}
+This appendix is organized as follows. In Appendix~\ref{app:analyticity}, analyticity and Fej\'er-kernel facts used in the paper are collected. In Appendix~\ref{app:fdlift-proofs}, proofs for the FD-lift and spectral identities are provided. In Appendix~\ref{app:real-zero-original}, details for the real-zero analysis of the original indicator $\mathfrak F$ are given. In Appendix~\ref{app:real-zero-fsharp}, the positivity proof for the tangent-matched indicator $\Fsharp$ is given. In Appendix~\ref{app:q-negative}, results for alternating and negative parameter regimes are recorded.
+
+% ---------------------------------------------------------------------------
+
+\section{Quick reference}\label{app:quickref}
+
+\paragraph{Fej\'er filter.}
+\[
+F(z,i)\;=\;\sum_{k=-(i-1)}^{\,i-1}(i-|k|)\,e^{2\pi\ii k z/i}
+\;=\;\left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^{\!2},
+\qquad
+\phi_i(z):=\frac{F(z,i)}{i^{2}}.
+\]
+Projector at integers: \(\phi_i(n)=\mathbf 1_{\,i\mid n}\).
+
+\paragraph{FD-lift (one variable).}
+For weights \(a(i)\) with Dirichlet series \(A(s)=\sum_{i\ge1}a(i)\,i^{-s}\),
+\[
+\mathcal T_a(z)\;:=\;\sum_{i\ge1} a(i)\,\phi_i(z)
+\quad\text{(entire; locally uniform convergence)}.
+\]
+\textit{Integer values:} \(\mathcal T_a(n)=(a*1)(n)=\sum_{d\mid n}a(d)\).
+\quad
+\textit{Dirichlet product:} \(\displaystyle \sum_{n\ge1}\frac{\mathcal T_a(n)}{n^s}=\zeta(s)\,A(s)\) for \(\Re s>1\).
+
+\paragraph{Prime indicator (original).}
+For \(q>1\),
+\[
+\mathfrak F(z,q)\;=\;(q-1)q\Big(\sum_{i\ge2} q^{-i}\,\phi_i(z)\;-\;q^{-z}\Big).
+\]
+\textit{Integers:} \(\displaystyle \mathfrak F(n,q)=(q-1)q\!\!\sum_{\substack{d\mid n\\2\le d<n}} q^{-d}\);
+thus \(\mathfrak F(p,q)=0\) for primes, and \(\mathfrak F(n,q)>0\) for composite \(n\ge4\).
+\textit{Dirichlet series:}
+\[
+\sum_{n\ge2}\frac{\mathfrak F(n,q)}{n^{s}}
+=(q-1)q\,(\zeta(s)-1)\,\bigl(\operatorname{Li}_{s}(1/q)-q^{-1}\bigr)\quad(\Re s>1).
+\]
+
+\paragraph{Tangent-matched variant.}
+\[
+\Fsharp(x,q)\;=\;(q-1)q\Big(S_q(x)-q^{-x}\bigl(1+(\log q)\,S_1(x)\bigr)\Big),
+\quad
+S_q(x):=\sum_{i\ge2} q^{-i}\phi_i(x),\;
+S_1(x):=\frac{\sin(2\pi x)}{2\pi}.
+\]
+\(\Fsharp(n,q)=\mathfrak F(n,q)\) and \(\frac{d}{dx}\Fsharp(n,q)=0\) at all integers \(n\).
+For every \(q>1\): \(\Fsharp(x,q)\ge\frac{2}{5\pi^2}(q-1)q\,q^{-x}\sin^2(\pi x)>0\) for non-integers \(x>3\); the real zeros in \([3,\infty)\) are exactly the primes, each of multiplicity \(2\).
+(Proof in Appendix~\ref{app:real-zero-fsharp}.)
+
+\paragraph{Companion zeros (original indicator).}
+For each odd prime \(p\ge5\) there exists a zero \(x_p(q)\in(p-1,p)\) (unique under the conditions of Theorem~\ref{thm:uniq-companion-F}; conjecturally always) with displacement
+\[
+\Delta_p(q):=p-x_p(q)\;=\;\frac{\log q}{K(q,p)}\,q^{-p}\,\bigl(1+O(q^{-p})\bigr),
+\]
+\[
+K(q,p)\;:=\;\tfrac12\!\left(\sum_{i\ge2} q^{-i}\,\phi_i''(p)\;-\;(\log q)^2\,q^{-p}\right),
+\qquad
+0<c_1(q)\le K(q,p)\le c_2(q).
+\]
+(Proof and explicit constants in Appendix~\ref{app:real-zero-original}.)
+
+\paragraph{Track 1 (direct adapter).}
+With \(a=\mu*\Lambda\) and the renormalization by \(\phi_\infty(z):=\bigl(\tfrac{\sin(\pi z)}{\pi z}\bigr)^2\),
+\[
+\mathcal T^{(\mathrm{ren})}_{\mu*\Lambda}(z):=\sum_{i\ge1}(\mu*\Lambda)(i)\,\bigl(\phi_i(z)-\phi_\infty(z)\bigr),
+\quad
+\mathcal T^{(\mathrm{ren})}_{\mu*\Lambda}(n)=\Lambda(n).
+\]
+Here \(A(s)=-\zeta'(s)/\zeta(s)\).
+
+\paragraph{Track 2 (two-variable lift).}
+Using \(\phi_i(z)-\phi_\infty(z)\) as kernel and a spectral parameter \(s\) produces integer values
+\(\sum_{d\mid n} d^{-s}\) and Dirichlet-side factors \(\zeta(s+u)\);
+\(s\)-differentiation yields the \(\log\)-weights \(-\sum_{d\mid n}\log d=-(\tau*\Lambda)(n)\).
+
+\paragraph{Negative parameters.}
+For \(q=-Q<-1\) (\(Q>1\)) the function \(\mathfrak F(\cdot,-Q)\) is entire and satisfies \(\mathfrak F(p,-Q)=0\) for primes;
+the Dirichlet factorization involves \(\eta_Q(s)=\sum_{n\ge1}(-1)^{n-1}Q^{-n}n^{-s}\) with \(\operatorname{Li}_s(-1/Q)=-\eta_Q(s)\).
+For \(q=-1\), all Dirichlet-series statements are taken in the Abel sense; prime zeros at integers persist, while composite positivity may fail.
+
+\medskip
+
+\section*{Notation and Conventions}\label{app:notation}
+$\N:=\{1,2,3,\dots\}$. Integer statements are formulated for $n\ge2$ unless stated otherwise. For $x\in\R$,
+$\operatorname{dist}(x,\Z):=\min_{k\in\Z}|x-k|$.
+The principal branch of the logarithm is used, so $(1/q)^z=\exp\bigl(z\log(1/q)\bigr)$ with $\log$ on the principal branch; for integer $n$, $(1/q)^n$ is branch–independent.
+Dirichlet convolution is denoted by $(f*g)(n):=\sum_{d\mid n} f(d)\,g(n/d)$; the constant $1$ denotes $1(n)\equiv 1$.
+Standard functions: the Möbius function $\mu$, the von Mangoldt function $\Lambda$, the Riemann zeta function $\zeta$, and the polylogarithm
+$\operatorname{Li}_s(z):=\sum_{n\ge1} z^n/n^s$ (entire in $s$ for fixed $|z|<1$; $\operatorname{Li}_s(1/q)$ is used for $|q|>1$, cf.\ \cite{dlmf,lewin1981}).
+The variable $z$ is reserved for entire interpolants (Fej\'er–based hulls); the real variable is denoted by $x$. The Dirichlet–series variable is $s$, and an auxiliary variable $u$ appears in two–variable Dirichlet identities. The imaginary unit is denoted by $\ii$, while the symbol $i$ (plain roman) always denotes a positive integer index in sums and products.
+
+\subsection*{Parameter regime and branch convention}\label{app:param-branch}
+\begin{quote}
+\textbf{Primary regime.} Real $q>1$. All core statements (integer anchors, positivity for composites, real–zero structure with tangent matching) are formulated and certified in this regime.
+
+\textbf{Borderline/alternating regime.} $q=-1$. Dirichlet–series identities are interpreted in the Abel sense; prime–vanishing at integers persists, while positivity for composites is not asserted.
+
+\textbf{Extended negative regime.} Real $q<-1$ (write $q=-Q$ with $Q>1$). Entirety in $z$ holds; prime–vanishing at integers persists; positivity for composites is not guaranteed. The weighted alternating eta function
+$\eta_Q(s):=\sum_{n\ge1}(-1)^{n-1}Q^{-n}n^{-s}$ appears via $\operatorname{Li}_s(-1/Q)=-\eta_Q(s)$.
+
+\textbf{Complex parameters.} Complex $q$ with $|q|>1$ on the principal branch. Prime–vanishing at integers persists; positivity for composites and converse statements are not asserted.
+\end{quote}
+
+\begin{table}[h!]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}l c c X@{}}
+\toprule
+Regime & Prime-vanishing at integers? & Positivity for composites? & Remarks \\
+\midrule
+$q>1$ real      & yes & yes & normalized Fej\'er superposition; statements concern integer inputs \\
+$q=-1$          & yes & not guaranteed & Dirichlet series in the Abel sense; alternating cancellations may occur \\
+$q<-1$ real     & yes & not guaranteed & entire in $z$; $\eta_Q$ bridge with $q=-Q$, $Q>1$ \\
+$|q|>1$ complex & yes (principal branch) & not guaranteed & only vanishing direction asserted; no general converse \\
+\bottomrule
+\end{tabularx}
+\caption{Parameter regimes and integer–anchor properties (branch as stated).}
+\label{tab:regimes}
+\end{table}
+
+\medskip
+\noindent\textbf{Symbol overview.}\label{app:symbols}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+$F(z,i)$ & Fej\'er term $\displaystyle \Big(\frac{\sin(\pi z)}{\sin(\pi z/i)}\Big)^{\!2}$ (divisor filter at integers) \\
+$\phi_i(z)$ & $\displaystyle F(z,i)/i^2$ \\
+$S_q(z)$ & $\displaystyle \sum_{i\ge2} q^{-i}\,\phi_i(z)$ \\
+$S_1(z)$ & $\displaystyle \frac{\sin(2\pi z)}{2\pi}$ (periodic normalizer) \\
+$\mathfrak S(z,q)$ & normalized Fej\'er superposition (sum part of $\mathfrak F$) \\
+$\mathfrak F(z,q)$ & prime–vanishing entire interpolant at integers (primary regime $q>1$) \\
+$\Fsharp(z,q)$ & tangent–matched variant: corrector $q^{-z}\bigl(1+(\log q)\,S_1(z)\bigr)$ \\
+$\mathcal{T}_a(z)$ & Fej\'er–Dirichlet Lift with weights $a(\cdot)$ \\
+$A(s)$ & Dirichlet series of weights: $\displaystyle A(s)=\sum_{n\ge1} a(n)\,n^{-s}$ \\
+$K^\sharp(q,p)$ & curvature term of $\Fsharp$ at a prime: $\tfrac12\big(S_q''(p)+(\log q)^2q^{-p}\big)$ \\
+$\eta_Q(s)$ & weighted alternating eta: $\displaystyle \eta_Q(s)=\sum_{n\ge1}(-1)^{n-1}Q^{-n}n^{-s}$ \\
+\end{tabular}
+\end{center}
+
+\section{Analyticity of $\mathfrak F(z,q)$}\label{app:analyticity}
+
+\begin{proposition}
+For fixed $q\in\C$ with $|q|>1$, the map $z\mapsto\mathfrak F(z,q)$ is entire. The same holds for the tangent–matched variant $\Fsharp(\cdot,q)$.
+\end{proposition}
+
+\begin{proof}
+Use the trigonometric polynomial form of the Fejér kernel,
+\[
+F(z,i)=\sum_{k=-(i-1)}^{i-1}(i-|k|)\,e^{2\pi\ii k z/i},
+\]
+which is entire in $z$. Hence each summand in
+\[
+\mathfrak S(z,q)=(q-1)q\sum_{i\ge2}\frac{F(z,i)}{i^2}q^{-i}
+\]
+is entire. Since $\sum_{k=-(i-1)}^{i-1}(i-|k|)=i^2$, one has $|F(z,i)/i^2|\le e^{2\pi|\operatorname{Im}z|}$ for all $i\ge2$ and $z\in\C$, and $\sum_{i\ge2}|q|^{-i}$ converges for $|q|>1$. Therefore $\mathfrak S(\cdot,q)$ is the locally uniform limit of entire functions, hence entire by the Weierstrass theorem, and its derivatives may be taken termwise (see, e.g., \cite{ahlfors1979}). Since $z\mapsto q^{-z}$ and $z\mapsto q^{-z}S_1(z)$ are entire, both $\mathfrak F(z,q)=\mathfrak S(z,q)-(q-1)q\,q^{-z}$ and
+\[
+\Fsharp(z,q)=\mathfrak S(z,q)-(q-1)q\,q^{-z}\bigl(1+(\log q)S_1(z)\bigr)
+\]
+are entire. The Fejér identity and standard kernel properties are classical; see \cite[Ch.~I]{katznelson2004} and \cite{zygmund2002}.
+\end{proof}
+
+
+\section{Proofs for the General FD-Lift and Key Results}\label{app:fdlift-proofs}
+\noindent\textit{Supports:} Theorem~\ref{thm:fd-lift-core}, Theorem~\ref{thm:polylog-zeta}, Proposition~\ref{prop:spectral-diff}, and Theorem~\ref{thm:renormalized-muLambda}.
+
+This appendix provides the formal proofs for the main theorems presented in Section~\ref{sec:fd-lift-main} and Section~\ref{sec:application-key-results}.
+
+\paragraph{Analyticity of $\mathfrak{F}_\sigma(\cdot,q)$.}
+On any compact $|z|\le R$, the Fejér polynomial form gives $|F(z,i)|\le K_R\,i^2$ and hence $|F(z,i)/i|\le K_R\,i$. Since $\sum_{i\ge2} i\,|q|^{-i}<\infty$ for $|q|>1$, the Weierstrass $M$–test yields local uniform convergence of $\sum_{i\ge2} \frac{F(z,i)}{i}q^{-i}$. Consequently $\mathfrak{F}_\sigma(\cdot,q)$ is entire.
+
+\begin{proof}[Proof of Theorem~\ref{thm:fd-lift-core}]
+At integers $n$, the Fej\'er filter satisfies $F(n,i)/i^2=\mathbf 1_{\,i\mid n}$, hence $\mathcal T_a(n)=\sum_{d\mid n}a(d)=(a*1)(n)$. For $\Re s>1$, absolute convergence of $\sum_{n\ge1} |a(n)|n^{-\Re s}$ and of $\zeta(s)$ justifies Tonelli/Fubini. Therefore
+\[
+\sum_{n\ge1}\frac{\mathcal T_a(n)}{n^s}
+=\sum_{n\ge1}\frac{1}{n^s}\sum_{d\mid n}a(d)
+=\sum_{d\ge1}\frac{a(d)}{d^s}\sum_{m\ge1}\frac{1}{m^s}
+=A(s)\,\zeta(s).
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:polylog-zeta}]
+With $a(i)=(q-1)q\,q^{-i}$ for $i\ge2$ and $a(1)=0$,
+\[
+A(s)=(q-1)q\sum_{i\ge2}\frac{q^{-i}}{i^s}=(q-1)q\bigl(\operatorname{Li}_s(1/q)-q^{-1}\bigr).
+\]
+By Theorem~\ref{thm:fd-lift-core},
+\(
+\sum_{n\ge1}\frac{\mathfrak S(n,q)}{n^s}=\zeta(s)A(s).
+\)
+Since $\mathfrak F(n,q)=\mathfrak S(n,q)-(q-1)q\,q^{-n}$, subtraction of $\sum_{n\ge1}(q-1)q\,q^{-n}n^{-s}$ gives the stated identities.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:spectral-diff}]
+Uniformly on compact $z$-sets,
+\[
+\phi_i(z)-\phi_\infty(z)
+=\left(\frac{\sin(\pi z)}{\sin(\pi z/i)}\right)^{\!2}\frac{1}{i^2}
+-\left(\frac{\sin(\pi z)}{\pi z}\right)^{\!2}
+=O(i^{-2}),
+\]
+since $\sin(\pi z/i)=(\pi z/i)\bigl(1+O(i^{-2})\bigr)$. Hence, for $\sigma=\Re s>-1$,
+\[
+\sum_{i\ge1}\bigl|\phi_i(z)-\phi_\infty(z)\bigr|\,i^{-\sigma}
+\ll \sum_{i\ge1} i^{-2-\sigma}<\infty,
+\]
+with normal convergence on compact $z$-sets and vertical strips $\sigma\ge\sigma_0>-1$. Therefore $z\mapsto \sum_{i\ge1}(\phi_i(z)-\phi_\infty(z))i^{-s}$ is entire and $s\mapsto \sum_{i\ge1}(\phi_i(z)-\phi_\infty(z))i^{-s}$ is holomorphic on $\Re s>-1$. Termwise differentiation in $s$ is justified by $\sum_{i\ge1}(\log i)\,i^{-2-\sigma}<\infty$.
+
+At integers $n$, $\phi_\infty(n)=0$ and $\phi_i(n)=\mathbf 1_{\,i\mid n}$, so $\mathcal T^{\mathrm{ren}}(n,s)=\sum_{d\mid n} d^{-s}$. The Dirichlet identity $\sum_{n\ge1}\big(\sum_{d\mid n}d^{-s}\big)n^{-u}=\zeta(u)\,\zeta(u+s)$ on $\Re u>1$ follows by absolute convergence. Differentiation at $s=0$ is permitted on $\Re u>1$, which yields the stated logarithmic weights and, with Lemma~\ref{lem:divlog}, the claims of the proposition.
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:renormalized-muLambda}]
+Fix $R>0$. Set $\phi_\infty(z):=\left(\frac{\sin(\pi z)}{\pi z}\right)^{2}$ with $\phi_\infty(0):=1$. For $|z|\le R$,
+\[
+\sin\!\left(\frac{\pi z}{i}\right)=\frac{\pi z}{i}+\Big(\frac{\pi z}{i}\Big)^3 \rho_i(z),
+\]
+where the remainder satisfies $|\rho_i(z)|\le \tfrac{1}{6}$ by the standard bound $|\sin w - w|\le |w|^3/6$; hence
+\[
+\sin\!\left(\frac{\pi z}{i}\right)=\frac{\pi z}{i}\,\bigl(1+E_i(z)\bigr),\qquad |E_i(z)|\ \le\ \frac{\pi^2 R^2}{6\,i^{2}}.
+\]
+Consequently,
+\[
+\frac{F(z,i)}{i^2}
+=\phi_\infty(z)\,\frac{1}{\bigl(1+E_i(z)\bigr)^2}
+=\phi_\infty(z)\,\bigl(1+O_R(i^{-2})\bigr),
+\]
+so $\phi_i(z)-\phi_\infty(z)=O_R(i^{-2})$ uniformly on $|z|\le R$. Therefore
+\[
+\sum_{i\ge1}\bigl|\phi_i(z)-\phi_\infty(z)\bigr|\ \ll_R\ \sum_{i\ge1} i^{-2}<\infty.
+\]
+Moreover,
+\[
+(\mu*\Lambda)(i)=\sum_{d\mid i}\mu(d)\,\Lambda(i/d)\ \ll\ \log i\qquad(i\ge2),
+\]
+see Apostol~\cite[Ch.~2]{apostol1976}. Consequently,
+\[
+\sum_{i\ge1}\bigl|(\mu*\Lambda)(i)\bigr|\,\bigl|\phi_i(z)-\phi_\infty(z)\bigr|
+\ \ll_R\ \sum_{i\ge1}\frac{\log i}{i^{2}}<\infty,
+\]
+uniformly on $|z|\le R$. This proves absolute and locally uniform convergence on $\C$ and entireness.
+
+For $n\in\mathbb{Z}$ one has $\phi_\infty(n)=0$ and $\phi_i(n)=\mathbf{1}_{i\mid n}$. Hence
+\[
+\mathcal{T}^{(\mathrm{ren})}_{\mu*\Lambda}(n)=\sum_{i\mid n}(\mu*\Lambda)(i)=(\mu*\Lambda*1)(n).
+\]
+Since $(\Lambda*1)(n)=\sum_{d\mid n}\Lambda(d)=\log n$ and Möbius inversion yields $\mu*\log=\Lambda$ (Apostol~\cite[Ch.~2]{apostol1976}), it follows that
+\[
+(\mu*\Lambda*1)(n)=\mu*(\Lambda*1)(n)=\mu*\log(n)=\Lambda(n).
+\]
+This proves Theorem~\ref{thm:renormalized-muLambda}.
+\end{proof}
+
+\begin{lemma}[Trigonometric sums]\label{lem:trig-sums}
+Let $m\ge2$ and $n\in\mathbb Z$ with $m\nmid n$. Then
+\[
+\sum_{k=1}^{m-1}\cos\!\Big(\frac{2\pi kn}{m}\Big)=-1,
+\qquad
+\sum_{k=1}^{m-1}k\,\cos\!\Big(\frac{2\pi kn}{m}\Big)=-\frac{m}{2}.
+\]
+\end{lemma}
+\begin{proof}
+Let $\omega=e^{2\pi \ii n/m}\neq 1$. Since $\sum_{k=0}^{m-1}\omega^k=0$, taking real parts gives the first identity. For the second, use the standard formula
+\(
+\sum_{k=1}^{m-1}k\,\omega^k=-\,\frac{m}{1-\omega},
+\)
+and take real parts; with $\omega=e^{\ii\theta}$ and $\theta=2\pi n/m$, $\Re\big((1-\omega)^{-1}\big)=\frac12$, hence the value $-\frac{m}{2}$. 
+\end{proof}
+
+\section{Standard tools}\label{app:standard-tools}
+
+\paragraph{Absolute convergence $\Rightarrow$ reordering.}
+Whenever a double series $\sum_{n}\sum_{m} b_{n,m}$ is absolutely convergent, reordering is legitimate (Fubini for series). Throughout, all rearrangements are justified by absolute convergence on the stated half-planes.
+
+\paragraph{Weierstrass $M$–test (local uniformity).}
+If $\sum_i M_i<\infty$ and $|f_i(z)|\le M_i$ on compact sets, then $\sum_i f_i(z)$ converges uniformly on compacta; sums and derivatives can be exchanged termwise within the indicated ranges.
+
+\paragraph{Dirichlet convolution conventions.}
+Dirichlet series of convolutions satisfy $D_{f*g}(s)=D_f(s)\,D_g(s)$ on $\Re s>1$, provided both sides converge absolutely. The Möbius and von Mangoldt identities used here follow Apostol~\cite[Ch.~2]{apostol1976}.
+
+\paragraph{Fejér kernel facts.}
+The Fejér kernel $F(z,i)$ satisfies $F(n,i)/i^2=\mathbf 1_{i\mid n}$ at integers $n$ (divisor filter). For the functions $\phi_i(x)=F(x,i)/i^2$ one has a local quadratic behavior at integers: writing $x=n+\eta$,
+\[
+\phi_i(x)=
+\begin{cases}
+\displaystyle \frac{\pi^2}{i^2\sin^2(\pi n/i)}\,\eta^2+O(\eta^3), & i\nmid n,\\[1ex]
+\displaystyle 1-\frac{\pi^2}{3}\!\left(1-\frac{1}{i^2}\right)\eta^2+O(\eta^4), & i\mid n,
+\end{cases}
+\]
+whence $\phi_i'(n)=0$ for all integers $n$. This local structure, rather than a global evenness property, is used in the symmetry arguments; see Zygmund~\cite{zygmund2002}.
+
+\bigskip
+
+\section{Real-zero window analysis I (Original Indicator)}\label{app:real-zero-original}
+\noindent\textit{Supports:} Lemma~\ref{lem:derivative-at-prime}, Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, Lemma~\ref{lem:K-bounds}, and Corollary~\ref{cor:disp-bounds}.
+
+\paragraph{Transition (back to the original indicator $\mathfrak F$).}
+The next two subsections pertain to the original indicator $\mathfrak F(\cdot,q)$ without the periodic normalizer. 
+For comparison, the behaviour of $\F$ without tangent matching is recorded; the companion-zero phenomenon is quantified, whereas for $\Fsharp$ tangent matching at the integers eliminates it in every window beyond $x=3$ (Theorem~\ref{thm:no-companions}); for $p=3$ a zero in $(2,3)$ remains whenever $K^\sharp(q,2)<0$ (Remark~\ref{rem:exceptional-windows}).
+
+
+\begin{lemma}\label{lem:derivative-at-prime}
+Let $q>1$ and $p$ be prime. Then
+\[
+\mathfrak F'(p,q)\;=\;(q-1)q\,(\log q)\,q^{-p}\;>\;0.
+\]
+In particular, the linear term of the correction factor determines the sign in a left neighbourhood of $p$.
+\end{lemma}
+\begin{proof}
+Write $\mathfrak F(x,q)=(q-1)q\big(S(x)-q^{-x}\big)$ with $S(x)=\sum_{i\ge2}q^{-i}\phi_i(x)$ and $\phi_i(x)=F(x,i)/i^2$. For any integer $n$ and $x=n+\eta$,
+\[
+\sin(\pi x)=\pi\eta+O(\eta^3)\quad\Rightarrow\quad \sin^2(\pi x)=\pi^2\eta^2+O(\eta^4).
+\]
+If $i\nmid n$, then $\sin(\pi n/i)\neq 0$, so $\csc^2(\pi x/i)$ is real-analytic and bounded near $x=n$. Hence
+\[
+\phi_i(x)=\frac{\sin^2(\pi x)}{i^2\sin^2(\pi x/i)}=A_i\,\eta^2+O(\eta^3)\quad\text{with}\quad A_i=\frac{\pi^2}{i^2\sin^2(\pi n/i)},
+\]
+and therefore $\phi_i'(n)=0$. If $i\mid n$, then $n=i\ell$ and
+\[
+\sin\!\Big(\frac{\pi x}{i}\Big)=(-1)^\ell\Big(\frac{\pi\eta}{i}-\frac{\pi^3\eta^3}{6i^3}+O(\eta^5/i^5)\Big),
+\]
+so a direct expansion yields
+\[
+\phi_i(x)=1-\frac{\pi^2}{3}\Big(1-\frac{1}{i^2}\Big)\eta^2+O(\eta^4),
+\]
+and again $\phi_i'(n)=0$. By Lemma~\ref{lem:uniform-summability} with $k=1$, the derivative series converges uniformly on a neighborhood of $p$; hence termwise differentiation is justified and $S'(p)=\sum_{i\ge2}q^{-i}\phi_i'(p)=0$. Since $\frac{d}{dx}(-q^{-x})=(\log q)\,q^{-x}$, it follows that
+\[
+\mathfrak F'(p,q)=(q-1)q\Big(S'(p)+(\log q)\,q^{-p}\Big)=(q-1)q\,(\log q)\,q^{-p}>0.
+\]
+For the tangent-matched variant, Lemma~\ref{lem:int-tangent} implies $(\Fsharp)'(p,q)=0$.
+\end{proof}
+
+\subsection{Normalization identity: details and auxiliary bounds}\label{app:prime-construction}
+Three modifications are applied to the general form:
+\begin{enumerate}
+    \item \textbf{Weighting via FD-Lift:} Use the standard FD-Lift form $\mathcal{T}_a(z)=\sum_{i\ge1} a(i)\,F(z,i)/i^2$ with $a(i)=(q-1)q\,q^{-i}$.
+    \item \textbf{Convergence and normalization:} This choice ensures absolute convergence for $|q|>1$ and yields bounded contributions at integers; see Lemma~\ref{lem:normalization}.
+    \item \textbf{Correction term:} Subtract the term $(q-1)q\,q^{-z}$ to remove the contribution of the improper divisor $d=n$ in the evaluation at integers.
+\end{enumerate}
+
+The role of the prefactor is a normalization: the upper envelope of the geometric contribution equals $\sum_{i=2}^{\infty} q^{-i}=\frac{1}{q(q-1)}$. Multiplication by $(q-1)q$ therefore scales the summation part to the unit range, which is convenient for comparisons across $q$.
+
+\subsection{Correction term and final definition of $\mathfrak{F}(z,q)$}
+\label{app:correction-term}
+Let $\mathfrak{S}(z,q)$ denote the normalized sum: $\mathfrak{S}(z,q) = (q-1)q \sum_{i=2}^{\infty} \frac{F(z,i)}{i^2} (\frac{1}{q})^i$. For a prime $p$, this function evaluates to the non-zero value $(q-1)q(1/q)^p$. To ensure primes are mapped to zero, a correction term is subtracted. This term is formulated with the complex variable $z$ in the exponent to preserve the analyticity of the overall function across the complex plane.
+
+In this subsection, $\mathfrak{F}(z,q)$ refers to the function defined in Section~\ref{sec:prime-indicator-construction}.
+
+\subsection{Analyticity}
+\label{app:analyticity-brief}
+Analyticity of $z\mapsto \mathfrak{F}(z,q)$ for fixed $|q|>1$ follows from uniform convergence on compacta via the Weierstrass M-test; details are provided in Appendix~\ref{app:analyticity}.
+
+% ---------------------------------------------------------------------------
+
+\subsection{The Normalization Property}
+\begin{lemma}[Normalization identity]\label{lem:normalization}
+For $q>1$,
+\[
+(q-1)q\sum_{i=2}^{\infty} q^{-i} = 1.
+\]
+\end{lemma}
+\noindent Proof is immediate from the geometric series $\sum_{i\ge2}q^{-i}=q^{-2}/(1-1/q)$.
+
+\begin{remark}[Observation: stability in $q$]\label{lem:q-bridge}
+Numerically it is observed that if $\F(\cdot,q_0)$ stays uniformly away from $0$ on $[a,X]$, then the sign pattern persists for $q$ in a small neighbourhood of $q_0$. A rigorous version would follow from uniform-in-$q$ bounds on $\partial_q\F$ and $\partial_x\F$ on $[a,X]$, together with an explicit margin; this is left as a potential refinement.
+\end{remark}
+
+
+\subsection{Quantitative displacement of companion zeros}\label{sec:companion-displacement}
+Let $q>1$ be real and let $p\ge5$ be an odd prime. By Theorem~\ref{thm:existence-left-companion} the set
+\[
+Z_p:=\{x\in(p-1,p):\ \mathfrak F(x,q)=0\}
+\]
+is non-empty; by Lemma~\ref{lem:derivative-at-prime} one has $\mathfrak F(x,q)<0$ on some interval $(p-\varepsilon,p)$, so $\sup Z_p<p$, and $Z_p$ is closed in $(p-1,p)$, so the supremum is attained. Define the \emph{companion zero} to $p$ as the rightmost zero in the window,
+\[
+x_p(q):=\max Z_p\in(p-1,p),
+\]
+and set
+\[
+\Delta_p(q):=p-x_p(q)\in(0,1).
+\]
+Uniqueness of the zero in $(p-1,p)$ is not claimed here; see Conjecture~\ref{conj:uniqueness-companion}.
+The following result quantifies $\Delta_p(q)$ and explains its exponential decay in $p$.
+
+\begin{definition}[Companion zero]\label{def:companion-zero}
+Let $p$ be a prime. A \emph{companion zero} to $p$ is a real zero of the indicator located in the window $(p-1,p)$. When the position matters, the term “left companion zero” is used interchangeably.
+\end{definition}
+
+\begin{proof}[Proof of Theorem~\ref{thm:existence-left-companion}]
+At $x=p$, $\mathfrak F(p,q)=0$ and by Lemma~\ref{lem:derivative-at-prime},
+$\mathfrak F'(p,q)=(q-1)q(\log q)q^{-p}>0$. Hence $\mathfrak F(x,q)<0$ for all $x\in(p-\varepsilon,p)$ with $\varepsilon>0$ sufficiently small.
+
+At the left endpoint, $x=p-1$, Lemma~\ref{lem:int-values} gives
+\[
+S(p-1)=\sum_{\substack{d\mid p-1\\ d\ge2}}q^{-d} \ \ge\ q^{-2}.
+\]
+Therefore,
+\[
+\mathfrak F(p-1,q)=(q-1)q\big(S(p-1)-q^{-(p-1)}\big)\ \ge\ (q-1)q\big(q^{-2}-q^{-(p-1)}\big)\ >\ 0,
+\]
+since $p-1\ge4$. A sign change between $x=p-1$ and a point $x\in(p-\varepsilon,p)$ yields a zero in $(p-1,p)$ by the intermediate value theorem.
+\end{proof}
+
+\begin{lemma}[Global derivative bound for the filters]\label{lem:global-derivative-bound}
+For all $i\ge1$, all integers $k\ge0$ and all $x\in\R$,
+\[
+\bigl|\phi_i^{(k)}(x)\bigr|\ \le\ (2\pi)^k ,
+\qquad \phi_i(x)=i^{-2}\left(\frac{\sin(\pi x)}{\sin(\pi x/i)}\right)^2 .
+\]
+In particular $|\phi_i^{(k)}(x)|\le(2\pi)^3$ for $k\le3$, uniformly in $i$ and in $x$.
+\end{lemma}
+
+\begin{proof}
+By Proposition~\ref{prop:fejer-closed}, $\phi_i(x)=i^{-2}\sum_{|j|<i}(i-|j|)\,e^{2\pi\ii jx/i}$ is a finite trigonometric polynomial, so termwise differentiation gives
+\[
+\bigl|\phi_i^{(k)}(x)\bigr|\ \le\ i^{-2}\sum_{|j|<i}(i-|j|)\Bigl(\frac{2\pi|j|}{i}\Bigr)^{\!k}
+\ \le\ (2\pi)^k\, i^{-2}\sum_{|j|<i}(i-|j|)\ =\ (2\pi)^k ,
+\]
+using $|j|/i<1$ and $\sum_{|j|<i}(i-|j|)=i^2$.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:disp-asymp}]
+Set $S_q(x):=\sum_{i\ge2}q^{-i}\phi_i(x)$ and $H(\varepsilon):=S_q(p+\varepsilon)-q^{-(p+\varepsilon)}$. Lemma~\ref{lem:int-values} gives $S_q(p)=q^{-p}$ and $S_q'(p)=0$. By Lemma~\ref{lem:uniform-summability} (with $k\le 3$), the series for $S_q^{(k)}$ converge uniformly on a neighbourhood of $p$, so $S_q$ is $C^3$ there and Taylor’s theorem with remainder applies:
+\[
+H(\varepsilon)=a\,\varepsilon+b\,\varepsilon^2+R_3(\varepsilon),
+\]
+with
+\[
+a=(\log q)\,q^{-p},\qquad b=\tfrac12\Big(S_q''(p)-(\log q)^2\,q^{-p}\Big)=K(q,p),
+\]
+and $|R_3(\varepsilon)|\le C(q)\,|\varepsilon|^3$ for $|\varepsilon|\le\varepsilon_0(q)$. Lemma~\ref{lem:K-bounds} shows $b$ is bounded above and below by positive constants depending only on $q>1$.
+
+At $x=p-1$, $\mathfrak F(p-1,q)>0$ (Theorem~\ref{thm:existence-left-companion}); for $0<-\varepsilon\ll1$, $\mathfrak F(p+\varepsilon,q)<0$ by Lemma~\ref{lem:derivative-at-prime}. Hence $Z_p\neq\emptyset$; let $\varepsilon_\star\in(-1,0)$ correspond to its largest element $x_p(q)=p+\varepsilon_\star$. The quadratic approximation $a\varepsilon+b\varepsilon^2=0$ has root $\varepsilon_0=-a/b$, and $|\varepsilon_0|=O(q^{-p})$.
+
+The passage from $\varepsilon_0$ to $\varepsilon_\star$ carries a hypothesis that is worth
+stating, because $\varepsilon_\star$ is defined as the \emph{largest} element of $Z_p$ and not
+as the zero nearest to $\varepsilon_0$: the argument presumes that these two coincide. One half
+of what this requires is unconditional and explicit. By Lemma~\ref{lem:zero-free-window} there
+is no zero in $(p-a/M,p)$, so the largest zero is genuinely displaced,
+$|\varepsilon_\star|\ge a/M\asymp q^{-p}$, with the same order in $p$ as $|\varepsilon_0|$
+(the constant there is smaller than the one below, by a factor that depends only on $q$). The
+matching upper bound $|\varepsilon_\star|=O(q^{-p})$, and with it the relative error stated
+below, continues to rest on a standard perturbation estimate using
+$|R_3(\varepsilon_0)|\le C(q)|\varepsilon_0|^3$, which yields
+\[
+\varepsilon_\star=\varepsilon_0\Big(1+O(|\varepsilon_0|)\Big)\ =\ -\frac{(\log q)\,q^{-p}}{K(q,p)}\Big(1+O(q^{-p})\Big).
+\]
+Therefore $\Delta_p(q)=-\varepsilon_\star=\frac{\log q}{K(q,p)}\,q^{-p}\big(1+O(q^{-p})\big)$, uniformly in $p$, and $x_p(q)=p-\Delta_p(q)\in(p-1,p)$.
+This proves Proposition~\ref{prop:disp-asymp}.
+\end{proof}
+
+
+\begin{remark}[Standing assumption]\label{rem:standing-K}
+In what follows, bounds for $K(q,p)$ use the fact that, for a prime $p$, the only divisor $i\ge 2$ with $i\mid p$ is $i=p$. Consequently, among the terms in $\sum_{i\ge 2} q^{-i}\phi_i''(p)$ at most a single negative contribution arises, namely the $i=p$ term.
+\end{remark}
+
+
+\begin{proof}[Proof of Lemma~\ref{lem:K-bounds}]
+From Lemma~\ref{lem:second-derivatives}, for $i\nmid p$,
+\[
+\phi_i''(p)=\frac{2\pi^2}{i^2\sin^2(\pi p/i)}\ \le\ \frac{\pi^2}{2}.
+\]
+The last inequality is equivalent to $\sin^2(\pi p/i)\ge 4/i^2$, and reducing it to
+$\sin(\pi/i)\ge 2/i$ takes two steps. Since $\sin^2(\pi\,\cdot/i)$ has period $i$, one may
+replace $p$ by $r:=p\bmod i$, and $i\nmid p$ gives $r\in\{1,\dots,i-1\}$. The reflection
+$r\mapsto t:=\min(r,\,i-r)$ leaves the value unchanged, $\sin(\pi r/i)=\sin\bigl(\pi-\pi r/i\bigr)
+=\sin(\pi t/i)$, and places $t$ in $\{1,\dots,\lfloor i/2\rfloor\}$, so that
+$\pi t/i\in(0,\pi/2]$, where the sine is increasing. Hence
+$\sin^2(\pi p/i)=\sin^2(\pi t/i)\ge\sin^2(\pi/i)\ge 4/i^2$ for $i\ge2$, the last step by
+Jordan's inequality $\sin u\ge 2u/\pi$ on $[0,\pi/2]$. The resulting bound is sharp: for
+$i=2$ and $p$ odd, $\sin^2(\pi p/2)=1$ and $\phi_2''(p)=\pi^2/2$ exactly. If $i\mid p$ and $i\ge2$, then
+\[
+\phi_i''(p)=-\frac{2\pi^2}{3}\Big(1-\frac{1}{i^2}\Big)\ge -\frac{2\pi^2}{3}.
+\]
+For $p$ prime, the only divisor $i\ge 2$ with $i\mid p$ is $i=p$; hence among the terms with $i\ge2$ there is exactly one possible negative contribution, namely the $i=p$ term, weighted by $q^{-p}$. All other terms ($i\nmid p$) are nonnegative and $\le \pi^2/2$. For an odd prime $p\ge5$ one has $\sin^2(\pi p/2)=1$, $\sin^2(\pi p/3)=3/4$ and $\sin^2(\pi p/4)=1/2$, so the contributions at $i=2,3,4$ are exactly $\pi^2/2$, $8\pi^2/27$ and $\pi^2/4$; these exact values enter both displayed bounds. For $i=5,6$ only the generic bound $\phi_i''(p)\le\pi^2/2$ is used, which contributes to the upper bound, while in the lower bound these nonnegative terms are dropped. The tail $i\ge7$ satisfies
+\[
+\sum_{i\ge7}q^{-i}\,|\phi_i''(p)|\ \le\ \frac{\pi^2}{2}\,\sum_{i\ge7}q^{-i}
+=\frac{\pi^2}{2}\cdot\frac{q^{-7}}{1-1/q}.
+\]
+Since $K(q,p)$ contains the factor $\tfrac12$ outside the sum, the tail contributes at most
+\[
+\frac12\cdot \frac{\pi^2}{2}\cdot\frac{q^{-7}}{1-1/q}=\frac{\pi^2}{4}\,\frac{q^{-7}}{1-1/q}.
+\]
+Finally, subtract $\tfrac{1}{2}q^{-p}(\log q)^2$ and note $q^{-p}\le q^{-5}$ for $p\ge5$ to obtain the lower bound. Both bounds are independent of $p$.
+
+It remains to verify that the lower bound is in fact \emph{positive}, which is what
+Corollary~\ref{cor:disp-bounds} divides by. Put
+\[
+B(q):=\frac{q^3}{2}+\frac{8q^2}{27}+\frac{q}{4}-\frac23,
+\qquad
+N(q):=\pi^2B(q)-(\log q)^2 ,
+\]
+so that the lower bound equals $c_1(q)=N(q)/(2q^5)$, and let $q>1$. First, $B$ is increasing on
+$[1,\infty)$ with $B(1)=\tfrac12+\tfrac8{27}+\tfrac14-\tfrac23>0$, so $B(q)>0$. Second,
+$0\le\log q\le q-1$, hence $(\log q)^2\le(q-1)^2$. Third, the difference
+\[
+9B(q)-(q-1)^2=\frac92q^3+\frac53q^2+\frac{17}{4}q-7
+\]
+is increasing on $[1,\infty)$ and takes the value $\tfrac{41}{12}>0$ at $q=1$, so
+$(\log q)^2\le(q-1)^2<9B(q)$. Since $\pi^2>9$ and $B(q)>0$,
+\[
+N(q)=\pi^2B(q)-(\log q)^2\ >\ 9B(q)-(q-1)^2\ >\ 0 ,
+\]
+and therefore $c_1(q)>0$. Thus $0<c_1(q)\le K(q,p)\le c_2(q)<\infty$ for all odd primes
+$p\ge5$, with both constants independent of $p$. (For fixed $q$ this is all that is used;
+$c_1(q)=\tfrac{\pi^2}{4}q^{-2}+O(q^{-3})$ decays as $q\to\infty$ and is not bounded away from
+zero uniformly in $q$.)
+\end{proof}
+
+\begin{lemma}[Zero-free window to the left of a prime]\label{lem:zero-free-window}
+Let $q>1$ be real and let $p\ge5$ be an odd prime. Set
+\[
+a:=\mathfrak F'(p,q)=(q-1)q(\log q)\,q^{-p}>0,
+\qquad
+M:=8\pi^2+(q-1)q(\log q)^2q^{-(p-1)} .
+\]
+Then $|\mathfrak F''(x,q)|\le M$ for all $x\in[p-1,p]$, one has $M\ge8\pi^2$ and $a/M<1$, and
+\[
+\mathfrak F(x,q)<0\qquad\text{for every }x\in\Bigl(p-\frac aM,\ p\Bigr).
+\]
+In particular $\mathfrak F(\cdot,q)$ has no real zero in $(p-a/M,p)$, so the displacement
+satisfies the unconditional lower bound
+\[
+\Delta_p(q)\ \ge\ \frac aM\ \asymp\ q^{-p}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $\mathfrak F(x,q)=(q-1)q\bigl(S_q(x)-q^{-x}\bigr)$, so
+$\mathfrak F''(x,q)=(q-1)q\bigl(S_q''(x)-(\log q)^2q^{-x}\bigr)$. By
+Lemma~\ref{lem:global-derivative-bound}, $|\phi_i''|\le(2\pi)^2$ uniformly in $i$ and in $x$;
+using the weaker constant $8\pi^2$ in place of $4\pi^2$ (which is what the machine-checked
+version of this lemma carries) gives, for all real $x$,
+\[
+|S_q''(x)|\ \le\ 8\pi^2\sum_{i\ge2}q^{-i}\ =\ \frac{8\pi^2}{q^2}\cdot\frac1{1-1/q}
+\ =\ \frac{8\pi^2}{q(q-1)} .
+\]
+Together with $q^{-x}\le q^{-(p-1)}$ on $[p-1,p]$ this yields $|\mathfrak F''(x,q)|\le M$ with
+$M$ as displayed; in particular $M\ge8\pi^2$, and $a<8\pi^2\le M$ because
+$(q-1)q(\log q)q^{-p}\le(q-1)q(\log q)q^{-5}<8\pi^2$ for $q>1$, so $a/M<1$ and
+$(p-a/M,p)\subset[p-1,p]$.
+
+Now let $x\in(p-a/M,p)$. Two applications of the mean value theorem suffice; no Taylor
+remainder is needed. The first, on $[x,p]$, gives $\eta\in(x,p)$ with
+$\mathfrak F'(\eta,q)=\bigl(\mathfrak F(p,q)-\mathfrak F(x,q)\bigr)/(p-x)$. The second, applied
+to $\mathfrak F'$ on $[\eta,p]$, gives $\zeta\in(\eta,p)$ with
+\[
+\mathfrak F'(p,q)-\mathfrak F'(\eta,q)=\mathfrak F''(\zeta,q)\,(p-\eta)\ \le\ M\,(p-\eta)
+\ <\ M\cdot\frac aM\ =\ a ,
+\]
+using $p-\eta<p-x<a/M$. Since $\mathfrak F'(p,q)=a$ by
+Lemma~\ref{lem:derivative-at-prime}, it follows that $\mathfrak F'(\eta,q)>0$. As
+$\mathfrak F(p,q)=0$ by Theorem~\ref{thm:integer-prime-zero} and $p-x>0$, the first identity
+gives $-\mathfrak F(x,q)=\mathfrak F'(\eta,q)(p-x)>0$, that is $\mathfrak F(x,q)<0$.
+
+Finally $a/M\asymp q^{-p}$, since $M\to8\pi^2$ and $a=(q-1)q(\log q)q^{-p}$ for fixed $q$.
+\end{proof}
+
+\begin{center}\emph{The statement of Conjecture~\ref{conj:uniqueness-companion} is presented in the main text.}\end{center}
+
+\begin{remark}[Numerical evidence]
+The companion repository computes $x_p(q)$ from the initial guess of Remark~\ref{rem:newton} followed by Newton steps (script \texttt{plot\_generator.py}, $q\in\{1.5,2,2.5,3\}$, odd primes $p\le101$); this yields the displacements shown in Figure~\ref{fig:companion_displacement}. Uniqueness of the zero in $(p-1,p)$ has not been checked systematically, so Conjecture~\ref{conj:uniqueness-companion} remains open outside the conditions of Theorem~\ref{thm:uniq-companion-F}.
+\end{remark}
+
+\begin{corollary}[Uniform exponential fall-off]\label{cor:disp-bounds}
+For each fixed $q>1$ and every odd prime $p\ge5$,
+\[
+\frac{\log q}{\,c_2(q)\,}\,q^{-p}\;\le\;\Delta_p(q)\;\le\;\frac{\log q}{\,c_1(q)\,}\,q^{-p},
+\]
+where the positive constants $c_1(q),c_2(q)$ are given explicitly by Lemma~\ref{lem:K-bounds} as any valid lower/upper bounds for $K(q,p)$ that are independent of $p$.
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:disp-asymp} gives
+\(
+\Delta_p(q)=\frac{\log q}{K(q,p)}\,q^{-p}\,\bigl(1+O(q^{-p})\bigr).
+\)
+Lemma~\ref{lem:K-bounds} supplies $p$-independent bounds
+\(
+0<c_1(q)\le K(q,p)\le c_2(q)<\infty.
+\)
+Absorb the negligible $O(q^{-p})$-term into the constants by enlarging $c_2(q)$ and shrinking $c_1(q)$ if necessary, which yields the displayed two-sided estimate for all $p\ge5$. The positivity of $c_1(q)$ needed here is proved in Lemma~\ref{lem:K-bounds}. The lower half of the estimate also follows unconditionally from Lemma~\ref{lem:zero-free-window}, with the same order $q^{-p}$ but a smaller explicit constant; the upper half uses Proposition~\ref{prop:disp-asymp}.
+\end{proof}
+
+\subsection{Window lemmas for the original indicator}\label{sec:window-lemmas}
+Fix an odd prime $p\ge5$ and split $(p-1,p)$ by $\alpha\in(0,\tfrac12]$ into
+\[
+I_{\mathrm L}:=(p-1,\,p-1+\alpha],\qquad
+I_{\mathrm M}:=[p-1+\alpha,\,p-\alpha],\qquad
+I_{\mathrm R}:=[p-\alpha,\,p).
+\]
+
+\begin{lemma}[Left-window lower bound via $i=2$]\label{lem:left-only}
+Fix an odd prime $p\ge5$ and $\alpha\in(0,\tfrac12]$. On $I_{\mathrm L}=(p-1,\,p-1+\alpha]$,
+\[
+S_q(x)\ \ge\ q^{-2}\,\phi_2(x)\ \ge\ q^{-2}\,\cos^2\!\Big(\frac{\pi\alpha}{2}\Big).
+\]
+\end{lemma}
+\begin{proof}
+All terms of $S_q$ are nonnegative. Since $p-1$ is even, $x=p-1+t$ with $t\in(0,\alpha]$ gives $\phi_2(x)=\cos^2(\pi x/2)=\cos^2(\pi t/2)\ge\cos^2(\pi\alpha/2)$.
+\end{proof}
+
+\begin{lemma}[Middle-window lower bound]\label{lem:left-middle}
+Fix an odd prime $p\ge5$ and the partition $(p-1,p)=I_{\mathrm L}\cup I_{\mathrm M}\cup I_{\mathrm R}$ defined above. 
+For $x\in I_{\mathrm M}$,
+\[
+|\sin(\pi x)|\ \ge\ \sin(\pi\alpha),\qquad 
+|\sin(\pi x/i)|\ \le\ 1.
+\]
+Hence
+\[
+\phi_i(x)\ =\ \frac{1}{i^2}\left(\frac{\sin(\pi x)}{\sin(\pi x/i)}\right)^{\!2}
+\ \ge\ \frac{\sin^2(\pi\alpha)}{i^2},
+\]
+and therefore
+\[
+S(x)\ \ge\ \sin^2(\pi\alpha)\sum_{i\ge2}\frac{q^{-i}}{i^2}.
+\]
+\end{lemma}
+\begin{proof}
+Write $x=p-1+t$ with $t\in[\alpha,1-\alpha]$. Then $|\sin(\pi x)|=\sin(\pi t)\ge\sin(\pi\alpha)$, and $|\sin(\pi x/i)|\le1$ holds trivially; summing the nonnegative terms gives the last bound.
+\end{proof}
+
+\begin{theorem}[Uniqueness of the companion zero for the original indicator]\label{thm:uniq-companion-F}
+Let $q>1$ and $p\ge5$ be an odd prime. Assume there exists $\alpha\in(0,\tfrac12)$ such that
+\begin{align}
+\cos^2\!\Big(\tfrac{\pi\alpha}{2}\Big)\ &\ge\ q^{-2}, \tag{L0}\label{cond:L0}\\
+\sin^2(\pi\alpha)\!\!\sum_{i\ge2}\frac{q^{-i}}{i^2}\ &>\ q^{-4-\alpha}. \tag{M0}\label{cond:M0}
+\end{align}
+Define
+\[
+T_3(q,\alpha)\;:=\;\sup_{|x-p|\le \alpha}\ \sum_{i\ge2} q^{-i}\, \big|\phi_i^{(3)}(x)\big|
+\qquad\text{and}\qquad 
+K(q,p)\;:=\;\tfrac12\Big(S''(p)-(\log q)^2 q^{-p}\Big).
+\]
+Assume in addition the explicit convexity condition
+\begin{equation}\tag{C0}\label{cond:C0}
+\alpha\ \le\ \frac{K(q,p)}{\,T_3(q,\alpha)\;+\;(\log q)^3\,q^{-(p-\alpha)}\,}.
+\end{equation}
+Then $\mathfrak F(\cdot,q)$ has exactly one real zero in $(p-1,p)$.
+\end{theorem}
+
+\begin{proof}
+Write $\mathfrak F(x,q)=(q-1)q\big(S(x)-q^{-x}\big)$ and split $(p-1,p)$ into $I_{\mathrm L},I_{\mathrm M},I_{\mathrm R}$ with the same $\alpha$ as above. Under \eqref{cond:L0} and \eqref{cond:M0}, Lemmas~\ref{lem:left-only}–\ref{lem:left-middle} give $\mathfrak F(x,q)>0$ on $I_{\mathrm L}\cup I_{\mathrm M}$. By Lemma~\ref{lem:derivative-at-prime}, $\mathfrak F'(p,q)>0$, hence $\mathfrak F(x,q)<0$ for $x$ sufficiently close to $p$ on the left.
+
+To exclude more than one zero, it suffices to prove strict convexity on $I_{\mathrm R}=[p-\alpha,p)$. Differentiating twice yields
+\[
+\mathfrak F''(x,q)=(q-1)q\Big(S''(x)-(\log q)^2 q^{-x}\Big).
+\]
+A first-order Taylor bound around $x=p$ gives
+\[
+S''(x)\ \ge\ S''(p)\ -\ \sup_{|t-p|\le\alpha}\,|S^{(3)}(t)|\cdot|x-p|\ \ge\ S''(p)-T_3(q,\alpha)\,\alpha,
+\]
+using $T_3(q,\alpha)$ and the locally uniform summability of $\sum q^{-i}\phi_i^{(3)}$ (cf. Lemma~\ref{lem:uniform-summability}). Since $x\in[p-\alpha,p)$ implies $q^{-x}\le q^{-(p-\alpha)}$, 
+\[
+-(\log q)^2 q^{-x}\ \ge\ -(\log q)^2 q^{-(p-\alpha)}\ \ge\ -(\log q)^2 q^{-p}-(\log q)^3\,\alpha\,q^{-(p-\alpha)},
+\]
+where $q^{\alpha}-1=e^{\alpha\log q}-1\le(\alpha\log q)\,q^{\alpha}$ was used. Combining and recalling $S''(p)-(\log q)^2q^{-p}=2K(q,p)$ yields
+\[
+S''(x)-(\log q)^2q^{-x}\ \ge\ 2K(q,p)\ -\ T_3(q,\alpha)\,\alpha\ -\ (\log q)^3 q^{-(p-\alpha)}\,\alpha.
+\]
+By \eqref{cond:C0} the right-hand side is $\ge K(q,p)>0$. Therefore $\mathfrak F''(x,q)>0$ on $I_{\mathrm R}$, i.e. $\mathfrak F(\cdot,q)$ is strictly convex there. Since $\mathfrak F$ is $>0$ on $I_{\mathrm L}\cup I_{\mathrm M}$ and $<0$ sufficiently close to $p$, strict convexity on $I_{\mathrm R}$ enforces a single crossing, hence exactly one zero in $(p-1,p)$.
+\end{proof}
+
+\begin{remark}[Non-emptiness of the hypotheses]
+Conditions \eqref{cond:L0} and \eqref{cond:M0} constrain $\alpha$ from opposite sides: \eqref{cond:L0} forces $\alpha\le\frac{2}{\pi}\arccos(1/q)$, while \eqref{cond:M0} forces $\alpha$ to be large. They are simultaneously satisfiable precisely for $q$ above a threshold $q_\star=1.4745\ldots$; for instance an admissible $\alpha$ exists for $q=1.5$ (any $\alpha\in[0.4597,\tfrac12)$) and for $q=2$ (any $\alpha\in[0.2893,\tfrac12)$), whereas for $q=1.1$ or $q=1.3$ no admissible $\alpha$ exists and Theorem~\ref{thm:uniq-companion-F} is vacuous. The threshold is numerical and is not needed elsewhere in the paper.
+\end{remark}
+
+\begin{remark}[Newton refinement (pointer)]
+For the refinement summary see Remark~\ref{rem:newton} in the main text; implementation details are provided in the companion repository.
+\end{remark}
+
+\section{Real-zero analysis II (Tangent-matched indicator $\Fsharp$)}\label{app:real-zero-fsharp}
+\noindent\textit{Supports:} Theorem~\ref{thm:no-companions}, Theorem~\ref{thm:real-zero-structure}, and Proposition~\ref{prop:local-nonneg} (via Lemma~\ref{lem:int-values}).
+
+\subsection{Real zeros of \texorpdfstring{$\Fsharp(\cdot,q)$}{Fsharp} for \texorpdfstring{$q>1$}{q>1}}
+\label{sec:real-zeros-fsharp}
+
+\begin{remark}[Scope of this section]\label{rem:scope-fsharp}
+All statements in this section concern the tangent–matched lift $\Fsharp(\cdot,q)$ for real $q>1$. Integer anchor identities coincide with those of $\mathfrak F$ (see Lemma~\ref{lem:int-values}). No global real–zero statement is asserted here for $\mathfrak F$.
+\end{remark}
+
+\begin{definition}[Tangent-matched lift]\label{def:tangent-matched}
+A tangent-matched lift of $\mathfrak F$ is an entire modification $\widetilde{\mathfrak F}(\cdot,q)$ with $\widetilde{\mathfrak F}(n,q)=\mathfrak F(n,q)$ and $\partial_x\widetilde{\mathfrak F}(n,q)=0$ for all $n\in\Z$. The explicit choice used in this paper is $\Fsharp$ from Definition~\ref{def:periodic-normalizer}.
+Terminology note: references to “companion zeros” pertain to the original indicator $\mathfrak F(\cdot,q)$; for $\Fsharp$ such interior zeros do not occur beyond $x=3$ (Theorem~\ref{thm:no-companions}).
+\end{definition}
+
+\begin{table}[h]
+\small
+\centering
+\begin{tabular}{ll}
+\hline
+Property & $\F$ vs.\ $\Fsharp$ \\
+\hline
+Values at integers & Both: $\F(n,q)=\Fsharp(n,q)= (q-1)q\sum_{\substack{d\mid n\\2\le d<n}} q^{-d}$; primes map to $0$. \\
+First derivative at integers & $(\F)'(n,q)\neq 0$ in general; $(\Fsharp)'(n,q)=0$ by construction. \\
+Prime windows $(p-1,p)$ & $\F$: for $p\ge5$ an interior zero (companion) exists (Thm.~\ref{thm:existence-left-companion}); \\
+& $\Fsharp$: no zero in $(m,m+1)$ for $m\ge3$ (Thm.~\ref{thm:no-companions}). \\
+Spectral identity & Both satisfy FD-lift factorisations as stated in Sec.~\ref{sec:fd-lift-main}. \\
+\hline
+\end{tabular}
+\caption{Side-by-side summary of the two indicators used in the paper.}
+\label{tab:F-vs-Fsharp}
+\end{table}
+
+For $q>1$ and $x\in\mathbb R$ recall
+\[
+\Fsharp(x,q)\ =\ (q-1)q\Big(S_q(x)-q^{-x}\bigl(1+(\log q)\,S_1(x)\bigr)\Big),
+\qquad
+S_q(x)\ =\ \sum_{i\ge2} q^{-i}\,\phi_i(x),
+\]
+where
+\[
+\phi_i(x)\ =\ \frac{1}{i^2}\left(\frac{\sin(\pi x)}{\sin(\pi x/i)}\right)^2\ \ge\ 0,
+\qquad
+S_1(x)\ =\ \frac{\sin(2\pi x)}{2\pi}.
+\]
+Here $\phi_i$ is extended continuously to $x\in i\Z$ (removable singularities); $0\le\phi_i\le1$ on $\R$, and $S_q$ is entire with termwise derivatives (Appendix~\ref{app:analyticity}). For brevity, $S_q$ is denoted by $S$ when $q>1$ is fixed.
+
+\subsubsection{Values and derivatives at integers}
+
+\begin{lemma}[Integer evaluation and first derivative]\label{lem:int-values}
+For every integer $m\ge2$ one has
+\[
+S_q(m)\ =\ \sum_{\substack{d\mid m\\ d\ge 2}} q^{-d},
+\qquad
+S_q'(m)\ =\ 0,
+\]
+and consequently
+\begin{equation}\label{eq:fsharp-at-integers}
+\Fsharp(m,q)\ =\ (q-1)q\!\sum_{\substack{d\mid m\\ 2\le d<m}} q^{-d}\ \ge\ 0,
+\end{equation}
+with equality if and only if $m$ is prime. Moreover, for every integer $m$,
+\[
+\big(q^{-x}\bigl(1+(\log q)\,S_1(x)\bigr)\big)\Big|_{x=m}\ =\ q^{-m},
+\qquad
+\frac{d}{dx}\Big(q^{-x}\bigl(1+(\log q)\,S_1(x)\bigr)\Big)\Big|_{x=m}\ =\ 0.
+\]
+\end{lemma}
+
+
+\begin{proof}
+For $i\mid m$ both numerator and denominator in $\phi_i$ vanish linearly, and $\phi_i(m)=1$ by L’Hospital/Taylor; for $i\nmid m$ the denominator is nonzero and $\phi_i(m)=0$. Thus $S(m)=\sum_{d\mid m,\,d\ge2}q^{-d}$. For the derivative, write $\phi_i=B_i^2$ with the entire function $B_i(z):=\sin(\pi z)/(i\sin(\pi z/i))$ (removable singularities at $z\in i\mathbb Z$), so that $\phi_i'=2B_iB_i'$. If $i\nmid m$, then $B_i(m)=0$ and hence $\phi_i'(m)=0$. If $i\mid m$, write $m=i\ell$; then $B_i(m+\eta)=(-1)^{m-\ell}\sin(\pi\eta)/(i\sin(\pi\eta/i))$ is even in $\eta$, so $B_i'(m)=0$ and again $\phi_i'(m)=0$. (Note that $\phi_i$ itself is in general \emph{not} even about every integer; e.g.\ $\phi_3(1+\eta)\neq\phi_3(1-\eta)$ for small $\eta\neq0$. Only the vanishing of the first derivative is used.) Hence $S'(m)=\sum_{i\ge2}q^{-i}\phi_i'(m)=0$, the termwise differentiation being justified by Appendix~\ref{app:analyticity} (see also Lemma~\ref{lem:uniform-summability}). Since $S_1(n)=0$ and $S_1'(n)=\cos(2\pi n)=1$, and $S_q'(n)=0$ for all integers $n$, the claims for the corrector and \eqref{eq:fsharp-at-integers} follow.
+\end{proof}
+
+\begin{corollary}[Prime anchors]\label{cor:prime-anchors}
+For every prime $p$ one has $\Fsharp(p,q)=0$, and for every composite $m\ge4$ one has $\Fsharp(m,q)>0$.
+\end{corollary}
+
+\subsubsection{Local quadratic expansions at integers}
+
+\begin{lemma}[Second derivatives at integers]\label{lem:second-derivatives}
+Let $m\ge2$ be an integer.
+\begin{enumerate}
+\item If $i\nmid m$, then, for $x=m+\eta$ with $|\eta|$ sufficiently small,
+\[
+\phi_i(x)\ =\ \frac{\pi^2}{i^2\sin^2(\pi m/i)}\,\eta^2+O\big(\eta^3\big),
+\qquad
+\phi_i''(m)\ =\ \frac{2\pi^2}{i^2\sin^2(\pi m/i)}\ >0.
+\]
+\item If $i\mid m$ and $i\ge2$, then, for $x=m+\eta$ with $|\eta|$ sufficiently small,
+\[
+\phi_i(x)\ =\ 1-\frac{\pi^2}{3}\!\left(1-\frac1{i^2}\right)\eta^2+O\big(\eta^4\big),
+\qquad
+\phi_i''(m)\ =\ -\frac{2\pi^2}{3}\!\left(1-\frac1{i^2}\right)\ <0.
+\]
+\end{enumerate}
+The $O(\,\cdot\,)$ terms are locally uniform in $x$ for each fixed $m$, and after weighting by $q^{-i}$ the resulting series are absolutely and locally uniformly summable. In particular, as $i\to\infty$ with $m$ fixed one has $\sin(\pi m/i)\sim \pi m/i$, hence
+\[
+\phi_i''(m)=\frac{2\pi^2}{i^2\sin^2(\pi m/i)}=\frac{2}{m^2}+O(i^{-2}),
+\]
+and therefore $\sum_{i\ge2} q^{-i}\phi_i''(m)$ converges absolutely and locally uniformly.
+\end{lemma}
+
+\begin{proof}
+Write $\phi_i(x)=\dfrac{\sin^2(\pi x)}{i^2\sin^2(\pi x/i)}$. 
+
+(i) If $i\nmid m$, then $\sin(\pi m/i)\neq 0$; set $x=m+\eta$ and expand numerator and denominator around $\eta=0$:
+\[
+\sin(\pi x)=\sin(\pi m+\pi\eta)=(-1)^m\sin(\pi\eta)=\pi\eta-\tfrac{\pi^3}{6}\eta^3+O(\eta^5),
+\]
+\[
+\sin\!\Big(\frac{\pi x}{i}\Big)=\sin\!\Big(\frac{\pi m}{i}+\frac{\pi\eta}{i}\Big)
+=\sin\!\Big(\frac{\pi m}{i}\Big)\cos\!\Big(\frac{\pi\eta}{i}\Big)
++\cos\!\Big(\frac{\pi m}{i}\Big)\sin\!\Big(\frac{\pi\eta}{i}\Big).
+\]
+Using $\cos(\tfrac{\pi\eta}{i})=1-\tfrac{\pi^2\eta^2}{2i^2}+O(\eta^4)$ and $\sin(\tfrac{\pi\eta}{i})=\tfrac{\pi\eta}{i}+O(\eta^3)$ gives
+\[
+\sin\!\Big(\frac{\pi x}{i}\Big)=\sin\!\Big(\frac{\pi m}{i}\Big)+\frac{\pi\eta}{i}\cos\!\Big(\frac{\pi m}{i}\Big)+O(\eta^2).
+\]
+A direct expansion of $\phi_i(x)$ to order $\eta^2$ yields the stated quadratic term with coefficient $\frac{\pi^2}{i^2\sin^2(\pi m/i)}$ and $\phi_i''(m)=\frac{2\pi^2}{i^2\sin^2(\pi m/i)}$.
+
+(ii) If $i\mid m$, write $m=i\ell$ and $x=m+\eta$. Then
+\[
+\sin(\pi x)=\pi\eta-\tfrac{\pi^3}{6}\eta^3+O(\eta^5),\qquad
+\sin\!\Big(\frac{\pi x}{i}\Big)=\sin\!\Big(\pi\ell+\frac{\pi\eta}{i}\Big)=(-1)^\ell\sin\!\Big(\frac{\pi\eta}{i}\Big)=\frac{\pi\eta}{i}-\frac{\pi^3\eta^3}{6i^3}+O\!\Big(\frac{\eta^5}{i^5}\Big).
+\]
+Hence
+\[
+\phi_i(x)=\frac{\big(\pi\eta-\tfrac{\pi^3}{6}\eta^3+O(\eta^5)\big)^2}{i^2\big(\tfrac{\pi\eta}{i}-\tfrac{\pi^3\eta^3}{6i^3}+O(\eta^5/i^5)\big)^2}
+=\frac{\pi^2\eta^2\big(1-\tfrac{\pi^2}{3}\eta^2+O(\eta^4)\big)}{\pi^2\eta^2\big(1-\tfrac{\pi^2}{3i^2}\eta^2+O(\eta^4/i^2)\big)}
+=1-\frac{\pi^2}{3}\Big(1-\frac{1}{i^2}\Big)\eta^2+O(\eta^4),
+\]
+which implies the claimed second derivative at $x=m$. Uniformity on compact $\eta$-ranges follows from the displayed expansions.
+\end{proof}
+
+
+\begin{lemma}[Local uniform summability of derivatives up to order $3$]\label{lem:uniform-summability}
+Fix $m\in\mathbb N$ and $\varepsilon\in(0,\tfrac12)$. There exists $C=C(m,\varepsilon)>0$ such that for all $x$ with $|x-m|\le \varepsilon$, all $i\ge 2$, and all integers $0\le k\le 3$,
+\[
+|\phi_i^{(k)}(x)|\ \le\
+\begin{cases}
+\displaystyle \frac{C}{\sin^2(\pi m/i)}\,\frac{1}{i^{2}}, & i\nmid m,\\[1.2ex]
+\displaystyle C, & i\mid m.
+\end{cases}
+\]
+Consequently, for every fixed $q>1$ and each $0\le k\le 3$ the series $\sum_{i\ge2} q^{-i}\phi_i^{(k)}(x)$ converges absolutely and uniformly on $|x-m|\le \varepsilon$, and $x\mapsto \sum_{i\ge2} q^{-i}\phi_i^{(k)}(x)$ is continuous (indeed real-analytic).
+\end{lemma}
+\begin{proof}
+Write $\phi_i(x)=i^{-2}\bigl(\sin(\pi x)/\sin(\pi x/i)\bigr)^2$. On $|x-m|\le \varepsilon$ and $i\nmid m$, the denominator stays bounded away from $0$ by $\sin(\pi m/i)$, and the map $x\mapsto \sin(\pi x/i)$ has derivatives of order $k$ bounded by $O(i^{-k})$. Repeated differentiation shows that for $k\le 3$ the contribution of the numerator/denominator and their derivatives yields the stated bound $\ll i^{-2}/\sin^2(\pi m/i)$. For $i\mid m$ a direct Taylor expansion at $x=m$ gives $\phi_i(x)=1+O\big((x-m)^2\big)$ and the derivatives up to order $3$ remain $O(1)$ uniformly on $|x-m|\le \varepsilon$. Multiplying by $q^{-i}$ and summing over $i$ gives absolute and uniform convergence by comparison with $\sum q^{-i}$. (For the convergence statement alone the cruder global bound $|\phi_i^{(k)}(x)|\le(2\pi)^k$ of Lemma~\ref{lem:global-derivative-bound} already suffices, since $\sum_{i\ge2}q^{-i}<\infty$.)
+\end{proof}
+
+\subsubsection{Positivity between the integers}
+Throughout this subsection $q>1$ is fixed and $\lambda:=\log q$. For $x\in\R\setminus\Z$ write $x=n+y$ with $n=\lfloor x\rfloor$ and $y\in(0,1)$. Further $H_J:=\sum_{m=1}^{J}1/m$ and $\zeta(2,J):=\sum_{m\ge J}m^{-2}$. Multiplication by $q^{x}/((q-1)q)>0$ gives
+\begin{equation}\label{eq:fsharp-scaled}
+\frac{q^{x}\,\Fsharp(x,q)}{(q-1)q}\;=\;\sum_{i\ge2}q^{x-i}\,\phi_i(x)\;-\;1\;-\;\lambda S_1(x).
+\end{equation}
+
+\begin{lemma}[Filter minorant]\label{lem:filter-minorant}
+For $x\in\R\setminus\Z$ one has $\phi_2(x)\ge\tfrac14\sin^2(\pi x)$ and, for every $i\ge2$,
+\[
+\phi_i(x)\ \ge\ \frac{\sin^2(\pi x)}{\pi^2(x-i)^2}\;=\;\operatorname{sinc}^2(x-i).
+\]
+\end{lemma}
+\begin{proof}
+Since $x\notin\Z$, also $x/i\notin\Z$, so $\sin(\pi x/i)\neq0$ and $\phi_i(x)=\sin^2(\pi x)/(i^2\sin^2(\pi x/i))$. The first bound follows from $\sin^2(\pi x/2)\le1$. For every $i\ge2$ one has $x\neq i$ and $|\sin(\pi x/i)|=|\sin(\pi(x-i)/i)|\le\pi|x-i|/i$.
+\end{proof}
+
+\begin{lemma}[Sampling identities]\label{lem:sampling-identities}
+For $y\in(0,1)$,
+\[
+\frac{\pi^2}{\sin^2(\pi y)}=\sum_{k\in\Z}\frac{1}{(k+y)^2},\qquad
+\pi\cot(\pi y)=\frac1y+\sum_{j\ge1}\frac{2y}{y^2-j^2},
+\]
+both series converging absolutely. Consequently, for $x=n+y$,
+\[
+1+\lambda S_1(x)\;=\;\frac{\sin^2(\pi y)}{\pi^2}\Bigl(\sum_{k\in\Z}\frac{1}{(k+y)^2}+\lambda\,\pi\cot(\pi y)\Bigr).
+\]
+\end{lemma}
+\begin{proof}
+The two expansions are the classical partial-fraction expansions of $\csc^2$ and $\cot$ (see, e.g., \cite{ahlfors1979}). Since $S_1$ is $1$-periodic, $S_1(x)=\sin(\pi y)\cos(\pi y)/\pi=\frac{\sin^2(\pi y)}{\pi^2}\,\pi\cot(\pi y)$.
+\end{proof}
+
+\begin{lemma}[Explicit minorant]\label{lem:beta-minorant}
+Let $n\ge3$, $y\in(0,1)$ and $x=n+y$. Then
+\[
+\frac{q^{x}\,\Fsharp(x,q)}{(q-1)q}\ \ge\ \frac{\sin^2(\pi y)}{\pi^2}\,\beta_n(y,\lambda),
+\]
+where
+\[
+\beta_n(y,\lambda):=\frac{\pi^2}{4}\,e^{\lambda(n-2+y)}+\sum_{k\le n-3}\frac{e^{\lambda(k+y)}}{(k+y)^2}-\sum_{k\in\Z}\frac{1}{(k+y)^2}-\lambda\,\pi\cot(\pi y).
+\]
+Moreover $\beta_{n+1}(y,\lambda)-\beta_n(y,\lambda)=\frac{\pi^2}{4}e^{\lambda(n-2+y)}(e^{\lambda}-1)+\frac{e^{\lambda(n-2+y)}}{(n-2+y)^2}>0$.
+\end{lemma}
+\begin{proof}
+All weights $q^{x-i}$ in \eqref{eq:fsharp-scaled} are positive, so Lemma~\ref{lem:filter-minorant} may be applied termwise; with $\sin^2(\pi x)=\sin^2(\pi y)$,
+\[
+\sum_{i\ge2}q^{x-i}\phi_i(x)\ \ge\ \frac{\sin^2(\pi y)}{\pi^2}\Bigl(\frac{\pi^2}{4}\,q^{x-2}+\sum_{i\ge3}\frac{q^{x-i}}{(x-i)^2}\Bigr).
+\]
+With $k:=n-i$ one has $x-i=k+y$ and $q^{x-i}=e^{\lambda(k+y)}$; the indices $i\ge3$ correspond to $k\le n-3$, and the series converges since $e^{\lambda(k+y)}\to0$ as $k\to-\infty$. Subtracting $1+\lambda S_1(x)$ in the form of Lemma~\ref{lem:sampling-identities} gives the minorant. The difference $\beta_{n+1}-\beta_n$ consists of the change of the first term and of the additional summand $k=n-2$.
+\end{proof}
+
+\begin{lemma}[Reserve]\label{lem:beta3-reserve}
+For all $y\in(0,1)$ and $\lambda>0$ one has $\beta_3(y,\lambda)>\tfrac25$.
+\end{lemma}
+\begin{proof}
+\emph{Regrouping.} Split $\sum_{k\le0}$ into $k=0$ and $k=-j$ with $j\ge1$, write $\sum_{k\in\Z}(k+y)^{-2}=y^{-2}+\sum_{j\ge1}\bigl((j-y)^{-2}+(j+y)^{-2}\bigr)$, and insert the cotangent expansion. All series converge absolutely, hence
+\[
+\beta_3(y,\lambda)=\frac{\pi^2}{4}e^{\lambda(1+y)}+E_0+\sum_{j\ge1}R_j,
+\qquad
+E_0:=\frac{e^{\lambda y}-1-\lambda y}{y^2}\ \ge\ 0,
+\]
+\[
+R_j:=\frac{e^{-\lambda(j-y)}-1}{(j-y)^2}-\frac{1}{(j+y)^2}+\frac{2\lambda y}{j^2-y^2}.
+\]
+\emph{Two bounds for $R_j$.} From $1-e^{-u}\le u$ for $u\ge0$ one gets $(e^{-\lambda(j-y)}-1)/(j-y)^2\ge-\lambda/(j-y)$, and since $-\frac{\lambda}{j-y}+\frac{2\lambda y}{j^2-y^2}=-\frac{\lambda}{j+y}$,
+\[
+R_j\ \ge\ -\frac{\lambda}{j+y}-\frac{1}{(j+y)^2}\ \ge\ -\frac{\lambda}{j}-\frac{1}{(j+y)^2}.
+\]
+From $e^{-\lambda(j-y)}\ge0$ and $2\lambda y/(j^2-y^2)>0$ one also gets $R_j\ge-(j-y)^{-2}-(j+y)^{-2}$.
+
+\emph{A one-parameter bound.} Fix an integer $J\ge1$ and use the first bound for $j\le J$ and the second for $j>J$. Since $\sum_{j\ge1}(j+y)^{-2}<\pi^2/6$, $\sum_{j>J}(j-y)^{-2}<\sum_{j>J}(j-1)^{-2}=\zeta(2,J)$, $e^{\lambda(1+y)}\ge e^{\lambda}$ and $E_0\ge0$,
+\[
+\beta_3(y,\lambda)\ \ge\ L_J(\lambda):=\frac{\pi^2}{4}e^{\lambda}-\lambda H_J-\frac{\pi^2}{6}-\zeta(2,J).
+\]
+\emph{Case $\lambda\ge0.35$.} Take $J=2$. Then $\zeta(2,2)=\pi^2/6-1$ and $L_2(\lambda)=\frac{\pi^2}{4}e^{\lambda}-\frac32\lambda-\frac{\pi^2}{3}+1$. Since $L_2'(\lambda)=\frac{\pi^2}{4}e^{\lambda}-\frac32>0$, one has $L_2(\lambda)\ge L_2(0.35)=0.6865\ldots>\tfrac25$.
+
+\emph{Case $0<\lambda<0.35$.} Take $J=\lceil1/\lambda\rceil\ge3$. By $H_J\le1+\log J$, $J<1/\lambda+1$ and $\log(1+\lambda)\le\lambda$ one has $\lambda H_J\le\lambda+\lambda^2+\lambda\log(1/\lambda)$. By convexity of $t\mapsto t^{-2}$, $\zeta(2,J)<\int_{J-1/2}^{\infty}t^{-2}\,dt=\frac{1}{J-1/2}\le\frac{2\lambda}{2-\lambda}<1.22\,\lambda$. With $e^{\lambda}\ge1+\lambda$,
+\[
+L_J(\lambda)\ \ge\ \frac{\pi^2}{12}+\lambda\Bigl(\frac{\pi^2}{4}-2.22\Bigr)-\lambda^2-\lambda\log\frac1\lambda
+\ \ge\ \frac{\pi^2}{12}-0.0385-\frac1e\ =\ 0.4160\ldots\ >\ \tfrac25,
+\]
+because $\frac{\pi^2}{4}-2.22>0.24$ and $\lambda<0.35$ give $\lambda(\frac{\pi^2}{4}-2.22)-\lambda^2>-\lambda(\lambda-0.24)>-0.0385$, and $\lambda\log(1/\lambda)\le 1/e$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:no-companions}]
+Let $x>3$, $x\notin\Z$, and $n=\lfloor x\rfloor\ge3$, $y=x-n$. By Lemma~\ref{lem:beta-minorant}, the monotonicity of $\beta_n$ in $n$, and Lemma~\ref{lem:beta3-reserve},
+\[
+\frac{q^{x}\,\Fsharp(x,q)}{(q-1)q}\ \ge\ \frac{\sin^2(\pi y)}{\pi^2}\,\beta_n(y,\lambda)\ \ge\ \frac{\sin^2(\pi y)}{\pi^2}\,\beta_3(y,\lambda)\ >\ \frac{2}{5\pi^2}\,\sin^2(\pi x).
+\qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:real-zero-structure}]
+(1) is Corollary~\ref{cor:prime-anchors}. (2) By Theorem~\ref{thm:no-companions} there are no zeros in $(3,\infty)\setminus\Z$, and by (1) the integer zeros in $[3,\infty)$ are the primes. Let $p\ge3$ be prime. By Lemma~\ref{lem:int-values} and Proposition~\ref{prop:local-nonneg}, $\Fsharp(p,q)=\partial_x\Fsharp(p,q)=0$ and $\partial_x^2\Fsharp(p,q)=2(q-1)q\,K^\sharp(q,p)$. Since $\Fsharp(\cdot,q)$ is entire (Appendix~\ref{app:analyticity}), Taylor's formula gives $\Fsharp(p+y,q)=\tfrac12\partial_x^2\Fsharp(p,q)\,y^2+O(y^3)$. Theorem~\ref{thm:no-companions} applies on $(p,p+1)$ since $p\ge3$; dividing by $y^2$ gives
+\[
+\frac{\partial_x^2\Fsharp(p,q)}{2}=\lim_{y\downarrow0}\frac{\Fsharp(p+y,q)}{y^2}\ \ge\ \lim_{y\downarrow0}\frac{2}{5\pi^2}(q-1)q\,q^{-p-y}\,\frac{\sin^2(\pi y)}{y^2}=\frac25(q-1)q\,q^{-p},
+\]
+so the zero at $p$ has multiplicity exactly two. (3) One has $S_q(1)=0$ and $S_1(1)=0$, hence $\Fsharp(1,q)=-(q-1)q\,q^{-1}=-(q-1)$. By (1) and Lemma~\ref{lem:int-values}, $\Fsharp(2,q)=\partial_x\Fsharp(2,q)=0$, and as in Proposition~\ref{prop:local-nonneg}, $\partial_x^2\Fsharp(2,q)=2(q-1)q\,K^\sharp(q,2)$. If $K^\sharp(q,2)>0$, then $\Fsharp>0$ on $(2-\varepsilon,2)$ for small $\varepsilon>0$, and the intermediate value theorem gives a zero in $(1,2)$. If $K^\sharp(q,2)<0$, then $\Fsharp<0$ on $(2,2+\varepsilon)$, while $\Fsharp>0$ on $(3-\varepsilon',3)$ by (2) applied to $p=3$; hence there is a zero in $(2,3)$.
+\end{proof}
+
+\begin{remark}[Scope of real-zero results and relation to $\mathfrak F$]\label{rem:scope-f-vs-fsharp}
+The real-zero structure on $[3,\infty)$ is established here for the tangent-matched indicator $\Fsharp(\cdot,q)$. For the original indicator $\mathfrak F(\cdot,q)$ it fails: $\mathfrak F$ has a companion zero in every prime window $(p-1,p)$ with $p\ge5$ (Theorem~\ref{thm:existence-left-companion}), which is unique under the conditions of Theorem~\ref{thm:uniq-companion-F}. The difference is the tangent mismatch $\mathfrak F'(p,q)=(q-1)q\,(\log q)\,q^{-p}>0$ (Lemma~\ref{lem:derivative-at-prime}).
+\end{remark}
+
+\section{Alternating and Negative Parameter Regimes}\label{app:q-negative}
+\noindent\textit{Supports:} Proposition~\ref{prop:qminus1-entire-sym}, Proposition~\ref{prop:qminus1-dirichlet}, and Proposition~\ref{prop:qlessminus1-dirichlet}.
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:qminus1-entire-sym}]
+For $0<r<1$ set
+\[
+\mathfrak S_r(z)=2\sum_{i\ge2}(-r)^i\,\frac{F(z,i)}{i^2},\qquad
+\mathfrak F_r(z)=\mathfrak S_r(z)-2\,e^{-\,\ii\pi z}.
+\]
+Let $\phi_\infty(z):=(\sin(\pi z)/(\pi z))^2$ with $\phi_\infty(0)=1$. On compact $z$-sets,
+\[
+\frac{F(z,i)}{i^2}-\phi_\infty(z)=O(i^{-2})\qquad(i\to\infty),
+\]
+since $\sin(\pi z/i)=(\pi z/i)+O(i^{-3})$ uniformly in $z$, hence
+\[
+\frac{F(z,i)}{i^2}=\left(\frac{\sin(\pi z)}{\pi z}\right)^2+O(i^{-2})=\phi_\infty(z)+O(i^{-2}).
+\]
+Therefore,
+\[
+2\sum_{i\ge2}(-r)^i\Big(\frac{F(z,i)}{i^2}-\phi_\infty(z)\Big)
+\]
+converges absolutely and locally uniformly up to $r\uparrow 1$ by comparison with $\sum i^{-2}$. Moreover,
+\[
+2\sum_{i\ge2}(-r)^i\,\phi_\infty(z)=2\,\phi_\infty(z)\,\frac{r^2}{1+r}\ \xrightarrow{\,r\uparrow1\,}\ \phi_\infty(z).
+\]
+Thus the Abel limits exist locally uniformly and
+\[
+\mathfrak S(z,-1)=\sum_{i\ge2}(-1)^i\Big(\frac{F(z,i)}{i^2}-\phi_\infty(z)\Big)+\phi_\infty(z),
+\]
+is entire; hence so is
+\[
+\mathfrak F(z,-1)=\mathfrak S(z,-1)-2e^{-\,\ii\pi z}.
+\]
+The conjugation symmetry follows from $F(-z,i)=F(z,i)$ and real weights $(-1)^i$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:qminus1-dirichlet}]
+Specialise the Polylog--Zeta factorisations to $q=-1$. Since $(q-1)q=2$ and $\operatorname{Li}_s(-1)=\sum_{i\ge1}(-1)^i/i^s=-\eta(s)$, the identities follow by Abel summation (the manipulations are justified on $\Re s>1$).
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:qlessminus1-dirichlet}]
+Write $q=-Q$ with $Q>1$. For $\Re s>1$,
+\[
+\sum_{n\ge1}\frac{\mathfrak S(n,-Q)}{n^s}
+=\sum_{n\ge1}\frac{1}{n^s}\sum_{i\ge2}\frac{(q-1)q}{i^2}q^{-i}F(n,i)
+=(q-1)q\Big(\sum_{i\ge2}\frac{q^{-i}}{i^s}\Big)\Big(\sum_{n\ge1}\frac{1}{n^s}\Big),
+\]
+where absolute convergence allows Fubini and the Fejér filter identity $F(n,i)/i^2=\mathbf 1_{i\mid n}$ has been used. With $q=-Q$ and $(q-1)q=Q(Q+1)$,
+\[
+\sum_{i\ge2}\frac{q^{-i}}{i^s}
+=\sum_{i\ge2}\frac{(-1)^i Q^{-i}}{i^s}
+=\operatorname{Li}_s(-1/Q)-(-1)Q^{-1}
+=-\eta_Q(s)+Q^{-1}.
+\]
+The analytic correction term $(q-1)q\,q^{-n}$ contributes on the Dirichlet side $(q-1)q\sum_{n\ge2}q^{-n}n^{-s}=(q-1)q\bigl(\operatorname{Li}_s(-1/Q)+Q^{-1}\bigr)$, i.e.\ the same companion factor. Therefore
+\[
+\sum_{n\ge2}\frac{\mathfrak F(n,-Q)}{n^s}
+=(q-1)q\,(\zeta(s)-1)\,\bigl(\operatorname{Li}_s(-1/Q)+Q^{-1}\bigr)
+=Q(Q+1)\,(\zeta(s)-1)\,\bigl(Q^{-1}-\eta_Q(s)\bigr),
+\]
+which is the claimed factorisation. Absolute convergence on $\Re s>1$ justifies all rearrangements.
+\end{proof}
+
+\paragraph{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this work the author used OpenAI's GPT-5 in order to improve the clarity, style, and overall readability of the manuscript. After using this tool/service, the author reviewed and edited the content as needed and take full responsibility for the content of the published article.
+
+% --- Bibliography placeholder ---
