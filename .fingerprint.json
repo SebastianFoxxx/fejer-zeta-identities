@@ -1,5 +1,5 @@
 {
- "pages": 61,
+ "pages": 62,
  "labels": {
   "prop:fejer-closed": "2.2",
   "rem:minimal-type": "2.4",
@@ -98,6 +98,10 @@
   "lem:left-only": "E.10",
   "lem:left-middle": "E.11",
   "thm:uniq-companion-F": "E.12",
+  "sec:new-window": "E.7",
+  "lem:window-B": "E.15",
+  "lem:window-t0": "E.16",
+  "thm:uniq-explicit": "E.17",
   "app:real-zero-fsharp": "F",
   "sec:real-zeros-fsharp": "F.1",
   "rem:scope-fsharp": "F.1",
@@ -116,12 +120,23 @@
   "rem:scope-f-vs-fsharp": "F.11",
   "app:q-negative": "G"
  },
- "n_labels": 114,
- "bibcite": 22,
+ "n_labels": 118,
+ "bibcite": 21,
  "undef": 0,
  "missing": [],
  "errors": [],
  "sources": [
-  "paper/fejer_kernel_lift.tex"
+  "paper/fejer_kernel_lift.tex",
+  "paper/parts/00_frontmatter.tex",
+  "paper/parts/01_introduction.tex",
+  "paper/parts/02_the_core_mechanism_a_regularized_divis.tex",
+  "paper/parts/03_the_general_fej_er_dirichlet_lift_fd_l.tex",
+  "paper/parts/04_application_i_constructing_an_entire_i.tex",
+  "paper/parts/05_application_ii_polylogzeta_factorizati.tex",
+  "paper/parts/06_extended_regimes_alternating_and_negat.tex",
+  "paper/parts/07_discussion_and_future_work.tex",
+  "paper/parts/08_code_and_data_availability.tex",
+  "paper/parts/09_appendix.tex",
+  "paper/parts/99_bibliography.tex"
  ]
 }
