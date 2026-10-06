@@ -51,13 +51,13 @@ The core results of this paper establish the Fejér–Dirichlet Lift as a versat
 
     \item \textbf{Real Zeros of $\Fsharp$ Exactly at the Primes:} For the tangent-matched indicator $\Fsharp(x,q)$ and every $q>1$, one has $\Fsharp(x,q)\ge\frac{2}{5\pi^2}(q-1)q\,q^{-x}\sin^2(\pi x)>0$ for all non-integers $x>3$. Consequently, the real zeros of $\Fsharp(\cdot,q)$ in $[3,\infty)$ are exactly the primes, each of multiplicity exactly two. Below $x=3$ this fails: whenever the curvature term $K^\sharp(q,2)$ is nonzero, an additional real zero lies in $(1,2)$ or in $(2,3)$, according to its sign. See Theorems~\ref{thm:no-companions} and \ref{thm:real-zero-structure} (Sec.~\ref{sec:no-companions-Fsharp}).
 
-    \item \textbf{Quantifying Companion Zeros for the Original Indicator $\F$:} In contrast, the original indicator $\F(\cdot,q)$ exhibits a unique (under explicit hypotheses) "companion" zero $x_p(q)$ in the interval $(p-1,p)$. A specific asymptotic behavior for its displacement is derived, decaying exponentially like $q^{-p}$:
+    \item \textbf{Quantifying Companion Zeros for the Original Indicator $\F$:} In contrast, the original indicator $\F(\cdot,q)$ has a ``companion'' zero $x_p(q)$ in every window $(p-1,p)$, $p\ge5$ prime. Its displacement from $p$ decays exponentially like $q^{-p}$, with an explicit relative error for all $p\ge p_1(q)$:
     \[
     p-x_p(q)=\frac{\log q}{K(q,p)}\,q^{-p}\bigl(1+O(q^{-p})\bigr),
     \quad
     K(q,p)=\tfrac12\Big(S_q''(p)-(\log q)^2\,q^{-p}\Big).
     \]
-    See Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, and Appendix~\ref{app:real-zero-original}.
+    See Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, and Appendix~\ref{app:real-zero-original}. Uniqueness of the zero in the window is proved for all $p\ge p_0(q)$ (Theorem~\ref{thm:uniq-explicit}); for the full range $q>1$, $p\ge5$ it is supported by a computer-assisted certificate (status paragraph after Conjecture~\ref{conj:uniqueness-companion}).
 
     \item \textbf{A Polylog–$\zeta$ Factorization Identity:} The framework yields a new spectral identity. The Dirichlet series of the constructed prime indicators is shown to factorize into a product involving the Riemann zeta function $\zeta(s)$ and the polylogarithm $\operatorname{Li}_s(1/q)$.
     See Theorem~\ref{thm:polylog-zeta} (Sec.~\ref{sec:application-key-results}).

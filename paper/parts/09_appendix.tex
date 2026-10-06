@@ -51,7 +51,7 @@ For every \(q>1\): \(\Fsharp(x,q)\ge\frac{2}{5\pi^2}(q-1)q\,q^{-x}\sin^2(\pi x)>
 (Proof in Appendix~\ref{app:real-zero-fsharp}.)
 
 \paragraph{Companion zeros (original indicator).}
-For each odd prime \(p\ge5\) there exists a zero \(x_p(q)\in(p-1,p)\) (unique under the conditions of Theorem~\ref{thm:uniq-companion-F}; conjecturally always) with displacement
+For each odd prime \(p\ge5\) there exists a zero \(x_p(q)\in(p-1,p)\) (the largest one is meant; unique under the conditions of Theorem~\ref{thm:uniq-companion-F}, unique for all $p\ge p_0(q)$ by Theorem~\ref{thm:uniq-explicit}, and supported for all $q>1$, $p\ge5$ by a computer-assisted certificate, Section~\ref{sec:new-window}) with displacement
 \[
 \Delta_p(q):=p-x_p(q)\;=\;\frac{\log q}{K(q,p)}\,q^{-p}\,\bigl(1+O(q^{-p})\bigr),
 \]
@@ -294,7 +294,7 @@ whence $\phi_i'(n)=0$ for all integers $n$. This local structure, rather than a 
 \bigskip
 
 \section{Real-zero window analysis I (Original Indicator)}\label{app:real-zero-original}
-\noindent\textit{Supports:} Lemma~\ref{lem:derivative-at-prime}, Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, Lemma~\ref{lem:K-bounds}, and Corollary~\ref{cor:disp-bounds}.
+\noindent\textit{Supports:} Lemma~\ref{lem:derivative-at-prime}, Theorem~\ref{thm:existence-left-companion}, Proposition~\ref{prop:disp-asymp}, Lemma~\ref{lem:K-bounds}, and Corollary~\ref{cor:disp-bounds}; Section~\ref{sec:new-window} adds Lemmas~\ref{lem:window-B} and \ref{lem:window-t0} and Theorem~\ref{thm:uniq-explicit}.
 
 \paragraph{Transition (back to the original indicator $\mathfrak F$).}
 The next two subsections pertain to the original indicator $\mathfrak F(\cdot,q)$ without the periodic normalizer. 
@@ -423,33 +423,31 @@ using $|j|/i<1$ and $\sum_{|j|<i}(i-|j|)=i^2$.
 
 
 \begin{proof}[Proof of Proposition~\ref{prop:disp-asymp}]
-Set $S_q(x):=\sum_{i\ge2}q^{-i}\phi_i(x)$ and $H(\varepsilon):=S_q(p+\varepsilon)-q^{-(p+\varepsilon)}$. Lemma~\ref{lem:int-values} gives $S_q(p)=q^{-p}$ and $S_q'(p)=0$. By Lemma~\ref{lem:uniform-summability} (with $k\le 3$), the series for $S_q^{(k)}$ converge uniformly on a neighbourhood of $p$, so $S_q$ is $C^3$ there and Taylor’s theorem with remainder applies:
+Put $H(\varepsilon):=S_q(p+\varepsilon)-q^{-(p+\varepsilon)}$ for $\varepsilon\in[-1,0]$, so that $\mathfrak F(p+\varepsilon,q)=(q-1)q\,H(\varepsilon)$. The zero set $Z_p$ of $\mathfrak F(\cdot,q)$ in $(p-1,p)$ is non-empty (Theorem~\ref{thm:existence-left-companion}) and closed in $(p-1,p)$, and $\mathfrak F<0$ on some interval $(p-\varepsilon_0,p)$ (Lemma~\ref{lem:derivative-at-prime}); hence $x_p(q)=\max Z_p<p$ exists. Lemma~\ref{lem:int-values} gives $S_q(p)=q^{-p}$ and $S_q'(p)=0$, so $H(0)=0$ and
 \[
-H(\varepsilon)=a\,\varepsilon+b\,\varepsilon^2+R_3(\varepsilon),
+H'(0)=a:=(\log q)\,q^{-p},\qquad \tfrac12H''(0)=b:=K(q,p)\ \ge\ c_1(q)>0,
 \]
-with
+the last inequality by Lemma~\ref{lem:K-bounds}. By Lemma~\ref{lem:global-derivative-bound}, $|S_q'''|\le(2\pi)^3\sum_{i\ge2}q^{-i}=(2\pi)^3/(q(q-1))$, and $\bigl|\tfrac{d^3}{d\varepsilon^3}q^{-(p+\varepsilon)}\bigr|\le(\log q)^3q^{-(p-1)}\le(\log q)^3q^{-4}$ on $[-1,0]$. Hence $|H'''|\le L_q$ there, and Taylor's theorem gives
+\begin{equation}\tag{$\ast$}\label{eq:disp-taylor}
+\bigl|H(\varepsilon)-a\varepsilon-b\varepsilon^2\bigr|\ \le\ \tfrac16\,L_q\,|\varepsilon|^3\qquad(-1\le\varepsilon\le0).
+\end{equation}
+Put $\varrho:=a/b$ and $\kappa:=L_q\,a/(6b^2)$. Since $b\ge c_1(q)$, the choice of $p_1(q)$ gives, for $p\ge p_1(q)$,
 \[
-a=(\log q)\,q^{-p},\qquad b=\tfrac12\Big(S_q''(p)-(\log q)^2\,q^{-p}\Big)=K(q,p),
+\kappa\ \le\ \kappa_p:=\frac{L_q\log q\;q^{-p}}{6\,c_1(q)^2}\ \le\ \frac15,\qquad (1+2\kappa)\,\varrho\ \le\ \frac{1.4\,\log q\;q^{-p}}{c_1(q)}\ <\ 1 .
 \]
-and $|R_3(\varepsilon)|\le C(q)\,|\varepsilon|^3$ for $|\varepsilon|\le\varepsilon_0(q)$. Lemma~\ref{lem:K-bounds} shows $b$ is bounded above and below by positive constants depending only on $q>1$.
+\emph{No zero close to $p$.} Let $\varepsilon=-t\varrho$ with $0<t\le1-\kappa$. Then $a\varepsilon+b\varepsilon^2=-(a^2/b)\,t(1-t)$, and $\frac16L_q\varrho^3t^3=(a^2/b)\,\kappa\,t^3$, so \eqref{eq:disp-taylor} yields
+\[
+H(\varepsilon)\ \le\ \frac{a^2}{b}\,t\,\bigl(-(1-t)+\kappa t^2\bigr)\ <\ 0,
+\]
+because $1-t\ge\kappa>\kappa t^2$. Thus $\mathfrak F(\cdot,q)<0$ on $\bigl(p-(1-\kappa)\varrho,\,p\bigr)$, that is, $\Delta_p(q)\ge(1-\kappa)\varrho$.
 
-At $x=p-1$, $\mathfrak F(p-1,q)>0$ (Theorem~\ref{thm:existence-left-companion}); for $0<-\varepsilon\ll1$, $\mathfrak F(p+\varepsilon,q)<0$ by Lemma~\ref{lem:derivative-at-prime}. Hence $Z_p\neq\emptyset$; let $\varepsilon_\star\in(-1,0)$ correspond to its largest element $x_p(q)=p+\varepsilon_\star$. The quadratic approximation $a\varepsilon+b\varepsilon^2=0$ has root $\varepsilon_0=-a/b$, and $|\varepsilon_0|=O(q^{-p})$.
-
-The passage from $\varepsilon_0$ to $\varepsilon_\star$ carries a hypothesis that is worth
-stating, because $\varepsilon_\star$ is defined as the \emph{largest} element of $Z_p$ and not
-as the zero nearest to $\varepsilon_0$: the argument presumes that these two coincide. One half
-of what this requires is unconditional and explicit. By Lemma~\ref{lem:zero-free-window} there
-is no zero in $(p-a/M,p)$, so the largest zero is genuinely displaced,
-$|\varepsilon_\star|\ge a/M\asymp q^{-p}$, with the same order in $p$ as $|\varepsilon_0|$
-(the constant there is smaller than the one below, by a factor that depends only on $q$). The
-matching upper bound $|\varepsilon_\star|=O(q^{-p})$, and with it the relative error stated
-below, continues to rest on a standard perturbation estimate using
-$|R_3(\varepsilon_0)|\le C(q)|\varepsilon_0|^3$, which yields
+\emph{A zero not too far.} Let $\varepsilon_1:=-(1+2\kappa)\varrho\in(-1,0)$. Then $a\varepsilon_1+b\varepsilon_1^2=(a^2/b)\,2\kappa(1+2\kappa)$, and by \eqref{eq:disp-taylor}
 \[
-\varepsilon_\star=\varepsilon_0\Big(1+O(|\varepsilon_0|)\Big)\ =\ -\frac{(\log q)\,q^{-p}}{K(q,p)}\Big(1+O(q^{-p})\Big).
+H(\varepsilon_1)\ \ge\ \frac{a^2}{b}\,\kappa(1+2\kappa)\bigl(2-(1+2\kappa)^2\bigr)\ >\ 0,
 \]
-Therefore $\Delta_p(q)=-\varepsilon_\star=\frac{\log q}{K(q,p)}\,q^{-p}\big(1+O(q^{-p})\big)$, uniformly in $p$, and $x_p(q)=p-\Delta_p(q)\in(p-1,p)$.
-This proves Proposition~\ref{prop:disp-asymp}.
+since $\kappa\le\frac15$ gives $(1+2\kappa)^2\le1.96<2$. As $H<0$ immediately to the left of $0$, the intermediate value theorem yields a zero in $(\varepsilon_1,0)$, hence $\Delta_p(q)<(1+2\kappa)\varrho$.
+
+Together, $(1-\kappa)\varrho\le\Delta_p(q)<(1+2\kappa)\varrho$, so $\Delta_p(q)=\varrho\,(1+\theta_p)$ with $|\theta_p|\le2\kappa\le2\kappa_p=\frac{L_q\log q}{3c_1(q)^2}q^{-p}$ and $\varrho=(\log q)q^{-p}/K(q,p)$. The argument uses only the signs of $H$ on two explicit subintervals and never the uniqueness of the zero.
 \end{proof}
 
 
@@ -562,27 +560,26 @@ Finally $a/M\asymp q^{-p}$, since $M\to8\pi^2$ and $a=(q-1)q(\log q)q^{-p}$ for 
 \begin{center}\emph{The statement of Conjecture~\ref{conj:uniqueness-companion} is presented in the main text.}\end{center}
 
 \begin{remark}[Numerical evidence]
-The companion repository computes $x_p(q)$ from the initial guess of Remark~\ref{rem:newton} followed by Newton steps (script \texttt{plot\_generator.py}, $q\in\{1.5,2,2.5,3\}$, odd primes $p\le101$); this yields the displacements shown in Figure~\ref{fig:companion_displacement}. Uniqueness of the zero in $(p-1,p)$ has not been checked systematically, so Conjecture~\ref{conj:uniqueness-companion} remains open outside the conditions of Theorem~\ref{thm:uniq-companion-F}.
+The companion repository computes $x_p(q)$ from the initial guess of Remark~\ref{rem:newton} followed by Newton steps (script \texttt{plot\_generator.py}, $q\in\{1.5,2,2.5,3\}$, odd primes $p\le101$); this yields the displacements shown in Figure~\ref{fig:companion_displacement}. This script does not test the uniqueness of the zero in $(p-1,p)$; see Theorems~\ref{thm:uniq-companion-F} and \ref{thm:uniq-explicit} and Section~\ref{sec:new-window} for what is proved by hand and what is supported by a computer-assisted certificate.
 \end{remark}
 
 \begin{corollary}[Uniform exponential fall-off]\label{cor:disp-bounds}
 For each fixed $q>1$ and every odd prime $p\ge5$,
 \[
-\frac{\log q}{\,c_2(q)\,}\,q^{-p}\;\le\;\Delta_p(q)\;\le\;\frac{\log q}{\,c_1(q)\,}\,q^{-p},
+C_-(q)\,q^{-p}\ \le\ \Delta_p(q)\ \le\ C_+(q)\,q^{-p},
 \]
-where the positive constants $c_1(q),c_2(q)$ are given explicitly by Lemma~\ref{lem:K-bounds} as any valid lower/upper bounds for $K(q,p)$ that are independent of $p$.
+where
+\[
+C_-(q):=\frac{(q-1)q\log q}{8\pi^2+(q-1)q(\log q)^2q^{-4}},
+\qquad
+C_+(q):=\max\Bigl\{\frac{1.4\,\log q}{c_1(q)},\ q^{\,p_1(q)}\Bigr\},
+\]
+$c_1(q)>0$ is the constant of Lemma~\ref{lem:K-bounds} and $p_1(q)$ the threshold of Proposition~\ref{prop:disp-asymp}.
 \end{corollary}
 
 \begin{proof}
-Proposition~\ref{prop:disp-asymp} gives
-\(
-\Delta_p(q)=\frac{\log q}{K(q,p)}\,q^{-p}\,\bigl(1+O(q^{-p})\bigr).
-\)
-Lemma~\ref{lem:K-bounds} supplies $p$-independent bounds
-\(
-0<c_1(q)\le K(q,p)\le c_2(q)<\infty.
-\)
-Absorb the negligible $O(q^{-p})$-term into the constants by enlarging $c_2(q)$ and shrinking $c_1(q)$ if necessary, which yields the displayed two-sided estimate for all $p\ge5$. The positivity of $c_1(q)$ needed here is proved in Lemma~\ref{lem:K-bounds}. The lower half of the estimate also follows unconditionally from Lemma~\ref{lem:zero-free-window}, with the same order $q^{-p}$ but a smaller explicit constant; the upper half uses Proposition~\ref{prop:disp-asymp}.
+\emph{Lower bound.} Lemma~\ref{lem:zero-free-window} gives $\Delta_p(q)\ge a/M$ with $a=(q-1)q(\log q)q^{-p}$ and $M=8\pi^2+(q-1)q(\log q)^2q^{-(p-1)}\le8\pi^2+(q-1)q(\log q)^2q^{-4}$.
+\emph{Upper bound.} For $p\ge p_1(q)$ the proof of Proposition~\ref{prop:disp-asymp} gives $\Delta_p(q)<(1+2\kappa)\varrho\le1.4\,\varrho\le1.4\,(\log q)q^{-p}/c_1(q)$, because $\kappa\le\frac15$ and $\varrho=(\log q)q^{-p}/K(q,p)$ with $K(q,p)\ge c_1(q)$. For the finitely many $p$ with $5\le p<p_1(q)$ one has $\Delta_p(q)<1\le q^{p_1(q)}q^{-p}$. The positivity of $c_1(q)$ is proved in Lemma~\ref{lem:K-bounds}.
 \end{proof}
 
 \subsection{Window lemmas for the original indicator}\label{sec:window-lemmas}
@@ -666,12 +663,77 @@ By \eqref{cond:C0} the right-hand side is $\ge K(q,p)>0$. Therefore $\mathfrak F
 \end{proof}
 
 \begin{remark}[Non-emptiness of the hypotheses]
-Conditions \eqref{cond:L0} and \eqref{cond:M0} constrain $\alpha$ from opposite sides: \eqref{cond:L0} forces $\alpha\le\frac{2}{\pi}\arccos(1/q)$, while \eqref{cond:M0} forces $\alpha$ to be large. They are simultaneously satisfiable precisely for $q$ above a threshold $q_\star=1.4745\ldots$; for instance an admissible $\alpha$ exists for $q=1.5$ (any $\alpha\in[0.4597,\tfrac12)$) and for $q=2$ (any $\alpha\in[0.2893,\tfrac12)$), whereas for $q=1.1$ or $q=1.3$ no admissible $\alpha$ exists and Theorem~\ref{thm:uniq-companion-F} is vacuous. The threshold is numerical and is not needed elsewhere in the paper.
+Conditions \eqref{cond:L0} and \eqref{cond:M0} constrain $\alpha$ from opposite sides: \eqref{cond:L0} forces $\alpha\le\frac{2}{\pi}\arccos(1/q)$, while \eqref{cond:M0} forces $\alpha$ to be large. They are simultaneously satisfiable precisely for $q$ above a threshold $q_\star=1.4745\ldots$; for instance an admissible $\alpha$ exists for $q=1.5$ (any $\alpha\in[0.4597,\tfrac12)$) and for $q=2$ (any $\alpha\in[0.2893,\tfrac12)$), whereas for $q=1.1$ or $q=1.3$ no admissible $\alpha$ exists and Theorem~\ref{thm:uniq-companion-F} is vacuous. The threshold is numerical and is not needed elsewhere in the paper. Theorem~\ref{thm:uniq-explicit} below dispenses with \eqref{cond:L0}--\eqref{cond:M0}.
 \end{remark}
 
 \begin{remark}[Newton refinement (pointer)]
 For the refinement summary see Remark~\ref{rem:newton} in the main text; implementation details are provided in the companion repository.
 \end{remark}
+
+\subsection{Window inclusions and uniqueness of the companion zero for large \texorpdfstring{$p$}{p}}\label{sec:new-window}
+Throughout this subsection $q>1$ is real, $\lambda:=\log q$, $p\ge5$ is an odd prime, and $h(t):=S_q(p-t)-q^{t-p}$ for $t\in[0,1]$, so that $\mathfrak F(p-t,q)=(q-1)q\,h(t)$ and $h(0)=0$.
+
+\begin{lemma}[Inclusion by the tangent-matched minorant]\label{lem:window-B}
+Let $n\ge4$ be an integer, $t\in(0,1)$ and $x=n-t$. If $t\ge\frac12$ or $\tan(\pi t)>\frac{5\pi}{2}\log q$, then $\mathfrak F(x,q)>0$. Consequently every real zero $x$ of $\mathfrak F(\cdot,q)$ in $(3,\infty)\setminus\Z$ lies in a window $[n-t_B(q),n)$ with $n=\lceil x\rceil\ge4$, where
+\[
+t_B(q):=\frac1\pi\arctan\!\Bigl(\frac{5\pi}{2}\log q\Bigr)<\frac12 .
+\]
+\end{lemma}
+\begin{proof}
+By Definition~\ref{def:periodic-normalizer}, $\mathfrak F(x,q)-\Fsharp(x,q)=(q-1)q\,q^{-x}\lambda\,S_1(x)$, and $S_1(n-t)=-\sin(2\pi t)/(2\pi)=-\sin(\pi t)\cos(\pi t)/\pi$. Since $x>3$ and $x\notin\Z$, Theorem~\ref{thm:no-companions} gives $\Fsharp(x,q)\ge\frac{2}{5\pi^2}(q-1)q\,q^{-x}\sin^2(\pi t)$. Hence
+\[
+\mathfrak F(x,q)\ \ge\ (q-1)q\,q^{-x}\,\sin(\pi t)\Bigl[\frac{2}{5\pi^2}\sin(\pi t)-\frac{\lambda}{\pi}\cos(\pi t)\Bigr].
+\]
+Here $\sin(\pi t)>0$, and the bracket is positive if $\cos(\pi t)\le0$ (that is, $t\ge\frac12$) or if $\tan(\pi t)>\frac{5\pi}{2}\lambda$.
+\end{proof}
+
+\begin{lemma}[Upper bound for all companion zeros]\label{lem:window-t0}
+Assume $q^{p-2}>\pi^2/3+q\lambda$ and put $t_0:=q\lambda/(q^{p-2}-\pi^2/3)\in(0,1)$. Then $\mathfrak F(p-t,q)>0$ for $t_0<t<1$. In particular every zero of $\mathfrak F(\cdot,q)$ in $(p-1,p)$ lies in $[p-t_0,p)$, and $\Delta_p(q)\le t_0$.
+\end{lemma}
+\begin{proof}
+All terms of $S_q$ are non-negative, and $p$ is odd, so $\phi_2(p-t)=\cos^2\!\bigl(\tfrac{\pi(p-t)}2\bigr)=\sin^2\!\bigl(\tfrac{\pi t}2\bigr)\ge t^2$ (Jordan). The filter $\phi_p$ is $p$-periodic and even, so $\phi_p(p-t)=\phi_p(t)$; by the cosine form of Proposition~\ref{prop:fejer-closed},
+\[
+1-\phi_p(t)=\frac4{p^2}\sum_{k=1}^{p-1}(p-k)\sin^2\!\Bigl(\frac{\pi kt}{p}\Bigr)\le\frac{4\pi^2t^2}{p^4}\sum_{k=1}^{p-1}(p-k)k^2=\frac{\pi^2t^2}{3}\Bigl(1-\frac1{p^2}\Bigr)\le\frac{\pi^2t^2}{3},
+\]
+using $\sum_{k=1}^{p-1}(p-k)k^2=p^2(p^2-1)/12$. Finally $q^t-1\le t\lambda q^{t}\le t\,q\lambda$ for $t\in[0,1]$ (mean value theorem). Since $p\ge5$ the indices $2$ and $p$ are distinct, so
+\[
+q^p\,h(t)\ \ge\ q^{p-2}\phi_2(p-t)+\phi_p(t)-q^t\ \ge\ q^{p-2}t^2+1-\frac{\pi^2t^2}3-q^t\ \ge\ t\Bigl[t\Bigl(q^{p-2}-\frac{\pi^2}3\Bigr)-q\lambda\Bigr],
+\]
+which is positive for $t_0<t<1$. The condition $q^{p-2}>\pi^2/3+q\lambda$ is exactly $t_0<1$.
+\end{proof}
+
+\begin{theorem}[Uniqueness of the companion zero for large $p$]\label{thm:uniq-explicit}
+Let $q>1$ be real and $p\ge5$ an odd prime. Put $t_A:=\frac2\pi\arcsin\!\bigl(q^{(3-p)/2}\bigr)$, let $t_B=t_B(q)$ be as in Lemma~\ref{lem:window-B}, let $t_0$ be as in Lemma~\ref{lem:window-t0} if $q^{p-2}>\pi^2/3+q\lambda$ and $t_0:=1$ otherwise, and $t_c:=\min\{t_A,t_B,t_0\}$. If
+\begin{equation}\tag{C}\label{cond:C}
+2\,c_1(q)\ >\ \frac{8\pi^3\,t_c}{q(q-1)}+\lambda^2q^{-p}\bigl(q^{t_c}-1\bigr),
+\end{equation}
+with $c_1(q)$ from Lemma~\ref{lem:K-bounds}, then $\mathfrak F(\cdot,q)$ has exactly one real zero in $(p-1,p)$. Condition \eqref{cond:C} persists when $p$ is increased; hence for every $q>1$ there is a least odd integer $p_0(q)\ge5$ such that the zero is unique for all primes $p\ge p_0(q)$. For example,
+\begin{center}
+\begin{tabular}{@{}l|ccccccccc@{}}
+$q$ & $1.001$ & $1.01$ & $1.1$ & $1.5$ & $2$ & $3$ & $5$ & $20$ & $1000$\\
+\hline
+$p_0(q)$ & $4245$ & $427$ & $47$ & $13$ & $9$ & $7$ & $7$ & $5$ & $5$
+\end{tabular}
+\end{center}
+\end{theorem}
+\begin{proof}
+\emph{Zeros lie in $(0,t_c]$.} Let $t\in(0,1)$ with $h(t)=0$. Lemma~\ref{lem:window-B} (with $n=p$) gives $t\le t_B$; Lemma~\ref{lem:window-t0} gives $t\le t_0$ when its hypothesis holds; and since $h(t)\ge q^{-2}\phi_2(p-t)-q^{t-p}$, a zero forces $\sin^2(\pi t/2)\le q^{2+t-p}\le q^{3-p}$, that is, $t\le t_A$ (note $\pi t/2<\pi/2$).
+
+\emph{Strict convexity on $[0,t_c]$.} Differentiating twice, $h''(t)=S_q''(p-t)-\lambda^2q^{t-p}$. By Lemma~\ref{lem:global-derivative-bound}, $|S_q'''|\le8\pi^3/(q(q-1))$, hence $S_q''(p-t)\ge S_q''(p)-8\pi^3t/(q(q-1))$, while $\lambda^2q^{t-p}=\lambda^2q^{-p}+\lambda^2q^{-p}(q^t-1)$. With $S_q''(p)-\lambda^2q^{-p}=2K(q,p)\ge2c_1(q)$ this gives
+\[
+h''(t)\ \ge\ 2c_1(q)-\frac{8\pi^3t}{q(q-1)}-\lambda^2q^{-p}(q^t-1)\ >\ 0\qquad(0\le t\le t_c)
+\]
+by \eqref{cond:C}, because the subtracted terms increase with $t$.
+
+\emph{Conclusion.} If $h$ had two zeros $0<t_1<t_2\le t_c$, then $h(0)=h(t_1)=h(t_2)=0$ would contradict strict convexity on $[0,t_c]$. So there is at most one zero in $(0,t_c]$, and by the first step at most one in $(0,1)$; Theorem~\ref{thm:existence-left-companion} supplies one.
+
+\emph{Monotonicity in $p$.} $t_A$ and $t_0$ do not increase with $p$ (and the hypothesis of Lemma~\ref{lem:window-t0} persists), so $t_c$ does not increase, and both terms on the right of \eqref{cond:C} decrease; the left side does not depend on $p$.
+\end{proof}
+
+\noindent Theorem~\ref{thm:uniq-explicit} supersedes Theorem~\ref{thm:uniq-companion-F} wherever (L0) and (M0) are unavailable, in particular for $q<q_\star$.
+
+\paragraph{The remaining windows (computer-assisted).}
+For $5\le p<p_0(q)$ Theorem~\ref{thm:uniq-explicit} gives no information, and $p_0(q)$ grows as $q\to1^+$. Uniqueness for all real $q>1$ and all primes $p\ge5$ has been checked by a computer-assisted certificate. It combines the inclusions above with a lower bound for the curvature of $h$ on $[0,t_c]$ that is uniform in $p$, and it was carried out in directed interval arithmetic (\texttt{mpmath.iv}) on a rational subdivision of the range $q\in(1,10^6]$: $49$ boxes for $1<q\le1.0245$, $2587$ cells with $18852$ leaf enclosures for $1.02\le q\le20$, and $1088$ boxes for $20\le q\le10^6$ (where $p=5$ is the extremal case), together with an analytic argument for $q>10^6$. A second implementation, written independently of the first and using the cotangent form of the derivatives, recomputed all cells and enclosures. The result is a computer-assisted proof; its correctness rests on the soundness of the interval-arithmetic library, it has not been formalized, and the certificate data are not reproduced in this paper. For this reason Conjecture~\ref{conj:uniqueness-companion} is kept in its original form in the main text.
 
 \section{Real-zero analysis II (Tangent-matched indicator $\Fsharp$)}\label{app:real-zero-fsharp}
 \noindent\textit{Supports:} Theorem~\ref{thm:no-companions}, Theorem~\ref{thm:real-zero-structure}, and Proposition~\ref{prop:local-nonneg} (via Lemma~\ref{lem:int-values}).
@@ -923,7 +985,7 @@ so the zero at $p$ has multiplicity exactly two. (3) One has $S_q(1)=0$ and $S_1
 \end{proof}
 
 \begin{remark}[Scope of real-zero results and relation to $\mathfrak F$]\label{rem:scope-f-vs-fsharp}
-The real-zero structure on $[3,\infty)$ is established here for the tangent-matched indicator $\Fsharp(\cdot,q)$. For the original indicator $\mathfrak F(\cdot,q)$ it fails: $\mathfrak F$ has a companion zero in every prime window $(p-1,p)$ with $p\ge5$ (Theorem~\ref{thm:existence-left-companion}), which is unique under the conditions of Theorem~\ref{thm:uniq-companion-F}. The difference is the tangent mismatch $\mathfrak F'(p,q)=(q-1)q\,(\log q)\,q^{-p}>0$ (Lemma~\ref{lem:derivative-at-prime}).
+The real-zero structure on $[3,\infty)$ is established here for the tangent-matched indicator $\Fsharp(\cdot,q)$. For the original indicator $\mathfrak F(\cdot,q)$ it fails: $\mathfrak F$ has a companion zero in every prime window $(p-1,p)$ with $p\ge5$ (Theorem~\ref{thm:existence-left-companion}), which is unique under the conditions of Theorem~\ref{thm:uniq-companion-F}, for all $p\ge p_0(q)$ by Theorem~\ref{thm:uniq-explicit}, and (computer-assisted) for all $q>1$, $p\ge5$ (Section~\ref{sec:new-window}). The difference is the tangent mismatch $\mathfrak F'(p,q)=(q-1)q\,(\log q)\,q^{-p}>0$ (Lemma~\ref{lem:derivative-at-prime}).
 \end{remark}
 
 \section{Alternating and Negative Parameter Regimes}\label{app:q-negative}

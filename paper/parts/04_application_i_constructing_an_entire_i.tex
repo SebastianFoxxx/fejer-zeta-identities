@@ -146,15 +146,17 @@ Let $q>1$ and let $p\ge5$ be an odd prime. Then $\mathfrak F(\cdot,q)$ has at le
 \end{theorem}
 
 \begin{proposition}[Asymptotic displacement law]\label{prop:disp-asymp}
-Let $\phi_i(x):=F(x,i)/i^2$ and define
+Let $q>1$, let $p\ge5$ be an odd prime, and let $x_p(q)$ denote the \emph{largest} real zero of $\mathfrak F(\cdot,q)$ in $(p-1,p)$ (it exists by Theorem~\ref{thm:existence-left-companion} and lies strictly to the left of $p$); put $\Delta_p(q):=p-x_p(q)\in(0,1)$. Let $\phi_i(x):=F(x,i)/i^2$ and define
 \[
 K(q,p)\;:=\;\frac{1}{2}\left(\sum_{i\ge2} q^{-i}\,\phi_i''(p)\;-\;q^{-p}(\log q)^2\right).
 \]
-Then for fixed $q>1$ and $p\to\infty$ one has
+Then
 \[
-\Delta_p(q)\;=\;\frac{\log q}{K(q,p)}\,q^{-p}\;\Bigl(1+O\!\big(q^{-p}\big)\Bigr),
+\Delta_p(q)\;=\;\frac{\log q}{K(q,p)}\,q^{-p}\;\bigl(1+\theta_p\bigr),
+\qquad
+|\theta_p|\;\le\;\frac{L_q\,\log q}{3\,c_1(q)^2}\,q^{-p},
 \]
-uniformly in $p$, with implied constants depending only on $q$. In particular, $\Delta_p(q)\asymp q^{-p}$, and $x_p(q)=p-\Delta_p(q)$ lies strictly to the left of $p$.
+for every prime $p\ge p_1(q)$. Here $L_q:=(2\pi)^3/(q(q-1))+(\log q)^3q^{-4}$, $c_1(q)>0$ is the lower bound for $K(q,p)$ of Lemma~\ref{lem:K-bounds}, and $p_1(q)\ge5$ is the least integer for which $L_q\log q\;q^{-p}\le\tfrac65\,c_1(q)^2$ and $1.4\,\log q\;q^{-p}<c_1(q)$ both hold (both inequalities then persist for all larger $p$). In particular $\theta_p=O(q^{-p})$ with an explicit constant, $\Delta_p(q)\asymp q^{-p}$, and $x_p(q)$ lies strictly to the left of $p$. No uniqueness of the zero in $(p-1,p)$ is used or claimed.
 \end{proposition}
 
 \begin{conjecture}[Uniqueness in $(p-1,p)$]\label{conj:uniqueness-companion}
@@ -175,7 +177,10 @@ converge rapidly to the companion zero $x_p(q)$ near $p$ whenever $M$ is moderat
 \end{remark}
 
 \paragraph{Example (q=2, locating $x_p(2)$ near $p=101$).}
-A truncated curvature \(K_M(2,101)\) yields the initial displacement \(\Delta^{(0)}_{101}(2)=\frac{\log 2}{K_M(2,101)}\,2^{-101}\). Starting from \(x^{(0)}=101-\Delta^{(0)}_{101}(2)\), two Newton steps with \(G(x)=\F(x,2)\) converge rapidly to the companion zero \(x_{101}(2)\in(100,101)\).
+A truncated curvature \(K_M(2,101)\) yields the initial displacement \(\Delta^{(0)}_{101}(2)=\frac{\log 2}{K_M(2,101)}\,2^{-101}\). Starting from \(x^{(0)}=101-\Delta^{(0)}_{101}(2)\), two Newton steps with \(G(x)=\F(x,2)\) converge rapidly to the companion zero \(x_{101}(2)\in(100,101)\). Numerically, with the full curvature $K(2,101)=0.9337075\ldots$ in place of $K_M$, one finds $\Delta^{(0)}_{101}(2)=2.92809427484875\ldots\times10^{-31}$, which agrees with the exact displacement to a relative error of $2.1\times10^{-32}$ (the guaranteed bound of Proposition~\ref{prop:disp-asymp} is $1.3\times10^{-29}$); one and two Newton steps reduce the relative error to $4\times10^{-64}$ and $2\times10^{-127}$ (computed with $160$ significant digits).
+
+\paragraph{Status of Conjecture~\ref{conj:uniqueness-companion}.}
+Proposition~\ref{prop:disp-asymp} holds without any uniqueness assumption, because it concerns the largest zero in the window. For uniqueness itself, three things are available (Appendix~\ref{app:real-zero-original}, Section~\ref{sec:new-window}). First, Theorem~\ref{thm:uniq-explicit} proves by hand, for every real $q>1$, that the zero is unique for all primes $p\ge p_0(q)$ with an explicit threshold (for instance $p_0(2)=9$, $p_0(1.5)=13$, $p_0(1.1)=47$); it replaces the hypotheses (L0), (M0) of Theorem~\ref{thm:uniq-companion-F}, which cannot be met for $q\lesssim1.47$. Second, for all real $q>1$ and all primes $p\ge5$ the statement of the conjecture has been verified by a computer-assisted interval-arithmetic certificate, recomputed by a second implementation; its correctness rests on the soundness of the interval-arithmetic library, it is not formalized, and its data are not reproduced here. Third, the conjecture is therefore kept in the form above: it asks for a proof that does not depend on such a certificate.
 
 \subsubsection{Absence of companion zeros for the tangent-matched indicator $\Fsharp$}\label{sec:no-companions-Fsharp}
 For the tangent-matched indicator $\Fsharp$ (Definition~\ref{def:periodic-normalizer} below) the companion zeros disappear beyond $x=3$, for every $q>1$. The proof is given in Appendix~\ref{app:real-zero-fsharp}; its mechanism is summarised in Figure~\ref{fig:positivity-mechanism} and Remark~\ref{rem:not-cosmetic}.

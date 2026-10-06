@@ -144,6 +144,12 @@ The FD-Lift framework respects the fundamental algebraic structures of arithmeti
     \frac{F(n,i)}{i^2}\,\frac{F(n,j)}{j^2}=\mathbf{1}_{i\mid n}\,\mathbf{1}_{j\mid n}=\mathbf{1}_{\mathrm{lcm}(i,j)\mid n}=\frac{F(n,\mathrm{lcm}(i,j))}{\mathrm{lcm}(i,j)^2},
     \]
     which highlights compatibility with Dirichlet convolution. No such identity is claimed for non-integer arguments.
+
+    \item \textbf{Stationarity at the integers.} If $\sum_{i\ge1}|a(i)|<\infty$, then $\mathcal T_a'(n)=0$ for every integer $n\ge1$: each $\phi_i$ is stationary at every integer (Lemma~\ref{lem:int-values}), and the differentiated series converges uniformly because $|\phi_i'|\le2\pi$ (Lemma~\ref{lem:global-derivative-bound}). By Lemma~\ref{lem:second-derivatives} the same termwise argument gives, for every integer $n\ge1$,
+    \[
+    \mathcal T_a''(n)\;=\;-\frac{2\pi^2}{3}\sum_{i\mid n}a(i)\Bigl(1-\frac1{i^2}\Bigr)\;+\;2\pi^2\sum_{i\nmid n}\frac{a(i)}{i^2\sin^2(\pi n/i)} ,
+    \]
+    and the series converges absolutely, since the $i$-th summand of the second sum is bounded by $2\pi^2|a(i)|/(i^2\sin^2(\pi n/i))\le\pi^2|a(i)|/2$ for $i\nmid n$ (Jordan's inequality, as in the proof of Lemma~\ref{lem:K-bounds}). In words: an FD-lift passes through every integer value with zero slope. This is the origin of the \emph{tangent mismatch} between the Fej\'er sum $S_q$ and the exponential corrector discussed in Section~\ref{sec:periodic-normalizer}.
 \end{itemize}
 
 \subsection{Connection to Prime Number Theory: Two Complementary Approaches}
@@ -176,7 +182,7 @@ A renormalized difference kernel $(\phi_i-\phi_\infty)$ is therefore used; this 
 The construction is detailed in Appendix~\ref{app:fdlift-proofs}, Theorem~\ref{thm:renormalized-muLambda}.
 \end{quote}
 
-\begin{proposition}[Explicit formula for $\psi$, in the form used by the adapter method]\label{prop:adapter-explicit}
+\begin{proposition}[Explicit formula for $\psi$ (classical), in the normalization used here]\label{prop:adapter-explicit}
 Let $x>1$ and let $\psi(x)=\sum_{n\le x}\Lambda(n)$ be Chebyshev's function in the symmetric sense. Then
 \[
 \psi(x)= x - \sum_{\rho}\frac{x^{\rho}}{\rho} - \log(2\pi) - \frac{1}{2}\log\!\bigl(1-x^{-2}\bigr),
@@ -413,7 +419,7 @@ Pairing each divisor $d$ of $n$ with $n/d$ moreover gives the closed form
 \]
 \end{proof}
 
-\begin{proof}
+\begin{proof}[Proof of Proposition~\ref{prop:spectral-diff}]
 Fix $R>0$ and write $\phi_\infty(z):=(\sin(\pi z)/(\pi z))^2$ with $\phi_\infty(0):=1$. On $|z|\le R$,
 \[
 \sin(\pi z/i)=\frac{\pi z}{i}+\Big(\frac{\pi z}{i}\Big)^3 \rho_i(z),\qquad |\rho_i(z)|\le \tfrac{1}{6},
